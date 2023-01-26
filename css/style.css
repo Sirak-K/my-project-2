@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
-/* Global */
+/* GLOBAL */
 *, *::before, *::after {
     font-family: 'Rajdhani', sans-serif;
     color: rgb(255, 255, 255);
@@ -9,27 +9,24 @@
     padding:0;
 }
 
-
 /* BODY & ROOT */
 :root {
-    --hue-neutral: 250;
+    --hue-neutral: 240;
     --hue-wrong:0;
     --hue-correct: 145;
 }
 body {
-    background-color: yellow;
+    background: none;
     overflow: hidden;
 }
-
 body.correct {
     --hue: var(--hue-correct);
 }
-
 body.wrong {
     --hue: var(--hue-wrong);
 }
 
-/*---- HEADER & NAV - START ----*/
+/* HEADER & NAV */
 .header-container{
     position: absolute;
     min-height: 100px;
@@ -61,7 +58,6 @@ h2{
 header nav{
     background-color: rgb(0, 0, 0);
     float:right;
-
 }
 header a{
     position: relative;
@@ -71,7 +67,6 @@ header a{
     text-transform: uppercase;
     font-size: 52px;
 }
-
 header li{
     position: relative;
     top: 20px;
@@ -80,7 +75,6 @@ header li{
     padding: 0 50px 0 20px;
     list-style-type: none;
 }
-
 header .highlight, header .current a
 {
  color:white;
@@ -90,10 +84,8 @@ header .highlight, header .current a
 {
  color:#05f7ff;
 }
-/* HEADER & NAV - END */
 
-/* SHOWCASE - START */
-
+/* SHOWCASE */
 .showcase video{
     position:absolute;
     top: 0;
@@ -111,7 +103,6 @@ header .highlight, header .current a
     background: #03a9f4;
     mix-blend-mode: overlay;
 }
-/* SHOWCASE - END */
 
 /* CONTAINER: QUESTIONS */
 .container {
@@ -129,9 +120,10 @@ header .highlight, header .current a
     text-align: center;
     
 }
-/* CONTAINER: TEXT */
+/* TEXT: WELCOME */
 #w-text {
     position: relative;
+    top: 20px;
     left: 0px;
     padding-top: 0;
     z-index:10;
@@ -139,6 +131,8 @@ header .highlight, header .current a
     text-align: center;
     color: white;
 }
+
+/* BUTTONS */
 .btn-grid {
     display:grid;
     grid-template-columns: repeat(2, auto);
@@ -175,6 +169,14 @@ header .highlight, header .current a
     height: 100px;
     z-index: 3;
 }
+.next-btn {
+    background-color: black;
+    font-size: 4rem;
+    color:white;
+}
+.next-btn:hover {
+color:cyan;
+}
 .controls {
     display: flex;
     justify-content: center;
@@ -186,9 +188,7 @@ header .highlight, header .current a
 
 /* RESPONSIVENESS - MEDIA QUERIES */
 @media (max-width: 768px){
-    
-    header #branding
-{
+header #branding {
     position:relative;
     right:100px;
     margin:0;
@@ -196,38 +196,31 @@ header .highlight, header .current a
     text-align: center;
     width: 100%;
 }
-
 header h1 {
     position:relative;
     bottom: 10px;
     font-size:52px;
 }
-
-   header nav,
-   header nav li
+header nav,
+header nav li
 {
-    position: relative;
-    bottom: 20px;
-    left: 50px;
-    /* outline: auto; */
-   margin:0;
-   float:none;
-   text-align: center;
-   width: 100%;
-   min-height: 200px;
-   display:inline;
+position: relative;
+bottom: 20px;
+left: 50px;
+margin:0;
+float:none;
+text-align: center;
+width: 100%;
+min-height: 200px;
+display:inline;
 }
-   header a {
+header a {
     font-size:28px;
 }
 
-
 /* CONTAINER: QUESTIONS */
-
 .container{
-    /* outline: auto; */
     position: relative;
-    
     left: 70px;
     top: 200px;
     height: 300px;
@@ -241,9 +234,6 @@ header h1 {
 .btn-grid {
     gap: 20px;
 }
-
 .btn {
     font-size: 32px;
-}
-
-}
+}}

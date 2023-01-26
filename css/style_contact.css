@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
-
+/* GLOBAL */
 *, *::before, *::after {
-    box-sizing: border-box;
     font-family: 'Rajdhani', sans-serif;
+    color:white;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
 }
 
 /* BODY & ROOT */
@@ -14,7 +17,7 @@
 }
 body {
     background: none;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 body.correct {
     --hue: var(--hue-correct);
@@ -23,18 +26,17 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-/*---- HEADER & NAV - START ----*/
+/* HEADER & NAV */
 .header-container{
-    position: relative;
-    z-index: 10;
+    position: absolute;
     min-height: 100px;
     width: 100vw;
     background-color:rgb(0, 0, 0);
     border-bottom: cyan 3px solid;
+    z-index: 5;
 }
 header{
     color: white;
-    
 } 
 #branding{
     position:relative;
@@ -78,9 +80,8 @@ header .highlight, header .current a
  color:#05f7ff;
  font-weight:bold;
 }
-/* HEADER & NAV - END */
 
-/* SHOWCASE - START */
+/* SECTION: SHOWCASE */
 .showcase video{
     position: absolute;
     top: 0;
@@ -88,7 +89,6 @@ header .highlight, header .current a
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display:none;
 }
 .showcase .overlay {
     position: absolute;
@@ -98,22 +98,16 @@ header .highlight, header .current a
     height: 100%;
     background: #03a9f4;
     mix-blend-mode: overlay;
-    display:none;
-}
-/* SHOWCASE - END */
-
-.hide {
-    display:none;
 }
 
 /* SECTION: CONTACT FORM */
 h2{
     position:absolute;
-    top: 130px;
+    top: 140px;
     left: 55px;
     z-index: 5;
     color: rgb(5, 255, 234);
-    font-size: 36px;
+    font-size: 44px;
 }
 .sendmail{
     position:absolute;
@@ -130,23 +124,88 @@ h2{
 input[type="email"]{
     position: relative;
     left:5px;
-    top:8px;
-    width: 250px;
+    bottom: 30px;
+    width: 260px;
     padding:4px;
-    height: 35px;
+    height: 40px;
     color:black;
+    z-index: 5;
 }
-/* SUBSCRIBE BUTTON */
+input[type="text"]{
+    position: relative;
+    right: 260px;
+    top:50px;
+    width: 260px;
+    height: 100px;
+    padding:4px;
+    margin: 0;
+    color:black;
+    text-align: center;
+}
+
+/*  BUTTON: SEND */
 .sendmail button{
     position: absolute;
-    top:9px;
+    top:110px;
     width: 120px;
-    left: 260px;
-    font-size: 24px;
+    height: 40px;
+    left: 270px;
+    font-size: 28px;
     border-color: rgb(234, 0, 255);
     background-color: black;
     color:cyan;
 }
 
-
 /* RESPONSIVENESS - MEDIA QUERIES */
+@media (max-width: 768px){
+header #branding {
+    position:relative;
+    right:100px;
+    margin:0;
+    float:none;
+    text-align: center;
+    width: 100%;
+}
+header h1 {
+    position:relative;
+    bottom: 10px;
+    font-size:52px;
+}
+header nav,
+header nav li
+{
+position: relative;
+bottom: 20px;
+left: 50px;
+margin:0;
+float:none;
+text-align: center;
+width: 100%;
+min-height: 200px;
+display:inline;
+}
+h2 {
+    position:absolute;
+    bottom: 10px;
+    font-size:36px;
+}
+header a {
+    font-size:28px;
+}
+input[type="email"]{
+    position: relative;
+    left:7px;
+    top: 8px;
+    width: 260px;
+    padding:4px;
+    height: 40px;
+    color:black;
+    z-index: 5;
+}
+input[type="text"]{
+    position: absolute;
+   left: 7px;
+    margin: 0;
+    color:black;
+    text-align: center;
+}}

@@ -70,6 +70,8 @@ function selectAnswer(e) {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
     }
+
+    // Next-button  when any answer is pressed //
 nextButton.classList.remove('hide')
 }
 
@@ -90,7 +92,7 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-      question: 'What part of the brain governs vision?',
+      question: 'What part of the brain governs the vision?',
       answers: [
         { text: 'Amygdala', correct: false },
         { text: 'Occipital Lobe', correct: true },
@@ -99,7 +101,7 @@ const questions = [
       ]
     },
     {
-      question: 'What part of the brain governs hearing?',
+      question: 'What part of the brain governs the hearing?',
       answers: [
         
         { text: 'Amygdala', correct: false },
@@ -109,7 +111,7 @@ const questions = [
       ]
     },
     {
-      question: 'What part of the brain governs emotions?',
+      question: 'What part of the brain governs the emotions?',
       answers: [
         
         { text: 'Parietal Lobe', correct: false },
@@ -120,7 +122,7 @@ const questions = [
       ]
     },
     {
-        question: 'What part of the brain governs learning?',
+        question: 'What part of the brain governs the learning?',
         answers: [
         { text: 'Amygdala', correct: false },
         { text: 'Parietal Lobe', correct: false },
@@ -169,7 +171,7 @@ const questions = [
         ]
     },
     {
-        question: 'What part of the brain governs personality?',
+        question: 'What part of the brain governs the personality?',
         answers: [
           
           { text: 'Parietal Lobe', correct: false },
