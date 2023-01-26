@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style_contact.css" rel="stylesheet">
+    <script defer src="script.js">
+
+    </script>
+    <title>Online Quiz App</title>
+</head>
+<body>
+    <!-- HEADER: START -->
+<header>
+    <div class="header-container">
+    <div id="branding">
+    <h1>Online Quiz App</h1>
+</div>
+<!-- NAVBAR--> 
+<nav><ul>
+<li><a href="index.html" target="_blank" >Home</a></li>
+<li class="current"><a href="contact.html" target="_blank" >Contact</a></li>
+</ul></nav>
+</div>
+
+</header>
+<!-- HEADER: END-->
+
+<!--SECTION: SHOWCASE-->
+<div class="showcase">
+
+    <!--SHOWCASE: VIDEO-->
+        <video src="img/video-1.mp4" autoplay loop muted></video>
+    <!--Video Overlay-->
+        <div class="overlay"></div>
+    </div>
+
+    <!--NEWSLETTER-->
+<h2>Send an Email</h2>
+<section class="sendmail">
+        <form>
+        <input type="email" placeholder="Enter Email...">
+        <button type="submit" class="button" onclick="audio.play();">Send</button>
+        <script type="text/javascript">
+            const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
+        </script>
+    </form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script defer src="script.js">
+
+    </script>
+    <title>Online Quiz App</title>
+</head>
+
+<body>
+    <!-- HEADER: START -->
+<header>
+    <div class="header-container">
+    <div id="branding">
+    <h1>Online Quiz App</h1>
+</div>
+<!-- NAVBAR--> 
+<nav><ul>
+<li class="current"><a href="index.html" target="_blank" >Home</a></li>
+<li><a href="contact.html" target="_blank" >Contact</a></li>
+</ul></nav>
+</div>
+
+</header>
+<!-- HEADER: END-->
+
+<!--SECTION: SHOWCASE-->
+<div class="showcase">
+    <!--SHOWCASE: VIDEO-->
+        <video src="img/video-1.mp4" autoplay loop muted></video>
+    <!--Video Overlay-->
+        <div class="overlay"></div>
+    </div>
+
+<!--CONTAINER: QUESTIONS-->
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+         <!--WELCOME TEXT-->
+    <div id="w-text">
+        <h2>Welcome!</h2>
+        <h2>Press the Start button</h2>
+    </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn" onclick="audio.play();">Start</button>
+            <script type = "text/javascript">
+                const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
+            </script>
+            <button id="next-btn" class="next-btn btn hide" onclick="audio.play();">Next</button>
+        </div>
+    </div>
+
+   
+
+</body>
+</html>
