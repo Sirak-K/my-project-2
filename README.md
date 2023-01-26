@@ -1,3 +1,4 @@
+
 # my-project-2
 Project 2 - Online Quiz App
 
@@ -10,7 +11,13 @@ which describes how our brains learn more effectively when we space out our lear
 
 Source: https://collegeinfogeek.com/spaced-repetition-memory-technique/
 
+Website Architecture:
+- Homepage (Index.html) where the quiz app is played.
+- Contact page for visitors' feedback.
+
 ![Presentation - 2 - Quiz - Correct Answer](https://user-images.githubusercontent.com/122515678/214849773-2146d32e-2542-4575-92a2-b019ee34f658.png)
+
+![Presentation - 3 - Contact (Feedback) Page](https://user-images.githubusercontent.com/122515678/214853654-a58d61f6-d03f-41a8-9da4-cc6dc4c86405.png)
 
 Upcoming features:
 - Tooltips, hints & illustrative imagery for questions.
