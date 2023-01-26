@@ -39,10 +39,10 @@
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+                <button aria-label="Answer 1" class="btn">Answer 1</button>
+                <button aria-label="Answer 2" class="btn">Answer 2</button>
+                <button aria-label="Answer 3" class="btn">Answer 3</button>
+                <button aria-label="Answer 4" class="btn">Answer 4</button>
             </div>
         </div>
          <!--WELCOME TEXT-->
@@ -51,11 +51,11 @@
         <h2>Press the Start button</h2>
     </div>
         <div class="controls">
-            <button id="start-btn" class="start-btn btn" onclick="audio.play();">Start</button>
+            <button aria-label="Start" id="start-btn" class="start-btn btn" onclick="audio.play();">Start</button>
             <script type = "text/javascript">
                 const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
             </script>
-            <button id="next-btn" class="next-btn btn hide" onclick="audio.play();">Next</button>
+            <button aria-label="Next" id="next-btn" class="next-btn btn hide" onclick="audio.play();">Next</button>
         </div>
     </div>
 

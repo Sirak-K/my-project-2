@@ -1,3 +1,4 @@
+// DOM: Constant Declarations //
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -7,6 +8,7 @@ const welcomeText = document.getElementById('w-text')
 
 let shuffledQuestions, currentQuestionIndex
 
+// BUTTONS: Event Listeners //
 startButton.addEventListener('click', hideTexts)
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -14,10 +16,12 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 })
 
+// TEXT: Hide on Start //
 function hideTexts() {
     welcomeText.classList.add('hide')
 }
 
+// START GAME //
 function startGame() {
     startButton.classList.add('hide')
     // Randomizer //
@@ -26,14 +30,11 @@ function startGame() {
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
 }
-
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-
 function showQuestion(question) { 
-
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
@@ -45,7 +46,6 @@ function showQuestion(question) {
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })  
-    
 }
 
 function resetState() {
@@ -57,6 +57,7 @@ function resetState() {
     }
 }
 
+// Finished round leads to the Restart-button which leads to a new round //
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -71,10 +72,9 @@ function selectAnswer(e) {
         startButton.classList.remove('hide')
     }
 
-    // Next-button  when any answer is pressed //
+// Next-button appears when any Answer-button has been clicked on //
 nextButton.classList.remove('hide')
 }
-
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -89,7 +89,7 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-
+// QUESTIONS (9) //
 const questions = [
     {
       question: 'What part of the brain governs the vision?',
