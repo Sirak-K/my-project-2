@@ -66,15 +66,21 @@ function selectAnswer(e) {
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
+        nextButton.classList.add('hide')
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
+        nextButton.classList.add('hide')
+        questionElement.innerText = 'Well done!'
+        questionElement.innerText.remove('hide')
+        
     }
 
 // Next-button appears when any Answer-button has been clicked on //
 nextButton.classList.remove('hide')
 }
+
+
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -122,7 +128,7 @@ const questions = [
       ]
     },
     {
-        question: 'What part of the brain governs the learning?',
+        question: 'What part of the brain governs learning?',
         answers: [
         { text: 'Amygdala', correct: false },
         { text: 'Parietal Lobe', correct: false },

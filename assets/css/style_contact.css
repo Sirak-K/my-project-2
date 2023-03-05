@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+
+/* GLOBAL */
+*, *::before, *::after {
+    font-family: 'Rajdhani', sans-serif;
+    color:white;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+/* BODY & ROOT */
+:root {
+    --hue-neutral: 250;
+    --hue-wrong:0;
+    --hue-correct: 145;
+}
+body {
+    background: none;
+    overflow: hidden;
+}
+body.correct {
+    --hue: var(--hue-correct);
+}
+body.wrong {
+    --hue: var(--hue-wrong);
+}
+
+/* -------------- HEADER -------------- */ 
+.header-container{
+    display:flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 3em;
+    background-color:rgba(7, 7, 7, 0.2);
+    border-bottom: 2px solid;
+        border-image: linear-gradient(
+        to right,
+        #FF00FF 10%,
+        rgb(0, 255, 255) 60%,
+        #FF00FF 70%
+        ) 1 2 10%;
+}
+.logotype{
+    position: relative;
+    top: 0.2em;
+    left: 4%;
+    color:#ffffff;
+    text-decoration: unset;
+    font-size: clamp(3rem, 1vw + 1rem, 5rem);
+    margin: 0.5em;
+    font-family: "Conthrax";
+}
+/* ----------- NAV-BAR ----------- */
+.navbar {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    position: relative;
+    top: -1.5em;
+    left: 0em;
+    margin: 1em;
+}
+.navbar ul {
+    display: flex;
+    gap: 3em;
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+}
+.navbar a {
+    color:#ffffff;
+    font-size: clamp(3rem, 1vw + 1rem, 5rem);
+    text-transform: uppercase;
+    text-decoration: unset;
+}
+.navbar .highlight, 
+.navbar .current a
+{
+ color:e8491d;
+ font-weight:bold;
+}
+ .navbar a:hover{
+ color:#05f7ff;
+ font-weight:bold;
+}
+ .logotype:hover{
+ color:#05f7ff;
+}
+.form-button:hover{
+ background-color:#05f7ff;
+ color: black;
+}
+
+/* SECTION: SHOWCASE */
+.showcase video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.showcase .overlay {
+    position: absolute;
+    top:0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #03a9f4;
+    mix-blend-mode: overlay;
+}
+
+/* SECTION: CONTACT FORM */
+h2{
+    position:absolute;
+    top: 140px;
+    left: 55px;
+    z-index: 5;
+    color: rgb(5, 255, 234);
+    font-size: 44px;
+}
+.sendmail{
+    position:absolute;
+    top: 200px;
+    left: 50px;
+    display:flex;
+    z-index: 3;
+    width: 100%;
+    height:50px;
+    color: #ffffff;
+    background: none;
+    opacity: 0.9;
+}
+input[type="email"]{
+    position: relative;
+    left:5px;
+    bottom: 30px;
+    width: 260px;
+    padding:4px;
+    height: 40px;
+    color:black;
+    z-index: 5;
+}
+input[type="text"]{
+    position: relative;
+    right: 260px;
+    top:50px;
+    width: 260px;
+    height: 100px;
+    padding:4px;
+    margin: 0;
+    color:black;
+    text-align: center;
+}
+
+/*  BUTTON: SEND */
+.sendmail button{
+    position: absolute;
+    top:110px;
+    width: 120px;
+    height: 40px;
+    left: 270px;
+    font-size: 28px;
+    border-color: rgb(234, 0, 255);
+    background-color: black;
+    color:cyan;
+}
+
+
+/* -------------- FOOTER -------------- */
+.footer-container {
+    width: 30%;
+    height: auto;
+    margin: 0;
+    padding:0;
+    position: absolute;
+    left: 48em;
+    bottom: 0.2em;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#footer-details {
+    margin: 0;
+    padding: 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding-top: 0.3em;
+    margin: 0;
+}
+.social-links li a i {
+    margin: 0.5em;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: clamp(2.5rem, 1vw + 1rem, 5rem);
+    line-height: 3.8rem;
+    text-align: center;
+    color: white;
+    background-color: rgb(35, 0, 236);
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+.social-links li a i:hover {
+    background:greenyellow;
+    color: black;
+    
+}
