@@ -6,8 +6,25 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const welcomeText = document.getElementById('w-text')
 
+let time = document.querySelector("#time");
+
+let timer = 0;
+let interval = 0;
+
+//Creating Timer For Quiz Timer Section
+
+let countDown = () => {
+  if (timer === 20) {
+      clearInterval(interval);
+      nextButton.click();
+  } else {
+      timer++;
+      time.innerText = timer;
+  }
+}
 
 let shuffledQuestions, currentQuestionIndex, score
+
 
 let highScore = 0;
 const highScoreElement = document.createElement('div');
@@ -38,6 +55,7 @@ function hideTexts() {
 
 // ---------------------- START GAME ---------------------- //
 function startGame() {
+  interval = setInterval(countDown, 1000);
     startButton.classList.add('hide')
     score = 0 // Reset score
     highScore = 0 // Reset high score
@@ -45,6 +63,7 @@ function startGame() {
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
   setNextQuestion()
+  timer = 0;
    // Reset high score when the game is restarted
   highScore = 0;
   highScoreElement.innerText = `Your high score: ${highScore}`;

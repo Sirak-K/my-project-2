@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    <script defer src="script.js"></script>
+    <script defer src="script LINK IT DAMN IT.js"></script>
     <title>Home | Quiz App</title>
 </head>
 <body>
@@ -27,6 +27,9 @@
 
 <!--CONTAINER: QUESTIONS-->
     <section class="container">
+        <div id="timer">
+            <h6 id="time"></h6>
+        </div>
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
@@ -37,9 +40,15 @@
             </div>
         </div>
         
+        
 <!-- GAME CONTROLS -->
         <div class="controls">
             <button aria-label="Start" id="start-btn" class="start-btn btn" onclick="audio.play();"><h3>Start</h3></button>
+            
+           
+            <button aria-label="Restart" id="restart-btn" class="restart-btn btn hide">Restartz</button>
+            
+            
             <script type="text/javascript">
                 const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
             </script>
