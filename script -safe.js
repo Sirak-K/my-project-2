@@ -6,21 +6,7 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const welcomeText = document.getElementById('w-text')
 
-
-let shuffledQuestions, currentQuestionIndex, score
-
-let highScore = 0;
-const highScoreElement = document.createElement('div');
-highScoreElement.id = 'high-score';
-highScoreElement.innerText = `Your high score: ${highScore}`;
-questionContainerElement.appendChild(highScoreElement);
-
-function updateHighScore(score) {
-  if (score > highScore) {
-    highScore = score;
-    highScoreElement.innerText = `Your high score: ${highScore}`;
-  }
-}
+let shuffledQuestions, currentQuestionIndex
 
 // BUTTONS: Event Listeners //
 startButton.addEventListener('click', hideTexts)
@@ -35,97 +21,66 @@ function hideTexts() {
     welcomeText.classList.add('hide')
 }
 
-
-// ---------------------- START GAME ---------------------- //
+// START GAME //
 function startGame() {
     startButton.classList.add('hide')
-    score = 0 // Reset score
-    highScore = 0 // Reset high score
+    // Randomizer //
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
-  setNextQuestion()
-   // Reset high score when the game is restarted
-   highScore = 0;
-   highScoreElement.innerText = `Your high score: ${highScore}`;
+    setNextQuestion()
 }
-
-// ------ UPDATE SCORE ------ //
-function updateScore() {
-    score++
-}
-
-// ------ SHOW SCORE ------ //
-function showFinalScore() {
-    const scoreElement = document.createElement('div')
-    scoreElement.classList.add('highscore-container');
-
-  scoreElement.innerText = `Your final score: ${score}`
-    questionContainerElement.innerHTML = ''
-    questionContainerElement.appendChild(scoreElement)
-}
-
-// -------- SET QUESTION -------- //
 function setNextQuestion() {
     resetState()
-    if (currentQuestionIndex >= shuffledQuestions.length) {
-        nextButton.onclick = showFinalScore
-    } else {
-        showQuestion(shuffledQuestions[currentQuestionIndex])
-    }
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+function showQuestion(question) { 
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })  
 }
 
-// -------- SHOW QUESTION -------- //
-function showQuestion(question) { 
-    questionElement.innerText = question.question;
-    question.answers.forEach(answer => {
-      const button = document.createElement('button');
-      button.innerText = answer.text;
-      button.classList.add('btn');
-      if (answer.correct) {
-        button.dataset.correct = answer.correct;
-      }
-      button.addEventListener('click', () => {
-        selectAnswer(answer);
-      });
-      answerButtonsElement.appendChild(button);
-    })  
-  }
-
-// RESET //
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
+    while (answerButtonsElement.firstChild)
+    {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
 
-
-// SELECT AN ANSWER //
-function selectAnswer(answer) {
-    setStatusClass(document.body, answer.correct);
+// Finished round leads to the Restart-button which leads to a new round //
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct);
-    });
-    if (answer.correct) {
-        updateScore();
-        updateHighScore(score);
-      highScoreElement.innerText = `Your high score: ${score}`;
-    }
+        setStatusClass(button, button.dataset.correct)
+    })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      nextButton.classList.remove('hide');
+        nextButton.classList.add('hide')
     } else {
-      startButton.innerText = 'Restart';
-      startButton.classList.remove('hide');
-      nextButton.innerText = 'Score Board'
-      questionElement.innerText = 'Well done!';
-      questionElement.classList.remove('hide');
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('hide')
+        nextButton.classList.add('hide')
+        questionElement.innerText = 'Well done!'
+        questionElement.innerText.remove('hide')
+        
     }
-    nextButton.classList.remove('hide');
-  }
 
-// "CORRECT / WRONG" //
+// Next-button appears when any Answer-button has been clicked on //
+nextButton.classList.remove('hide')
+}
+
+
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -134,13 +89,13 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// CLEAR -> "CORRECT / WRONG" //
+
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
 
-// QUESTIONS (x9) //
+// QUESTIONS (9) //
 const questions = [
     {
       question: 'What part of the brain governs the vision?',
@@ -171,7 +126,7 @@ const questions = [
         { text: 'Frontal Lobe', correct: false }
         
       ]
-     },
+    },
     {
         question: 'What part of the brain governs learning?',
         answers: [
@@ -233,6 +188,5 @@ const questions = [
         ]
     },
 
-]
-
+  ]
 

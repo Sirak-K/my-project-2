@@ -15,7 +15,7 @@
 <header>
     <div class="header-container">
         <div id="branding">
-            <h1><a class="logotype" href="index.html">NeuroGen</a></h1>
+            <h1><a class="logotype" href="index.html">NeuroQuiz</a></h1>
         </div>
         <!-- NAVBAR--> 
         <nav class="navbar"><ul>
@@ -25,17 +25,8 @@
     </div>
 </header>
 
-<!-- HEADER: END-->
-
-
-    <!--VIDEO-->
-        <video class="landing-video" src="img/video-1.mp4" autoplay loop muted></video>
-    <!--Video Overlay-->
-        <div class="landing-overlay"></div>
- 
-
 <!--CONTAINER: QUESTIONS-->
-    <div class="container">
+    <section class="container">
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
@@ -54,7 +45,7 @@
             </script>
             <button aria-label="Next" id="next-btn" class="next-btn btn hide" onclick="audio.play();"><h3>Next</h3></button>
         </div>
-    </div>
+    </section>
 
 
 <!--WELCOME TEXT-->
@@ -62,6 +53,14 @@
     <h2>Welcome!</h2>
     <h2>Press the Start button</h2>
 </div>
+
+
+<!-- HIGH-SCORE CONTAINER -->
+<div class="highscore-container"></div>
+
+<!-- SCORE BOARD -->
+<div class="score-board"></div>
+
 <!-- FOOTER -->
 <footer class="footer-container">
     <div id="footer-details" class="row">
