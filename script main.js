@@ -13,13 +13,19 @@ let timeLeft = 60; // total time in seconds
 let timerId; // define timerId here
 
 
-let shuffledQuestions, currentQuestionIndex, score
+let shuffledQuestions, currentQuestionIndex
 
 let highScore = 0;
-const currentHighScoreElement = document.createElement('div');
-currentHighScoreElement.id = 'high-score';
-currentHighScoreElement.innerText = `Your high score: ${highScore}`;
-questionContainerElement.appendChild(currentHighScoreElement);
+const HighScoreElement = document.createElement('div');
+HighScoreElement.id = 'high-score';
+HighScoreElement.innerText = `Your high score: ${highScore}`;
+questionContainerElement.appendChild(HighScoreElement);
+
+let currentScore = 0;
+const currentScoreElement = document.createElement('div');
+currentScoreElement.id = 'current-score';
+currentScoreElement.innerText = `Your current score: ${currentScore}`;
+questionContainerElement.appendChild(currentScoreElement);
 
 
 
@@ -33,9 +39,8 @@ function resetTimer() {
   timeElement.innerText = `Time Left: ${timeLeft} seconds`;
 }
 
-// HIDDEN: TIME
-// scoreBoardPage.classList.add('hide');
-
+// HIDDEN: CURRENT SCORE
+HighScoreElement.classList.add('hide');
 
 // HIDDEN: TIME
 timeElement.classList.add('hide');
@@ -58,7 +63,7 @@ nextButton.addEventListener('click', () => {
 })
 restartButton.addEventListener('click', () => {
   restartGame();
-  currentHighScoreElement.classList.add('hide');
+  HighScoreElement.classList.add('hide');
 });
 
 // START THE TIMER when the user clicks the Start button
@@ -76,7 +81,7 @@ function hideTexts() {
 // - FUNCTION : START GAME -------------------------------------------- //
 function startGame() {
     timeElement.classList.remove('hide');
-    score = 0
+    currentScore = 0
     highScore = 0
     shuffledQuestions = questionsList.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -90,7 +95,7 @@ function startGame() {
   
    // Reset high score when the game is restarted
   highScore = 0;
-  currentHighScoreElement.innerText = `Your high score: ${highScore}`;
+  HighScoreElement.innerText = `Your high score: ${highScore}`;
 
   // CLEAR ANY EXISTING TIMERS
   clearInterval(timerId);
@@ -111,43 +116,43 @@ function startTimer() {
 
 
 // - FUNCTION : COUNTDOWN (TIMER) -------------------------------------------- //
-// function countdown() {
-//   if (currentQuestionIndex >= shuffledQuestions.length) {
-//     clearInterval(timerId);
-//     timeElement.innerText = 'Game Over!';
-//     timeElement.classList.add('time-up');
-//     showFinalScore();
-//     restartButton.classList.remove('hide');
-//   } else if (timeLeft === 0) {
-//     clearInterval(timerId);
-//     timeElement.innerText = 'Time is up!';
-//     timeElement.classList.add('time-up');
-//     showFinalScore();
-//     restartButton.classList.remove('hide');
-//   } else {
-//     if (currentQuestionIndex < shuffledQuestions.length - 1) {
-//       timeLeft--;
-//       timeElement.innerText = `Time Left: ${timeLeft} seconds`;
-//     }
-//     if (currentQuestionIndex === shuffledQuestions.length - 1) {
-//       nextButton.innerText = 'Score Board';
-//     }
-//   }
-// }
+function countdown() {
+  if (currentQuestionIndex >= shuffledQuestions.length) {
+    clearInterval(timerId);
+    timeElement.innerText = 'Game Over!';
+    timeElement.classList.add('time-up');
+    showFinalScore();
+    restartButton.classList.remove('hide');
+  } else if (timeLeft === 0) {
+    clearInterval(timerId);
+    timeElement.innerText = 'Time is up!';
+    timeElement.classList.add('time-up');
+    showFinalScore();
+    restartButton.classList.remove('hide');
+  } else {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      timeLeft--;
+      timeElement.innerText = `Time Left: ${timeLeft} seconds`;
+    }
+    if (currentQuestionIndex === shuffledQuestions.length - 1) {
+      nextButton.innerText = 'Score Board';
+    }
+  }
+}
 
   
 // ----------------------------------------------------------------------------------------
 
 // - FUNCTION : UPDATE SCORE -------------------------------------------- //
 function updateScore() {
-    score++
+    currentScore++
 }
 
 // - FUNCTION : SHOW FINAL SCORE -------------------------------------------- //
 function showFinalScore() {
     const finalScoreElement = document.createElement('div')
     finalScoreElement.classList.add('highscore-container');
-    finalScoreElement.innerText = `Your final score: ${score}`
+    finalScoreElement.innerText = `Your final score: ${currentScore}`
     questionContainerElement.innerHTML = ''
     questionContainerElement.appendChild(finalScoreElement)
   
@@ -166,16 +171,16 @@ function restartGame() {
   restartButton.classList.add('hide');
 
   // HIDE HIGH SCORE ELEMENT
-  currentHighScoreElement.classList.add('hide'); 
+  HighScoreElement.classList.add('hide'); 
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
-  currentHighScoreElement.innerText = `Your high score: ${highScore}`;
+  HighScoreElement.innerText = `Your X score: ${highScore}`;
   
   // RESET THE GAME STATE
   resetState();
   currentQuestionIndex = 0;
-  score = 0;
+  currentScore = 0;
   shuffledQuestions = questionsList.sort(() => Math.random() - 0.5);
  
 
@@ -226,7 +231,7 @@ function showQuestion(question) {
     question.answers.forEach(answer => {
       const questionAnswerButton = document.createElement('button');
       questionAnswerButton.innerText = answer.text;
-      questionAnswerButton.classList.add('control-btn');
+      questionAnswerButton.classList.add('question-answer-btn');
       if (answer.correct) {
         questionAnswerButton.dataset.correct = answer.correct;
       }
@@ -260,7 +265,7 @@ function selectAnswer(answer) {
   // UPDATE SCORE AND HIGH SCORE ELEMENT
   if (answer.correct) {
     updateScore();
-    currentHighScoreElement.innerText = `Your high score: ${score}`;
+    HighScoreElement.innerText = `Your high score: ${currentScore}`;
   }
   
   // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS, OR SHOW WELL-DONE MESSAGE AND RESTART BUTTON IF THERE ARE NO MORE QUESTIONS
@@ -319,77 +324,77 @@ const questionsList = [
         { text: 'Frontal Lobe', correct: false }
       ]
     },
-    {
-      question: 'What part of the brain governs the emotions?',
-      answers: [
+    // {
+    //   question: 'What part of the brain governs the emotions?',
+    //   answers: [
         
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Amygdala', correct: true },
-        { text: 'Hippocampus', correct: false },
-        { text: 'Frontal Lobe', correct: false }
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Amygdala', correct: true },
+    //     { text: 'Hippocampus', correct: false },
+    //     { text: 'Frontal Lobe', correct: false }
         
-      ]
-     },
-    {
-        question: 'What part of the brain governs learning?',
-        answers: [
-        { text: 'Amygdala', correct: false },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Frontal Lobe', correct: false },
-        { text: 'Hippocampus', correct: true }
+    //   ]
+    //  },
+    // {
+    //     question: 'What part of the brain governs learning?',
+    //     answers: [
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Frontal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: true }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs reasoning?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs reasoning?',
+    //     answers: [
         
-        { text: 'Amygdala', correct: false },
-        { text: 'Frontal Lobe', correct: true },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Hippocampus', correct: false }
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Frontal Lobe', correct: true },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs spatiality?',
-        answers: [
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs spatiality?',
+    //     answers: [
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs language?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Hippocampus', correct: false }
-        ]
-    },
-    {
-        question: 'What part of the brain governs sensation?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false },
-          { text: 'Parietal Lobe', correct: true }
-        ]
-    },
-    {
-        question: 'What part of the brain governs the personality?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs language?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs sensation?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false },
+    //       { text: 'Parietal Lobe', correct: true }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs the personality?',
+    //     answers: [
           
-          { text: 'Parietal Lobe', correct: false },
-          { text: 'Frontal Lobe', correct: true },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Amygdala', correct: false }
+    //       { text: 'Parietal Lobe', correct: false },
+    //       { text: 'Frontal Lobe', correct: true },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Amygdala', correct: false }
           
-        ]
-    },
+    //     ]
+    // },
 
 ]
 
