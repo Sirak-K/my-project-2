@@ -287,7 +287,7 @@ function clearStatusClass(element) {
 // QUESTIONS (x9) //
 const questionsList = [
     {
-      question: 'What part of the brain governs the vision?',
+      question: 'What part of the brain governs vision?',
       answers: [
         { text: 'Amygdala', correct: false },
         { text: 'Occipital Lobe', correct: true },
@@ -296,7 +296,7 @@ const questionsList = [
       ]
     },
     {
-      question: 'What part of the brain governs the hearing?',
+      question: 'What part of the brain governs hearing?',
       answers: [
         
         { text: 'Amygdala', correct: false },
