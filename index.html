@@ -46,13 +46,13 @@
             <button aria-label="Start" id="start-btn" class="start-btn btn" onclick="audio.play();"><h3>Start</h3></button>
             
            
-            <button aria-label="Restart" id="restart-btn" class="restart-btn btn hide">Restartz</button>
+            <button aria-label="Restart" id="restart-btn" class="restart-btn btn hide" onclick="audio.play();"><h3>Restart</h3></button>
             
             
             <script type="text/javascript">
                 const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
             </script>
-            <button aria-label="Next" id="next-btn" class="next-btn btn hide" onclick="audio.play();"><h3>Next</h3></button>
+            <button aria-label="Next" id="next-btn" class="next-btn btn hide" ><h3>Next</h3></button>
         </div>
     </section>
 
@@ -67,8 +67,8 @@
 <!-- HIGH-SCORE CONTAINER -->
 <div class="highscore-container"></div>
 
-<!-- SCORE BOARD -->
-<div class="score-board"></div>
+<!-- SCORE BOARD PAGE-->
+<div class="score-board-page">(scoreboard page)</div>
 
 <!-- FOOTER -->
 <footer class="footer-container">

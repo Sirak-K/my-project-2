@@ -2,6 +2,7 @@
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const restartButton = document.getElementById('restart-btn')
+
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
@@ -40,16 +41,11 @@ restartButton.classList.add('hide');
 startButton.addEventListener('click', hideTexts)
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
-  if (currentQuestionIndex >= shuffledQuestions.length) {
-    showFinalScore();
-} else {
-    currentQuestionIndex++;
-    setNextQuestion();
-}
+    currentQuestionIndex++
+    setNextQuestion()
 })
 restartButton.addEventListener('click', () => {
   restartGame();
-  highScoreElement.classList.add('hide');
 });
 
 // HIDDEN: WELCOME TEXT
@@ -111,11 +107,9 @@ function countdown() {
     timeElement.classList.add('time-up');
     showFinalScore();
 
-  // Show restart button if all questions have been answered
-  restartButton.classList.remove('hide');
-} else if (currentQuestionIndex === shuffledQuestions.length - 1) {
-  nextButton.innerText = 'Score Board';
-}
+    // DISPLAY RESTART BUTTON 1
+    restartButton.classList.remove('hide');
+  }
 }
   
 // ----------------------------------------------------------------------------------------
@@ -144,9 +138,6 @@ function restartGame() {
 
   // HIDE RESTART BUTTON
   restartButton.classList.add('hide');
-
-  // HIDE HIGH SCORE ELEMENT
-  highScoreElement.classList.add('hide'); 
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
@@ -158,8 +149,6 @@ function restartGame() {
   score = 0;
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
  
-
-
  // START THE GAME
   startGame();
 
@@ -172,25 +161,16 @@ restartButton.addEventListener('click', restartGame);
 
 // -------- SET QUESTION -------- //
 function setNextQuestion() {
-  // Category 1: Reset state
-  resetState();
-
-  // Category 2: Check if the game is finished
-  if (currentQuestionIndex >= shuffledQuestions.length) {
-    showFinalScore();
+    resetState()
+    if (currentQuestionIndex >= shuffledQuestions.length) {
+      nextButton.onclick = showFinalScore
+      restartButton.classList.remove('hide');
+    } else {
+        showQuestion(shuffledQuestions[currentQuestionIndex])
+  }
+   // Show restart button if all questions have been answered
+   if (currentQuestionIndex === shuffledQuestions.length - 1) {
     restartButton.classList.remove('hide');
-
-    // Category 3: Hide next button if game is finished
-    nextButton.classList.add('hide');
-  } 
-  // Category 4: If game is not finished, show the next question
-  else {
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
-
-    // Category 5: If it's the last question, change next button text to "Score Board"
-    if (currentQuestionIndex === shuffledQuestions.length - 1) {
-      nextButton.innerText = 'Score Board';
-    }
   }
 }
 
@@ -223,40 +203,26 @@ function resetState() {
 
 // SELECT AN ANSWER //
 function selectAnswer(answer) {
-
-  // SET CORRECT/WRONG CLASS TO BODY
-  setStatusClass(document.body, answer.correct);
-  
-  // SET CORRECT/WRONG CLASS TO ANSWER BUTTONS
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct);
-  });
-  
-  // UPDATE SCORE AND HIGH SCORE ELEMENT
-  if (answer.correct) {
-    updateScore();
-    highScoreElement.innerText = `Your high score: ${score}`;
-  }
-  
-  // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS, OR SHOW WELL-DONE MESSAGE AND RESTART BUTTON IF THERE ARE NO MORE QUESTIONS
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide');
-  } else {
-    startButton.classList.add('hide');
-    restartButton.innerText = 'Restart?'
-    questionElement.innerText = 'Well done!';
-    questionElement.classList.remove('hide');
-    restartButton.classList.remove('hide');
-  }
-  
-  // SET NEXT BUTTON TEXT TO "NEXT" AND SHOW NEXT BUTTON
-  nextButton.innerText = 'Next';
+    setStatusClass(document.body, answer.correct);
+    Array.from(answerButtonsElement.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct);
+    });
+    if (answer.correct) {
+        updateScore();
+      highScoreElement.innerText = `Your high score: ${score}`;
+    }
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+      nextButton.classList.remove('hide');
+    } else {
+      
+      startButton.classList.add('hide');
+      nextButton.innerText = 'Score Board'
+      questionElement.innerText = 'Well done!';
+      questionElement.classList.remove('hide');
+      restartButton.classList.remove('hide');
+    }
   nextButton.classList.remove('hide');
-}
-
-
-
-
+  }
 
 // "CORRECT / WRONG" //
 function setStatusClass(element, correct) {
