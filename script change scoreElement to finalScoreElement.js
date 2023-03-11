@@ -18,10 +18,10 @@ let timerId; // define timerId here
 let shuffledQuestions, currentQuestionIndex, score
 
 let highScore = 0;
-const currentHighScoreElement = document.createElement('div');
-currentHighScoreElement.id = 'high-score';
-currentHighScoreElement.innerText = `Your high score: ${highScore}`;
-questionContainerElement.appendChild(currentHighScoreElement);
+const highScoreElement = document.createElement('div');
+highScoreElement.id = 'high-score';
+highScoreElement.innerText = `Your high score: ${highScore}`;
+questionContainerElement.appendChild(highScoreElement);
 
 
 
@@ -60,7 +60,7 @@ nextButton.addEventListener('click', () => {
 })
 restartButton.addEventListener('click', () => {
   restartGame();
-  currentHighScoreElement.classList.add('hide');
+  highScoreElement.classList.add('hide');
 });
 
 // START THE TIMER when the user clicks the Start button
@@ -92,7 +92,7 @@ function startGame() {
   
    // Reset high score when the game is restarted
   highScore = 0;
-  currentHighScoreElement.innerText = `Your high score: ${highScore}`;
+  highScoreElement.innerText = `Your high score: ${highScore}`;
 
   // CLEAR ANY EXISTING TIMERS
   clearInterval(timerId);
@@ -140,11 +140,11 @@ function updateScore() {
 
 // - FUNCTION : SHOW FINAL SCORE -------------------------------------------- //
 function showFinalScore() {
-    const finalScoreElement = document.createElement('div')
-    finalScoreElement.classList.add('highscore-container');
-    finalScoreElement.innerText = `Your final score: ${score}`
+    const scoreElement = document.createElement('div')
+    scoreElement.classList.add('highscore-container');
+    scoreElement.innerText = `Your final score: ${score}`
     questionContainerElement.innerHTML = ''
-    questionContainerElement.appendChild(finalScoreElement)
+    questionContainerElement.appendChild(scoreElement)
   
   
     // DISPLAY RESTART BUTTON 
@@ -159,11 +159,11 @@ function restartGame() {
   restartButton.classList.add('hide');
 
   // HIDE HIGH SCORE ELEMENT
-  currentHighScoreElement.classList.add('hide'); 
+  highScoreElement.classList.add('hide'); 
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
-  currentHighScoreElement.innerText = `Your high score: ${highScore}`;
+  highScoreElement.innerText = `Your high score: ${highScore}`;
   
   // RESET THE GAME STATE
   resetState();
@@ -248,7 +248,7 @@ function selectAnswer(answer) {
   // UPDATE SCORE AND HIGH SCORE ELEMENT
   if (answer.correct) {
     updateScore();
-    currentHighScoreElement.innerText = `Your high score: ${score}`;
+    highScoreElement.innerText = `Your high score: ${score}`;
   }
   
   // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS, OR SHOW WELL-DONE MESSAGE AND RESTART BUTTON IF THERE ARE NO MORE QUESTIONS

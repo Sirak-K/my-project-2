@@ -141,14 +141,6 @@ color: black;
 
 
 
-
-/* #next-btn {
-    position: relative;
-    top:-2em;
-} */
-
-
-
 /* --- WELCOME TEXT --- */
 #w-text {
     /* outline: auto; */
@@ -172,10 +164,6 @@ color: black;
     padding: 1em;
     color:white;
 }
-
-
-
-
 
 
 /* --- BUTTONS & CONTROLS --- */
@@ -225,10 +213,6 @@ color: black;
 }
 
 
-
-
-
-    
 
 
 /* -------------- FOOTER -------------- */
@@ -372,11 +356,12 @@ border-bottom: 2px solid;
     top: -1em; */
     font-size: clamp(1rem, 1vh + 1rem, 2rem);
     color:white;
-    outline: auto;
+    /* outline: auto; */
 }
 
-.score-board {
-    /* outline: auto; */
+.score-board-page {
+    height: 15em;
+    outline: green 10px solid;
 }
 
 
@@ -422,8 +407,6 @@ border-bottom: 2px solid;
     z-index: 3;
 }
 #start-btn h3, #next-btn h3, #restart-btn h3 {
-    /* width: auto;
-    height: auto; */
     z-index: 3;
     font-size: clamp(0.5rem, 1vw + 1rem, 1.5rem);
 }
@@ -431,11 +414,8 @@ border-bottom: 2px solid;
 #start-btn {
     position: relative;
     bottom:0;
-    top:12em;
+    top:0;
 }
-
-
-
 
 
 .btn-grid {
@@ -477,11 +457,11 @@ border-bottom: 2px solid;
 /* TEXT: WELCOME */
 #w-text {
     width: 100%;
-    position: relative;
-    left:0;
+    /* position: relative; */
+    /* left:0; */
     /* margin: 0em 0em; */
-    padding: 1.5em;
-    top: -18em;
+    padding: 0.5em;
+    top: 0em;
     z-index:200;
 }
 #w-text h2 {

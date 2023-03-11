@@ -27,9 +27,16 @@
 
 <!--CONTAINER: QUESTIONS-->
     <section class="container">
+        <!-- TIMER -->
         <div id="timer">
             <h6 id="time"></h6>
         </div>
+        <!--WELCOME TEXT-->
+        <div id="w-text">
+            <h2>Welcome!</h2>
+            <h2>Press the Start button</h2>
+        </div>
+        
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
@@ -40,7 +47,7 @@
             </div>
         </div>
         
-        
+
 <!-- GAME CONTROLS -->
         <div class="controls">
             <button aria-label="Start" id="start-btn" class="start-btn btn" onclick="audio.play();"><h3>Start</h3></button>
@@ -55,20 +62,17 @@
             <button aria-label="Next" id="next-btn" class="next-btn btn hide" ><h3>Next</h3></button>
         </div>
     </section>
-
-
-<!--WELCOME TEXT-->
-<div id="w-text">
-    <h2>Welcome!</h2>
-    <h2>Press the Start button</h2>
-</div>
-
-
+        
 <!-- HIGH-SCORE CONTAINER -->
-<div class="highscore-container"></div>
+<div class="highscore-container">high-score-container</div>
 
 <!-- SCORE BOARD PAGE-->
-<div class="score-board-page">(scoreboard page)</div>
+<div class="score-board-page">(score-board-page)</div>
+
+
+
+
+
 
 <!-- FOOTER -->
 <footer class="footer-container">
