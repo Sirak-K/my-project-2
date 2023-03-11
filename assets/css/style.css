@@ -252,33 +252,6 @@ border-bottom: 2px solid;
     background-color: rgb(14, 2, 68);
 }
 
-
-/* --------  QUESTIONS FONT -------- */
-
-/* -------- CONTAINER: QUESTIONS -------- */
-#question-visibility-container {
-    margin: 0em 0.2em;
-    padding: 0em;
-}
-#questions-container {
-    position: relative;
-    font-size: clamp(1.2rem, 1vw + 1rem, 1.5rem);
-    padding: 0em;
-    margin: 0;
-    margin-bottom: 1em;
-}
-#question-answer-container {
-    display:grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: center;
-    gap: 1em;
-    margin:0;
-    padding:0;
-    margin-top: 0.5em;
-}
-
-
-
 /* -------- HIGH-SCORE CONTAINER -------- */
 #highscore-container {
     background-color: brown;
@@ -295,15 +268,64 @@ border-bottom: 2px solid;
 
 
 
+
+/* -------- CONTAINER: QUESTIONS -------- */
+#question-visibility-container {
+    margin: 0em 0.2em;
+    padding: 0em;
+}
+/* --------  QUESTIONS FONT -------- */
+#questions-container {
+    
+    position: relative;
+    font-size: clamp(1.2rem, 1vw + 1rem, 1.5rem);
+    padding: 0em;
+    margin: 0;
+    margin-bottom: 1em;
+}
+#question-answer-container {
+    outline: solid red 2px;
+    display:grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    gap: 1em;
+    padding:0.5em 0.2em;
+    margin:0;
+    margin-top: 0.5em;
+    
+}
+
+
+
+
+
+
 /* BUTTONS */
 
 .controls {
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1em;
     margin-bottom: 1em 0;
     padding: 0.5em 1em;
+}
+
+.btn-grid {
+    display:flex;
+    justify-content: space-evenly;
+}
+
+/* Former .btn */
+.control-btn {
+    font-size: clamp(0.5rem, 1vw + 0.8rem, 1rem);
+    --hue: var(--hue-neutral);
+    border: 3px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%, 50%);
+    border-radius: 10px;
+    color:white;
+    font-family: "Arial";
 }
 
 
@@ -325,17 +347,6 @@ border-bottom: 2px solid;
 }
 
 
-.btn {
-    margin: 0;
-    width: 100%;
-    --hue: var(--hue-neutral);
-    border: 3px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 100%, 50%);
-    border-radius: 10px;
-    font-size: clamp(0.5rem, 1vw + 0.8rem, 1rem);
-    color:white;
-    font-family: "Arial";
-}
 
 .btn:hover {
     border-color: cyan;

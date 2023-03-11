@@ -111,29 +111,29 @@ function startTimer() {
 
 
 // - FUNCTION : COUNTDOWN (TIMER) -------------------------------------------- //
-function countdown() {
-  if (currentQuestionIndex >= shuffledQuestions.length) {
-    clearInterval(timerId);
-    timeElement.innerText = 'Game Over!';
-    timeElement.classList.add('time-up');
-    showFinalScore();
-    restartButton.classList.remove('hide');
-  } else if (timeLeft === 0) {
-    clearInterval(timerId);
-    timeElement.innerText = 'Time is up!';
-    timeElement.classList.add('time-up');
-    showFinalScore();
-    restartButton.classList.remove('hide');
-  } else {
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      timeLeft--;
-      timeElement.innerText = `Time Left: ${timeLeft} seconds`;
-    }
-    if (currentQuestionIndex === shuffledQuestions.length - 1) {
-      nextButton.innerText = 'Score Board';
-    }
-  }
-}
+// function countdown() {
+//   if (currentQuestionIndex >= shuffledQuestions.length) {
+//     clearInterval(timerId);
+//     timeElement.innerText = 'Game Over!';
+//     timeElement.classList.add('time-up');
+//     showFinalScore();
+//     restartButton.classList.remove('hide');
+//   } else if (timeLeft === 0) {
+//     clearInterval(timerId);
+//     timeElement.innerText = 'Time is up!';
+//     timeElement.classList.add('time-up');
+//     showFinalScore();
+//     restartButton.classList.remove('hide');
+//   } else {
+//     if (currentQuestionIndex < shuffledQuestions.length - 1) {
+//       timeLeft--;
+//       timeElement.innerText = `Time Left: ${timeLeft} seconds`;
+//     }
+//     if (currentQuestionIndex === shuffledQuestions.length - 1) {
+//       nextButton.innerText = 'Score Board';
+//     }
+//   }
+// }
 
   
 // ----------------------------------------------------------------------------------------
@@ -224,16 +224,16 @@ function setNextQuestion() {
 function showQuestion(question) { 
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
-      const button = document.createElement('button');
-      button.innerText = answer.text;
-      button.classList.add('btn');
+      const questionAnswerButton = document.createElement('button');
+      questionAnswerButton.innerText = answer.text;
+      questionAnswerButton.classList.add('control-btn');
       if (answer.correct) {
-        button.dataset.correct = answer.correct;
+        questionAnswerButton.dataset.correct = answer.correct;
       }
-      button.addEventListener('click', () => {
+      questionAnswerButton.addEventListener('click', () => {
         selectAnswer(answer);
       });
-      questionAnswerContainer.appendChild(button);
+      questionAnswerContainer.appendChild(questionAnswerButton);
     })  
 }
 
@@ -253,8 +253,8 @@ function selectAnswer(answer) {
   setStatusClass(document.body, answer.correct);
   
   // SET CORRECT/WRONG CLASS TO ANSWER BUTTONS
-  Array.from(questionAnswerContainer.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct);
+  Array.from(questionAnswerContainer.children).forEach(questionAnswerButton => {
+    setStatusClass(questionAnswerButton, questionAnswerButton.dataset.correct);
   });
   
   // UPDATE SCORE AND HIGH SCORE ELEMENT
