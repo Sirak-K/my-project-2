@@ -104,6 +104,7 @@ function startGame() {
 }
 
 
+
 // - FUNCTION : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
@@ -112,29 +113,21 @@ function startTimer() {
 
 // - FUNCTION : COUNTDOWN (TIMER) -------------------------------------------- //
 function countdown() {
-  if (currentQuestionIndex >= shuffledQuestions.length) {
-    clearInterval(timerId);
-    timeElement.innerText = 'Game Over!';
-    timeElement.classList.add('time-up');
-    showFinalScore();
-    restartButton.classList.remove('hide');
-  } else if (timeLeft === 0) {
+  timeLeft--;
+  timeElement.innerText = `Time Left: ${timeLeft} seconds`;
+  
+  if (timeLeft === 0 || currentQuestionIndex >= shuffledQuestions.length) {
     clearInterval(timerId);
     timeElement.innerText = 'Time is up!';
     timeElement.classList.add('time-up');
     showFinalScore();
-    restartButton.classList.remove('hide');
-  } else {
-    if (currentQuestionIndex < shuffledQuestions.length - 1) {
-      timeLeft--;
-      timeElement.innerText = `Time Left: ${timeLeft} seconds`;
-    }
-    if (currentQuestionIndex === shuffledQuestions.length - 1) {
-      nextButton.innerText = 'Score Board';
-    }
-  }
-}
 
+  // Show restart button if all questions have been answered
+  restartButton.classList.remove('hide');
+} else if (currentQuestionIndex === shuffledQuestions.length - 1) {
+  nextButton.innerText = 'Score Board';
+}
+}
   
 // ----------------------------------------------------------------------------------------
 
@@ -151,8 +144,8 @@ function showFinalScore() {
     questionContainerElement.innerHTML = ''
     questionContainerElement.appendChild(finalScoreElement)
   
-     // RESET GAME STATE
-     resetState();
+    // Stop the timer when the game is finished
+    clearInterval(timerId);
   
     // DISPLAY RESTART BUTTON 
     restartButton.classList.remove('hide');
@@ -200,16 +193,11 @@ function setNextQuestion() {
     showFinalScore();
     restartButton.classList.remove('hide');
 
-    // // Category 3: Hide next button if game is finished
-    // nextButton.classList.add('hide');
-
-  // Stop the timer and display "Game Over"
-    clearInterval(timerId);
-    timeElement.innerText = 'Game Over!';
-    timeElement.classList.add('time-up');
-
-    // Category 4: If game is not finished, show the next question
-  } else {
+    // Category 3: Hide next button if game is finished
+    nextButton.classList.add('hide');
+  } 
+  // Category 4: If game is not finished, show the next question
+  else {
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 
     // Category 5: If it's the last question, change next button text to "Score Board"
@@ -330,66 +318,66 @@ const questionsList = [
         
       ]
      },
-    {
-        question: 'What part of the brain governs learning?',
-        answers: [
-        { text: 'Amygdala', correct: false },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Frontal Lobe', correct: false },
-        { text: 'Hippocampus', correct: true }
+    // {
+    //     question: 'What part of the brain governs learning?',
+    //     answers: [
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Frontal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: true }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs reasoning?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs reasoning?',
+    //     answers: [
         
-        { text: 'Amygdala', correct: false },
-        { text: 'Frontal Lobe', correct: true },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Hippocampus', correct: false }
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Frontal Lobe', correct: true },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs spatiality?',
-        answers: [
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs spatiality?',
+    //     answers: [
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs language?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Hippocampus', correct: false }
-        ]
-    },
-    {
-        question: 'What part of the brain governs sensation?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false },
-          { text: 'Parietal Lobe', correct: true }
-        ]
-    },
-    {
-        question: 'What part of the brain governs the personality?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs language?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs sensation?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false },
+    //       { text: 'Parietal Lobe', correct: true }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs the personality?',
+    //     answers: [
           
-          { text: 'Parietal Lobe', correct: false },
-          { text: 'Frontal Lobe', correct: true },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Amygdala', correct: false }
+    //       { text: 'Parietal Lobe', correct: false },
+    //       { text: 'Frontal Lobe', correct: true },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Amygdala', correct: false }
           
-        ]
-    },
+    //     ]
+    // },
 
 ]
 
