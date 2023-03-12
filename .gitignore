@@ -6,3 +6,4 @@ script main 3 - 03.12.js
 script restartgame -safe.js
 script change scoreElement to finalScoreElement.js
 script Karis method.js
+script scoreBoardButton.js
