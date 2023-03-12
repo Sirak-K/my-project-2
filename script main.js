@@ -16,10 +16,17 @@ let timerId; // define timerId here
 let shuffledQuestions, currentQuestionIndex
 
 let highScore = 0;
-const HighScoreElement = document.createElement('div');
-HighScoreElement.id = 'high-score';
-HighScoreElement.innerText = `Your high score: ${highScore}`;
-questionContainerElement.appendChild(HighScoreElement);
+const highScoreElement = document.createElement('div');
+highScoreElement.id = 'high-score';
+highScoreElement.innerText = `Your high score: ${highScore}`;
+questionContainerElement.appendChild(highScoreElement);
+
+function updateHighScore(currentScore) {
+  if (currentScore > highScore) {
+    highScore = currentScore;
+    highScoreElement.innerText = `Your high score: ${highScore}`;
+  }
+}
 
 let currentScore = 0;
 const currentScoreElement = document.createElement('div');
@@ -40,7 +47,7 @@ function resetTimer() {
 }
 
 // HIDDEN: CURRENT SCORE
-HighScoreElement.classList.add('hide');
+highScoreElement.classList.add('hide');
 
 // HIDDEN: TIME
 timeElement.classList.add('hide');
@@ -63,7 +70,7 @@ nextButton.addEventListener('click', () => {
 })
 restartButton.addEventListener('click', () => {
   restartGame();
-  HighScoreElement.classList.add('hide');
+  highScoreElement.classList.add('hide');
 });
 
 // START THE TIMER when the user clicks the Start button
@@ -95,7 +102,7 @@ function startGame() {
   
    // Reset high score when the game is restarted
   highScore = 0;
-  HighScoreElement.innerText = `Your high score: ${highScore}`;
+  highScoreElement.innerText = `Your high score: ${highScore}`;
 
   // CLEAR ANY EXISTING TIMERS
   clearInterval(timerId);
@@ -140,12 +147,11 @@ function countdown() {
   }
 }
 
-  
-// ----------------------------------------------------------------------------------------
 
 // - FUNCTION : UPDATE SCORE -------------------------------------------- //
-function updateScore() {
-    currentScore++
+function updateCurrentScore() {
+  currentScore++
+  currentScoreElement.innerText = `Your current score: ${currentScore}`;
 }
 
 // - FUNCTION : SHOW FINAL SCORE -------------------------------------------- //
@@ -171,11 +177,11 @@ function restartGame() {
   restartButton.classList.add('hide');
 
   // HIDE HIGH SCORE ELEMENT
-  HighScoreElement.classList.add('hide'); 
+  highScoreElement.classList.add('hide'); 
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
-  HighScoreElement.innerText = `Your X score: ${highScore}`;
+  highScoreElement.innerText = `Your X score: ${highScore}`;
   
   // RESET THE GAME STATE
   resetState();
@@ -264,8 +270,9 @@ function selectAnswer(answer) {
   
   // UPDATE SCORE AND HIGH SCORE ELEMENT
   if (answer.correct) {
-    updateScore();
-    HighScoreElement.innerText = `Your high score: ${currentScore}`;
+    updateCurrentScore();
+    updateHighScore(currentScore);
+    highScoreElement.innerText = `Your high score: ${currentScore}`;
   }
   
   // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS, OR SHOW WELL-DONE MESSAGE AND RESTART BUTTON IF THERE ARE NO MORE QUESTIONS
