@@ -219,10 +219,11 @@ border-bottom: 2px solid;
 }
 
 /* ---  [320px] -- GAME SECTION -- [23 em] --- */
-.game-section {
+#game-section {
    
     position: relative;
     display: flex;
+    /* display: none; */
     justify-content: center;
     flex-direction: column;
     text-align: center;
@@ -233,10 +234,8 @@ border-bottom: 2px solid;
     width: 100vw;
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
-    background-color: black;
     color:rgb(40, 245, 21);
-
-    background-color: rgb(14, 2, 68);
+    background-color: rgba(14, 2, 68, 0.7);
 }
 
 /* -------- HIGH-SCORE CONTAINER -------- */
@@ -253,7 +252,15 @@ border-bottom: 2px solid;
     color:white;
 }
 
-
+#score-board-container
+{
+    position: relative;
+    left:0;
+    top:0;
+    z-index: 200;
+    outline: 10px solid red;
+    height: 10em;
+}
 
 
 /* -------- CONTAINER: QUESTIONS -------- */

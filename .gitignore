@@ -7,3 +7,6 @@ script restartgame -safe.js
 script change scoreElement to finalScoreElement.js
 script Karis method.js
 script scoreBoardButton.js
+.gitignore
+/node_modules
+/package.json

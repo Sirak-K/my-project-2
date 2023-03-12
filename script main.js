@@ -3,7 +3,6 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const restartButton = document.getElementById('restart-btn')
 
-
 const welcomeText = document.getElementById('w-text')
 
 const questionElement = document.getElementById('questions-container')
@@ -12,9 +11,8 @@ const questionAnswerContainer = document.getElementById('question-answer-contain
 
 const timeElement = document.getElementById('time')
 
-// const scoreBoardButton = document.getElementById('scoreboard-btn')
-// const scoreBoardContainer = document.getElementById('scoreboard-container')
-
+const scoreBoardButton = document.getElementById('score-board-btn')
+const scoreBoardContainer = document.getElementById('score-board-container')
 
 
 
@@ -24,16 +22,12 @@ let shuffledQuestions, currentQuestionIndex
 let currentScore = 0;
 let highScore = 0;
 
-const clearStorageButton = document.createElement('button');
-clearStorageButton.id = 'clear-storage-button';
-clearStorageButton.innerText = 'CLEAR STORAGE';
+// const clearStorageButton = document.createElement('button');
+// clearStorageButton.id = 'clear-storage-button';
+// clearStorageButton.innerText = 'CLEAR STORAGE';
 
-clearStorageButton.addEventListener('click', () => {
-  localStorage.clear();
-});
-
-const clearContainer = document.getElementById('clear-container');
-clearContainer.appendChild(clearStorageButton);
+// const clearContainer = document.getElementById('clear-container');
+// clearContainer.appendChild(clearStorageButton);
 
 
 const highScoreElement = document.createElement('div');
@@ -54,19 +48,20 @@ questionContainerElement.appendChild(currentScoreElement);
 // topScores = getHighestScores - represents the top 5 scores from the scores array, sorted in descending order.
 
 // -- SCOREBOARD -------------------------------------------- //
+// The ScoreBoard is a class that manages the scores of the game, and it's used to record the high score of each player. 
+// When a player finishes a round, the ScoreBoard object is used to check if the player's current score is higher than any of the previously recorded scores. 
+// If it is, then the new score is added to the list of recorded scores and the list is sorted in descending order to determine the new high score.
 class ScoreBoard {
+  constructor(recordedScores) {
 
   // recordedScores is a parameter of the ScoreBoard constructor function. 
   // It is used to initialize the recordedScores property of the ScoreBoard object.
   // This parameter is used to pass an array of previously recorded scores to the constructor, 
   // which is then stored in the recordedScores property of the ScoreBoard object.
-  
-  
-  constructor(recordedScores) {
     
-    // Retrieve saved scores from local storage
+  // Retrieve saved scores from local storage
     
-    this.recordedScores = recordedScores || [];
+  this.recordedScores = recordedScores || [];
   }
 
   getHighestScores() {
@@ -122,8 +117,67 @@ restartButton.classList.add('hide');
 
 // BUTTONS: Event Listeners //
 
+// clearStorageButton.addEventListener('click', () => {
+//   localStorage.clear();
+// });
+
+scoreBoardButton.addEventListener('click', () => {
+  console.log('Clicked: View Rankings');
+
+  // HIDE RANKINGS
+  scoreBoardContainer.classList.remove('hide');
+  scoreBoardButton.classList.add('hide');
+
+  // SHOW SCORE BOARD CONTAINER
+  scoreBoardContainer.classList.remove('hide');
+
+  // HIDE QUESTION CONTAINER
+  questionElement.classList.add('hide');
+  questionContainerElement.classList.add('hide');
+  questionAnswerContainer.classList.add('hide');
+  
+  // Get the recorded scores from local storage
+  const recordedScores = JSON.parse(localStorage.getItem('recordedScores')) || [];
+
+  // Create a new ScoreBoard object
+  const scoreBoard = new ScoreBoard(recordedScores);
+
+  // Get the top 5 scores
+  const highestScores = scoreBoard.getHighestScores();
+
+  // Create a table to display the scores
+  const scoreBoardTable = document.createElement('table');
+  scoreBoardTable.id = 'score-board-table';
+  scoreBoardTable.innerHTML = '';
+  const headerRow = scoreBoardTable.insertRow();
+  const headerCell1 = headerRow.insertCell();
+  const headerCell2 = headerRow.insertCell();
+  headerCell1.innerText = 'Rank';
+  headerCell2.innerText = 'Score';
+
+
+  // In this code block, score and index are parameters of a callback function
+  // that is being passed to the forEach method.
+  // The forEach method is iterating over the highestScores array, and for each element in the array, it calls the callback function, passing in the current element and its index.
+  // So, score is the current score being iterated over in the highestScores array, and index is its index in the array.
+  
+  // ADD EACH SCORE TO THE TABLE
+  highestScores.forEach((iteratedScore, scoreIndex) => {
+    const row = scoreBoardTable.insertRow();
+    const cell1 = row.insertCell();
+    const cell2 = row.insertCell();
+    cell1.innerText = scoreIndex + 1;
+    cell2.innerText = iteratedScore;
+  });
+
+  // Clear any existing contents of the score board container and add the table
+  scoreBoardContainer.innerHTML = '';
+  scoreBoardContainer.appendChild(scoreBoardTable);
+});
+
+
 startButton.addEventListener('click', () => {
-  console.log('Start button clicked');
+  console.log('Clicked: Start');
   hideTexts();
   startGame();
   startTimer();
@@ -131,14 +185,22 @@ startButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
+  console.log('Clicked: Next');
   if (currentQuestionIndex >= shuffledQuestions.length) {
     showFinalScore();
-} else {
+  } else {
     currentQuestionIndex++;
     setNextQuestion();
-}
-})
+  }
+
+  // Check if all questions have been answered and disable the "Next" button if they have
+  if (questionAnswerContainer.querySelectorAll('.question-answer-btn.selected').length === shuffledQuestions.length) {
+    nextButton.classList.add('hide');
+  }
+});
+
 restartButton.addEventListener('click', () => {
+  console.log('Clicked: Restart');
   restartGame();
   highScoreElement.classList.add('hide');
 });
@@ -153,21 +215,24 @@ function hideTexts() {
 // - FUNCTION : START GAME -------------------------------------------- //
 function startGame() {
   console.log('Start game function called');
-    timeElement.classList.remove('hide');
+
+  questionElement.classList.remove('hide');
+  questionContainerElement.classList.remove('hide');
+  questionAnswerContainer.classList.remove('hide');
+
+  timeElement.classList.remove('hide');
+  
     currentScore = 0
     highScore = 0
     shuffledQuestions = questionsList.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
-    questionContainerElement.classList.remove('hide')
+    
   
   // RESET TIMER
   resetTimer();
 
   // SET THE FIRST QUESTION
   setNextQuestion()
-  
-  // HIDE THE SCORE BOARD BUTTON
-  nextButton.classList.add('hide');
   
    // Reset high score when the game is restarted
   highScore = 0;
@@ -210,11 +275,9 @@ function countdown() {
       timeLeft--;
       timeElement.innerText = `Time Left: ${timeLeft} seconds`;
     }
-    if (currentQuestionIndex === shuffledQuestions.length - 1) {
-      nextButton.innerText = 'Score Board';
-    }
   }
 }
+
 // - FUNCTION : UPDATE LOCAL STORAGE -------------------------------------------- //
 function updateLocalStorage() {
   
@@ -294,14 +357,17 @@ function showFinalScore() {
 // ------ RESTART GAME ------ //
 function restartGame() {
 
+  
   // HIDE RESTART BUTTON
   restartButton.classList.add('hide');
 
-  // HIDE THE SCORE BOARD BUTTON
-  nextButton.classList.add('hide');
+  // HIDE RANKINGS
+  scoreBoardContainer.classList.add('hide');
 
   // HIDE HIGH SCORE ELEMENT
   highScoreElement.classList.add('hide'); 
+
+  
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
@@ -342,21 +408,20 @@ function setNextQuestion() {
     showFinalScore();
     restartButton.classList.remove('hide');
 
-    // // Category 3: Hide next button if game is finished
-    // nextButton.classList.add('hide');
+    
 
-  // Stop the timer and display "Game Over"
+    // Stop the timer and display "Game Over"
     clearInterval(timerId);
     timeElement.innerText = 'Game Over!';
     timeElement.classList.add('time-up');
 
-    // Category 4: If game is not finished, show the next question
+  // Category 4: If game is not finished, show the next question
   } else {
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 
-    // Category 5: If it's the last question, change next button text to "Score Board"
+    // Category 5: If it's the last question, hide next button
     if (currentQuestionIndex === shuffledQuestions.length - 1) {
-      nextButton.innerText = 'Score Board';
+      nextButton.classList.add('hide');
     }
   }
 }
@@ -373,6 +438,7 @@ function showQuestion(question) {
         questionAnswerButton.dataset.correct = answer.correct;
       }
       questionAnswerButton.addEventListener('click', () => {
+        console.log('Clicked: Answers');
         selectAnswer(answer);
       });
       questionAnswerContainer.appendChild(questionAnswerButton);
@@ -416,17 +482,17 @@ function selectAnswer(answer) {
   } else {
 
     startButton.classList.add('hide');
-    restartButton.classList.remove('hide');
 
+    restartButton.classList.remove('hide');
     restartButton.innerText = 'Restart?'
+    scoreBoardButton.classList.remove('hide');
+    scoreBoardButton.innerText ='View Rankings'
     questionElement.classList.remove('hide');
     questionElement.innerText = 'Well done!';
     
   }
   
-  // SET NEXT BUTTON TEXT TO "NEXT" AND SHOW NEXT BUTTON
-  nextButton.innerText = 'Next';
-  nextButton.classList.remove('hide');
+  
 }
 
 
@@ -469,77 +535,77 @@ const questionsList = [
         { text: 'Frontal Lobe', correct: false }
       ]
     },
-    {
-      question: 'What part of the brain governs the emotions?',
-      answers: [
+    // {
+    //   question: 'What part of the brain governs the emotions?',
+    //   answers: [
         
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Amygdala', correct: true },
-        { text: 'Hippocampus', correct: false },
-        { text: 'Frontal Lobe', correct: false }
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Amygdala', correct: true },
+    //     { text: 'Hippocampus', correct: false },
+    //     { text: 'Frontal Lobe', correct: false }
         
-      ]
-     },
-    {
-        question: 'What part of the brain governs learning?',
-        answers: [
-        { text: 'Amygdala', correct: false },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Frontal Lobe', correct: false },
-        { text: 'Hippocampus', correct: true }
+    //   ]
+    //  },
+    // {
+    //     question: 'What part of the brain governs learning?',
+    //     answers: [
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Frontal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: true }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs reasoning?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs reasoning?',
+    //     answers: [
         
-        { text: 'Amygdala', correct: false },
-        { text: 'Frontal Lobe', correct: true },
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Hippocampus', correct: false }
+    //     { text: 'Amygdala', correct: false },
+    //     { text: 'Frontal Lobe', correct: true },
+    //     { text: 'Parietal Lobe', correct: false },
+    //     { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs spatiality?',
-        answers: [
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs spatiality?',
+    //     answers: [
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false }
           
-        ]
-    },
-    {
-        question: 'What part of the brain governs language?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Parietal Lobe', correct: true },
-          { text: 'Hippocampus', correct: false }
-        ]
-    },
-    {
-        question: 'What part of the brain governs sensation?',
-        answers: [
-          { text: 'Amygdala', correct: false },
-          { text: 'Frontal Lobe', correct: false },
-          { text: 'Hippocampus', correct: false },
-          { text: 'Parietal Lobe', correct: true }
-        ]
-    },
-    {
-        question: 'What part of the brain governs the personality?',
-        answers: [
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs language?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Parietal Lobe', correct: true },
+    //       { text: 'Hippocampus', correct: false }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs sensation?',
+    //     answers: [
+    //       { text: 'Amygdala', correct: false },
+    //       { text: 'Frontal Lobe', correct: false },
+    //       { text: 'Hippocampus', correct: false },
+    //       { text: 'Parietal Lobe', correct: true }
+    //     ]
+    // },
+    // {
+    //     question: 'What part of the brain governs the personality?',
+    //     answers: [
           
-          { text: 'Parietal Lobe', correct: false },
-          { text: 'Frontal Lobe', correct: true },
-          { text: 'Occipital Lobe', correct: false },
-          { text: 'Amygdala', correct: false }
+    //       { text: 'Parietal Lobe', correct: false },
+    //       { text: 'Frontal Lobe', correct: true },
+    //       { text: 'Occipital Lobe', correct: false },
+    //       { text: 'Amygdala', correct: false }
           
-        ]
-    },
+    //     ]
+    // },
 
 ]
 
