@@ -2,19 +2,13 @@
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const restartButton = document.getElementById('restart-btn')
-
 const welcomeText = document.getElementById('w-text')
-
 const questionElement = document.getElementById('questions-container')
 const questionContainerElement = document.getElementById('question-visibility-container')
 const questionAnswerContainer = document.getElementById('question-answer-container')
-
 const timeElement = document.getElementById('time')
-
 const scoreBoardButton = document.getElementById('score-board-btn')
 const scoreBoardContainer = document.getElementById('score-board-container')
-
-
 
 let timeLeft = 60; 
 let timerId; 
@@ -22,111 +16,76 @@ let shuffledQuestions, currentQuestionIndex
 let currentScore = 0;
 let highScore = 0;
 
+// - CLEAR LOCAL STORAGE ------
 const clearStorageButton = document.createElement('button');
 clearStorageButton.id = 'clear-storage-btn';
 clearStorageButton.innerText = 'CLEAR STORAGE';
-
 clearStorageButton.addEventListener('click', () => {
   console.log('Clicked: Cleared Local Storage');
   localStorage.clear();
 });
-
-
 const clearContainer = document.getElementById('clear-container');
 clearContainer.appendChild(clearStorageButton);
 
-
-
-
+// - HIGH SCORE ELEMENT------
 const highScoreElement = document.createElement('div');
 highScoreElement.id = 'high-score';
 highScoreElement.innerText = `Your high score: ${highScore}`;
 questionContainerElement.appendChild(highScoreElement);
-
+// - CURRENT SCORE ELEMENT------
 const currentScoreElement = document.createElement('div');
 currentScoreElement.id = 'current-score';
 currentScoreElement.innerText = `Your current score: ${currentScore}`;
 questionContainerElement.appendChild(currentScoreElement);
 
+// INITIALLY HIDDEN //
+highScoreElement.classList.add('hide');
+timeElement.classList.add('hide');
+restartButton.classList.add('hide');
 
-// ARRAY: 
-// scores = scoreStorage - represents all the scores that have been recorded so far.
-
-// ARRAY: 
-// topScores = getHighestScores - represents the top 5 scores from the scores array, sorted in descending order.
 
 // -- SCOREBOARD -------------------------------------------- //
-// The ScoreBoard is a class that manages the scores of the game, and it's used to record the high score of each player. 
-// When a player finishes a round, the ScoreBoard object is used to check if the player's current score is higher than any of the previously recorded scores. 
-// If it is, then the new score is added to the list of recorded scores and the list is sorted in descending order to determine the new high score.
 class ScoreBoard {
-  constructor(recordedScores) {
-
-  // recordedScores is a parameter of the ScoreBoard constructor function. 
-  // It is used to initialize the recordedScores property of the ScoreBoard object.
-  // This parameter is used to pass an array of previously recorded scores to the constructor, 
-  // which is then stored in the recordedScores property of the ScoreBoard object.
-    
+  constructor(allRecordedScores) {
   // Retrieve saved scores from local storage
-    
-  this.recordedScores = recordedScores || [];
+  this.allRecordedScores = allRecordedScores || [];
   }
-
   getHighestScores() {
-    const highestScores = [...this.recordedScores].sort((a, b) => b - a).slice(0, 5);
+    const highestScores = [...this.allRecordedScores].sort((a, b) => b - a).slice(0, 5);
     return highestScores;
   }
-
   addScore(currentScore) {
     if (currentScore > 0) {
-      let scoreStorage = JSON.parse(localStorage.getItem('recordedScores')) || [];
+      let scoreStorage = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
       
-      // Check if the current score is higher than the recorded scores
+      // CHECK IF THE CURRENT SCORE IS HIGHER THAN THE RECORDED SCORES
       if (scoreStorage.length < 5 || currentScore > scoreStorage[scoreStorage.length - 1]) {
-    
-        // Add the current score to the recorded scores array
+        // ADD THE CURRENT SCORE TO THE RECORDED SCORES ARRAY
         scoreStorage.push(currentScore);
-        
-        // Sort the recorded scores array in descending order
+        // SORT THE RECORDED SCORES ARRAY IN DESCENDING ORDER
         scoreStorage.sort((a, b) => b - a);
-        
-        // Remove any extra scores beyond the top 5
+        // REMOVE ANY EXTRA SCORES BEYOND THE TOP 5
         scoreStorage = scoreStorage.slice(0, 5);
-        
-        // Save the updated scores array to local storage
-        localStorage.setItem('recordedScores', JSON.stringify(scoreStorage));
+        // SAVE THE UPDATED SCORES ARRAY TO LOCAL STORAGE
+        localStorage.setItem('allRecordedScores', JSON.stringify(scoreStorage));
       }
     }
   }
-  
 }
-
-const scoreStorage = JSON.parse(localStorage.getItem('recordedScores')) || [];
+const scoreStorage = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
 const scoreStorageManager = new ScoreBoard();
 
 // - FUNCTION : RESET TIMER -------------------------------------------- //
 function resetTimer() {
-  // Clear any existing timers
+  // CLEAR ANY EXISTING TIMERS
   clearInterval(timerId);
-
-  // Reset timer
+  // RESET TIMER
   timeLeft = 60;
   timeElement.innerText = `Time Left: ${timeLeft} seconds`;
 }
 
-// HIDDEN: CURRENT SCORE
-highScoreElement.classList.add('hide');
-
-// HIDDEN: TIME
-timeElement.classList.add('hide');
-
-// HIDDEN: RESTART BUTTON
-restartButton.classList.add('hide');
-
-// BUTTONS: Event Listeners //
-
-
-
+// --------------- BUTTONS: Event Listeners --------------- //
+// --------------- BUTTON: Score Board --------------- //
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
 
@@ -143,10 +102,10 @@ scoreBoardButton.addEventListener('click', () => {
   questionAnswerContainer.classList.add('hide');
   
   // Get the recorded scores from local storage
-  const recordedScores = JSON.parse(localStorage.getItem('recordedScores')) || [];
+  const allRecordedScores = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
 
   // Create a new ScoreBoard object
-  const scoreBoard = new ScoreBoard(recordedScores);
+  const scoreBoard = new ScoreBoard(allRecordedScores);
 
   // Get the top 5 scores
   const highestScores = scoreBoard.getHighestScores();
@@ -161,12 +120,6 @@ scoreBoardButton.addEventListener('click', () => {
   headerCell1.innerText = 'Rank';
   headerCell2.innerText = 'Score';
 
-
-  // In this code block, score and index are parameters of a callback function
-  // that is being passed to the forEach method.
-  // The forEach method is iterating over the highestScores array, and for each element in the array, it calls the callback function, passing in the current element and its index.
-  // So, score is the current score being iterated over in the highestScores array, and index is its index in the array.
-  
   // ADD EACH SCORE TO THE TABLE
   highestScores.forEach((iteratedScore, scoreIndex) => {
     const row = scoreBoardTable.insertRow();
@@ -180,8 +133,7 @@ scoreBoardButton.addEventListener('click', () => {
   scoreBoardContainer.innerHTML = '';
   scoreBoardContainer.appendChild(scoreBoardTable);
 });
-
-
+// --------------- START --------------- //
 startButton.addEventListener('click', () => {
   console.log('Clicked: Start');
   hideTexts();
@@ -189,7 +141,7 @@ startButton.addEventListener('click', () => {
   startTimer();
   startButton.classList.add('hide');
 });
-
+// --------------- NEXT --------------- //
 nextButton.addEventListener('click', () => {
   console.log('Clicked: Next');
   if (currentQuestionIndex >= shuffledQuestions.length) {
@@ -204,11 +156,12 @@ nextButton.addEventListener('click', () => {
     nextButton.classList.add('hide');
   }
 });
-
+// --------------- RESTART --------------- //
 restartButton.addEventListener('click', () => {
   console.log('Clicked: Restart');
   restartGame();
   highScoreElement.classList.add('hide');
+  scoreBoardButton.classList.add('hide');
 });
 
 
@@ -228,11 +181,11 @@ function startGame() {
 
   timeElement.classList.remove('hide');
   
-    currentScore = 0
-    highScore = 0
-    shuffledQuestions = questionsList.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    
+  highScore = 0
+  currentScore = 0
+  currentScoreElement.innerText = `Your current score: ${currentScore}`;
+  shuffledQuestions = questionsList.sort(() => Math.random() - .5)
+  currentQuestionIndex = 0
   
   // RESET TIMER
   resetTimer();
@@ -255,12 +208,10 @@ function startGame() {
   timeElement.innerText = `Time Left: ${timeLeft} seconds`;
 }
 
-
 // - FUNCTION : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
 }
-
 
 // - FUNCTION : COUNTDOWN (TIMER) -------------------------------------------- //
 function countdown() {
@@ -286,13 +237,10 @@ function countdown() {
 
 // - FUNCTION : UPDATE LOCAL STORAGE -------------------------------------------- //
 function updateLocalStorage() {
-  
-  localStorage.setItem('recordedScores', JSON.stringify(scoreStorage));
+  localStorage.setItem('allRecordedScores', JSON.stringify(scoreStorage));
 }
 
-
-
-// - FUNCTION : UPDATE SCORE -------------------------------------------- //
+// - FUNCTION : UPDATE SCORES -------------------------------------------- //
 
 function updateScores(correct) {
   if (correct) {
@@ -303,18 +251,13 @@ function updateScores(correct) {
   }
 }
 
-//  increments the current score by one 
-//  updates the current score element on the page. 
+// - FUNCTION : UPDATE CURRENT SCORE --------- //
 function updateCurrentScore() {
   currentScore++
   currentScoreElement.innerText = `Your current score: ${currentScore}`;
 }
 
-
-// checks if the current score is higher than the current high score, and if so, 
-// updates the high score and the high score element on the page
-// adds the new high score to the recorded scores array 
-// using the addScore() method of the scoreStorageManager object.
+// - FUNCTION : UPDATE HIGH SCORE --------- //
 function updateHighScore(currentScore) {
   if (currentScore > highScore) {
     highScore = currentScore;
@@ -322,21 +265,15 @@ function updateHighScore(currentScore) {
     // Add the high score to the scoreboard and update local storage
     scoreStorageManager.addScore(highScore);
     updateLocalStorage();
-
     // Update the high score element
     highScoreElement.innerText = `Your high score: ${highScore}`;
-    
     // ADD CURRENT SCORE TO RECORDED SCORES ARRAY AND UPDATE HIGH SCORE ELEMENT
     scoreStorageManager.addScore(currentScore);
     highScoreElement.innerText = `Your high score: ${scoreStorageManager.getHighestScores()[0] || 0}`;
-
     // SAVE THE HIGH SCORE TO LOCAL STORAGE
-    localStorage.setItem('highScore', highScore); 
+    localStorage.setItem('currentScore', currentScore);
   }
 }
-
-
-
 
 // - FUNCTION : SHOW FINAL SCORE -------------------------------------------- //
 function showFinalScore() {
@@ -345,63 +282,50 @@ function showFinalScore() {
     finalScoreElement.innerText = `Your final score: ${currentScore}`
     questionContainerElement.innerHTML = ''
     questionContainerElement.appendChild(finalScoreElement)
-  
     // RESET GAME STATE
      resetState();
-  
     // SHOW THE SCORE BOARD BUTTON
     nextButton.classList.remove('hide');
-  
     // SHOW THE HIGH SCORE ELEMENT
-     highScoreElement.classList.remove('hide'); 
-  
+    highScoreElement.classList.remove('hide'); 
     // DISPLAY RESTART BUTTON 
     restartButton.classList.remove('hide');
+    // REMOVE CURRENT SCORE FROM LOCAL STORAGE
+    localStorage.removeItem('currentScore');
+   
 }
-
 
 // ------ RESTART GAME ------ //
 function restartGame() {
-
-  
   // HIDE RESTART BUTTON
   restartButton.classList.add('hide');
-
   // HIDE RANKINGS
   scoreBoardContainer.classList.add('hide');
-
   // HIDE HIGH SCORE ELEMENT
   highScoreElement.classList.add('hide'); 
-
-  
-  
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
   highScore = 0;
   highScoreElement.innerText = `Your X score: ${highScore}`;
   
- // Retrieve the high score from Local Storage
- const storedHighScore = localStorage.getItem('highScore');
- if (storedHighScore !== null) {
-   highScore = parseInt(storedHighScore);
-   highScoreElement.innerText = `Your high score: ${highScore}`;
- }
-
+  // RETRIEVE THE HIGH SCORE FROM LOCAL STORAGE
+  const storedHighScore = localStorage.getItem('highScore');
+  if (storedHighScore !== null) {
+  highScore = parseInt(storedHighScore);
+  highScoreElement.innerText = `Your high score: ${highScore}`;
+  }
   // RESET THE GAME STATE
   resetState();
   currentQuestionIndex = 0;
   currentScore = 0;
+  currentScoreElement.innerText = `Your current score: ${currentScore}`;
   shuffledQuestions = questionsList.sort(() => Math.random() - 0.5);
- 
+  // REMOVE CURRENT SCORE FROM LOCAL STORAGE
+  localStorage.removeItem('currentScore');
 
-
- // START THE GAME
   startGame();
-
-  // START THE TIMER
   startTimer();
 }
 
-restartButton.addEventListener('click', restartGame);
 
 
 // -------- SET QUESTION -------- //
@@ -413,8 +337,6 @@ function setNextQuestion() {
   if (currentQuestionIndex >= shuffledQuestions.length) {
     showFinalScore();
     restartButton.classList.remove('hide');
-
-    
 
     // Stop the timer and display "Game Over"
     clearInterval(timerId);
@@ -431,7 +353,6 @@ function setNextQuestion() {
     }
   }
 }
-
 
 // -------- SHOW QUESTION -------- //
 function showQuestion(question) { 
@@ -457,13 +378,11 @@ function resetState() {
     nextButton.classList.add('hide')
     while (questionAnswerContainer.firstChild) {
       questionAnswerContainer.removeChild(questionAnswerContainer.firstChild)
-    }
+  }
 }
 
-
-
-// SELECT AN ANSWER //
-function selectAnswer(answer) {
+  // SELECT AN ANSWER //
+  function selectAnswer(answer) {
 
   // SET CORRECT/WRONG CLASS TO BODY
   setStatusClass(document.body, answer.correct);
@@ -475,35 +394,26 @@ function selectAnswer(answer) {
   
 // UPDATE SCORE AND HIGH SCORE ELEMENT
   if (answer.correct) {
-    updateScores(true); // call updateScores() with correct=true
+    updateScores(true); 
     highScoreElement.innerText = `Your high score: ${currentScore}`;
   } else {
-    updateScores(false); // call updateScores() with correct=false
+    updateScores(false);
   }
   
-  // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS, 
-  // OR SHOW "WELL DONE!" MESSAGE AND RESTART BUTTON IF THERE ARE NO MORE QUESTIONS
+  // SHOW NEXT BUTTON IF THERE ARE MORE QUESTIONS
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide');
   } else {
-
     startButton.classList.add('hide');
-
     restartButton.classList.remove('hide');
     restartButton.innerText = 'Restart?'
     scoreBoardButton.classList.remove('hide');
     scoreBoardButton.innerText ='View Rankings'
     questionElement.classList.remove('hide');
     questionElement.innerText = 'Well done!';
-    
+
   }
-  
-  
 }
-
-
-
-
 
 // "CORRECT / WRONG" //
 function setStatusClass(element, correct) {
