@@ -22,12 +22,20 @@ let shuffledQuestions, currentQuestionIndex
 let currentScore = 0;
 let highScore = 0;
 
-// const clearStorageButton = document.createElement('button');
-// clearStorageButton.id = 'clear-storage-button';
-// clearStorageButton.innerText = 'CLEAR STORAGE';
+const clearStorageButton = document.createElement('button');
+clearStorageButton.id = 'clear-storage-btn';
+clearStorageButton.innerText = 'CLEAR STORAGE';
 
-// const clearContainer = document.getElementById('clear-container');
-// clearContainer.appendChild(clearStorageButton);
+clearStorageButton.addEventListener('click', () => {
+  console.log('Clicked: Cleared Local Storage');
+  localStorage.clear();
+});
+
+
+const clearContainer = document.getElementById('clear-container');
+clearContainer.appendChild(clearStorageButton);
+
+
 
 
 const highScoreElement = document.createElement('div');
@@ -117,9 +125,7 @@ restartButton.classList.add('hide');
 
 // BUTTONS: Event Listeners //
 
-// clearStorageButton.addEventListener('click', () => {
-//   localStorage.clear();
-// });
+
 
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
