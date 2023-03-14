@@ -15,7 +15,7 @@ let timeLeft = 60;
 let timerId; 
 let shuffledQuestions, currentQuestionIndex
 let currentScore = 0;
-let highestScore = 0;
+let highScore = 0;
 
 let answered = false;
 
@@ -33,10 +33,10 @@ clearContainer.appendChild(clearStorageButton);
 
 
 // - HIGH SCORE ELEMENT------
-const highestScoreElement = document.createElement('div');
-highestScoreElement.id = 'highest-score';
-highestScoreElement.innerText = `Your high score: ${highestScore}`;
-questionContainerElement.appendChild(highestScoreElement);
+const highScoreElement = document.createElement('div');
+highScoreElement.id = 'high-score';
+highScoreElement.innerText = `Your high score: ${highScore}`;
+questionContainerElement.appendChild(highScoreElement);
 
 // - CURRENT SCORE ELEMENT------
 const currentScoreElement = document.createElement('div');
@@ -53,7 +53,7 @@ questionContainerElement.appendChild(finalScoreElement)
 
 // INITIALLY HIDDEN //
 finalScoreElement.classList.add('hide');
-highestScoreElement.classList.add('hide');
+highScoreElement.classList.add('hide');
 scoreBoardContainer.classList.add('hide');
 timeElement.classList.add('hide');
 restartButton.classList.add('hide');
@@ -169,7 +169,7 @@ nextButton.addEventListener('click', () => {
 restartButton.addEventListener('click', () => {
   console.log('Clicked: Restart');
   restartGame();
-  highestScoreElement.classList.add('hide');
+  highScoreElement.classList.add('hide');
   scoreBoardContainer.classList.remove('show-flex');
   scoreBoardContainer.classList.add('hide');
   scoreBoardButton.classList.add('hide');
@@ -198,7 +198,7 @@ function startGame() {
   questionContainerElement.classList.remove('hide');
   questionAnswerContainer.classList.remove('hide');
   
-  highestScore = 0
+  highScore = 0
   currentScore = 0
   
   shuffledQuestions = questionsList.sort(() => Math.random() - .5)
@@ -211,8 +211,8 @@ function startGame() {
   setNextQuestion()
   
    // Reset high score when the game is restarted
-  highestScore = 0;
-  highestScoreElement.innerText = `Your high score: ${highestScore}`;
+  highScore = 0;
+  highScoreElement.innerText = `Your high score: ${highScore}`;
 
   // CLEAR ANY EXISTING TIMERS
   clearInterval(timerId);
@@ -284,17 +284,17 @@ function updateCurrentScore() {
 
 // - F 8 : UPDATE HIGH SCORE -------------------------------------------- //
 function updateHighScore(currentScore) {
-  if (currentScore > highestScore) {
-    highestScore = currentScore;
+  if (currentScore > highScore) {
+    highScore = currentScore;
 
     // Add the high score to the scoreboard and update local storage
-    scoreStorageManager.addScore(highestScore);
+    scoreStorageManager.addScore(highScore);
     updateLocalStorage();
     // Update the high score element
-    highestScoreElement.innerText = `Your high score: ${highestScore}`;
+    highScoreElement.innerText = `Your high score: ${highScore}`;
     // ADD CURRENT SCORE TO RECORDED SCORES ARRAY AND UPDATE HIGH SCORE ELEMENT
     scoreStorageManager.addScore(currentScore);
-    highestScoreElement.innerText = `Your high score: ${scoreStorageManager.getHighestScores()[0] || 0}`;
+    highScoreElement.innerText = `Your high score: ${scoreStorageManager.getHighestScores()[0] || 0}`;
     // SAVE THE HIGH SCORE TO LOCAL STORAGE
     localStorage.setItem('currentScore', currentScore);
   }
@@ -303,22 +303,17 @@ function updateHighScore(currentScore) {
 // - F 9 : SHOW FINAL SCORE -------------------------------------------- //
 function showFinalScore() {
 
-    // HIDDEN: SCORE BOARD BUTTON
     currentScoreElement.classList.add('hide') 
     
-    // RESET: GAME STATE
-    resetState();
-    
-     // DISPLAY: SCORE BOARD BUTTON
+    // RESET GAME STATE
+     resetState();
+    // SHOW THE SCORE BOARD BUTTON
     nextButton.classList.remove('hide');
-    
-    // DISPLAY: FINAL SCORE ELEMENT
-    finalScoreElement.classList.remove('hide'); 
-    
-    // DISPLAY: RESTART BUTTON 
+    // SHOW THE HIGH SCORE ELEMENT
+    // highScoreElement.classList.remove('hide'); 
+    // DISPLAY RESTART BUTTON 
     restartButton.classList.remove('hide');
-    
-    // REMOVE: CURRENT SCORE FROM LOCAL STORAGE
+    // REMOVE CURRENT SCORE FROM LOCAL STORAGE
     localStorage.removeItem('currentScore');
    
 }
@@ -333,17 +328,17 @@ function restartGame() {
   scoreBoardTable.classList.add('hide');
   
   // HIDE HIGH SCORE ELEMENT
-  highestScoreElement.classList.add('hide'); 
+  highScoreElement.classList.add('hide'); 
   
   // RESET HIGH SCORE WHEN THE GAME IS RESTARTED
-  highestScore = 0;
-  highestScoreElement.innerText = `Your X score: ${highestScore}`;
+  highScore = 0;
+  highScoreElement.innerText = `Your X score: ${highScore}`;
   
   // RETRIEVE THE HIGH SCORE FROM LOCAL STORAGE
-  const storedHighestScore = localStorage.getItem('highestScore');
-  if (storedHighestScore !== null) {
-  highestScore = parseInt(storedHighestScore);
-  highestScoreElement.innerText = `Your high score: ${highestScore}`;
+  const storedHighScore = localStorage.getItem('highScore');
+  if (storedHighScore !== null) {
+  highScore = parseInt(storedHighScore);
+  highScoreElement.innerText = `Your high score: ${highScore}`;
   }
   // RESET THE GAME STATE
   resetState();
@@ -432,7 +427,7 @@ function selectAnswer(answer) {
 // UPDATE SCORE AND HIGH SCORE ELEMENT
   if (answer.correct) {
     updateScores(true); 
-    highestScoreElement.innerText = `Your high score: ${currentScore}`;
+    highScoreElement.innerText = `Your high score: ${currentScore}`;
   } else {
     updateScores(false);
   }

@@ -40,13 +40,13 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-/* --- ALL HOVERS --- */ 
-/* .navbar .highlight, 
-.navbar .current a
-{
-color:red;
-font-weight:bold;
-} */
+/* CLASS GROUP: VISIBILITY */
+.hide {
+display:none;}
+.show-flex {
+display:flex;}
+
+/* CLASS GROUP: HOVER */ 
 .navbar a:hover{
 color:#05f7ff;
 font-weight:bold;
@@ -69,9 +69,8 @@ color: black;
 .question-answer-btn:hover {
     border-color: cyan;
 }
-/* ----------- HEADER ----------- */
+/* - HEADER ------------------------------------------------------------------------ */
 .header-container {
-    /* outline: solid 2px red; */
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -88,7 +87,7 @@ color: black;
         rgb(0, 255, 255) 60%,
         rgb(24, 0, 133) 70%
         ) 1 2 10%;
-    }
+}
 .logotype{
     position: relative;
     top: 0.15em;
@@ -132,11 +131,10 @@ color: black;
 
 /* ------------------------ GAME SECTION ------------------------ */
 #game-section {
-    /* outline: solid 10px red; */
      position: relative;
-     top: 15em;
-     width: 50%;
-     left: 31em;
+     top: 10em;
+     width: 40%;
+     left: 36em;
      display: flex;
      justify-content: center;
      flex-direction: column;
@@ -156,21 +154,19 @@ color: black;
      background-color: rgb(13, 11, 53);
  }
  
- /* -------- TIMER -------- */
- #timer {
-     /* display: flex; */
-     /* justify-content: center; */
-     /* text-align: center; */
-     margin: 0.2em 0.5em;
-     padding: 0 1em;
-     height: 1.5em;
-   }
- 
- #timer h6 {
-     color: rgb(124, 179, 241);
-     font-size: clamp(1.2rem, 1vh + 0.5rem, 3rem);
-   }
- 
+/* -------- TIMER -------- */
+#timer {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    margin: 0.2em 0.5em;
+    padding: 0 1em;
+    height: 1.5em;
+}
+#timer h6 {
+    color: rgb(124, 179, 241);
+    font-size: clamp(1.2rem, 1vh + 1rem, 3rem);
+}
  
  /* TEXT: WELCOME */
  #w-text {
@@ -179,33 +175,31 @@ color: black;
      top: 0em;
  }
  #w-text h2 {
-     font-size: clamp(1.5rem, 1vw + 1rem, 3rem);
+     font-size: clamp(1rem, 1vw + 0.7rem, 3rem);
      /* padding: 0.1em; */
      color: white;
      text-align: center;
  }
  
  
- /* -------- CONTAINER: QUESTIONS -------- */
+ /* -------- CONTAINER: ALL QUIZ ELEMENTS -------- */
  #question-visibility-container {
-     /* outline: solid red 2px; */
      margin: 0em 0.2em;
      padding: 0em;
  }
- /* --------  QUESTIONS FONT -------- */
+ /* - TEXT: THE QUESTIONS - */
  #questions-container {
-     /* outline: solid red 2px; */
      position: relative;
-     font-size: clamp(1.3rem, 1vw + 1rem, 3rem);
-     /* font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem); */
+     font-size: clamp(1rem, 1vw + 0.8rem, 3rem);
      padding: 0em;
      margin: 0.5em 0.5em;
      color:white;
      
  }
- /* --------  Q & A: CONTAINER -------- */
+
+
+ /* - Q & A: CONTAINER - */
  #question-answer-btns-container {
-     /* outline: solid red 2px; */
      display:grid;
      grid-template-columns: repeat(2, auto);
      justify-content: space-evenly;
@@ -213,17 +207,17 @@ color: black;
      padding:0;
      margin: 1em 0em;
      /* margin-top: 0.5em; */
-     font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem);
+     /* font-size: clamp(0.2rem, 1vw + 0.2rem, 2rem); */
      font-weight: bold;
      
  }
  
- /* -------- Q & A: BUTTONS -------- */
+ /* - Q & A: BUTTONS - */
  .question-answer-btn {
      outline: solid 1px yellow;
      padding: 0.5em 0.2em;
      margin: 0.4em;
-     font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+     font-size: clamp(0.5rem, 1vw + 0.2rem, 3rem);
      --hue: var(--hue-neutral);
      border: 3px solid hsl(var(--hue), 100%, 30%);
      background-color: hsl(var(--hue), 100%, 50%);
@@ -231,7 +225,6 @@ color: black;
      font-family: "Arial";
      font-weight: bold;
  }
- 
  .question-answer-btn.correct {
      --hue: var(--hue-correct);
      color: black;
@@ -240,185 +233,138 @@ color: black;
      --hue: var(--hue-wrong);
      color: white;
  }
- 
- /* --------  CONTROL BUTTONS -------- */
- .controls {
-     display: flex;
-     justify-content: center;
-     gap: 2em;
-     margin: 1em 2em;
-     padding: 0.5em 1em;
- }
- 
- .control-btn {
-     /* outline: solid 1px yellow; */
-     /* padding: 0.5em;
-     margin: 0.4em; */
-     /* font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); */
-     --hue: var(--hue-neutral);
-     background-color: hsl(var(--hue), 100%, 30%);
-     /* border-radius: 10px; */
-     color:white;
-     font-family: "Arial";
- }
- 
 
- 
- /* BUTTONS */
- #start-btn h3, #next-btn h3, #restart-btn h3 {
-    padding: 0.2em 1.5em;
- }
- 
+/* --------  CONTROLS: BUTTONS -------- */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin: 1em 2em;
+    padding: 0.5em 1em;
+}
+.control-btn {
+    --hue: var(--hue-neutral);
+    background-color: hsl(var(--hue), 100%, 30%);
+    /* border-radius: 10px; */
+    color:white;
+    font-family: "Arial";
+}
+
+/* GAME: BUTTONS */
  #start-btn {
     min-width: 5em;
-    font-size: clamp(0.5rem, 1vw + 0.5rem, 2rem);
+    font-size: clamp(0.5rem, 1vw + 0.2rem, 3rem);
  }
  #next-btn {
     min-width: 5em;
     font-size: clamp(0.5rem, 1vw + 0.5rem, 2rem);
  }
  #restart-btn {
-    /* margin: 0.2em 0.2em; */
     min-width: 5em;
-    font-size: clamp(2rem, 1vw + 1rem, 3rem);
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
  }
  #score-board-btn {
     min-width: 5em;
-    font-size: clamp(2rem, 1vw + 1rem, 3rem);
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
  }
  #restart-btn,
  #score-board-btn {
     padding:0.5em;
  }
+ 
+ 
+
+/* ------- CONTAINER: SCORE BOARD ------- */
+#score-board-container{
+    justify-content: center;
+    margin: 2em 1em;
+}
+#score-board-table {
+    border-radius: 5px;
+    color: rgb(0, 255, 255);
+    font-size: clamp(0.7rem, 1vh + 1rem, 1.5rem);
+    padding: 0.5em;
+    width: 20%;
+    border: unset;
+    box-shadow: 0 0 10px 2px;
+    background-color: black;
+}
+#score-board-table th {
+    font-weight: bold;
+    padding: 1px;
+}
+#score-board-table td {
+padding: 1px;
+border: 2px solid;
+border-image: linear-gradient(
+    to top,
+    rgb(24, 0, 133) 10%,
+    rgb(0, 255, 255) 60%,
+    rgb(21, 91, 182) 70%
+    ) 1 2 10%;
+}
+#score-board-table tr {
+color: white;
+background-color: black;
+}
+#current-score-container{
+    font-size: clamp(0.5rem, 1vw + 0.5rem, 3rem);
+}
+
 
  
- 
- 
- /* -------- HIGH-SCORE CONTAINER -------- */
- #highscore-container {
-     /* display: none; */
-     background-color: brown;
-     color: white;
- }
- 
- #high-score {
-      /* display: none; */
-     position: relative;
-     margin: 1em 0;
-     top: 0em;
-     font-size: clamp(0.7rem, 1vh + 1rem, 1rem);
-     color:white;
- }
- 
- #score-board-container
- {
-    outline: solid 10px red;
-    /* display: flex; */
-     justify-content: center;
-     margin: 2em 2em;
-     
- 
- }
- #score-board-table {
-     border-radius: 5px;
-     color: rgb(0, 255, 255);
-     font-size: clamp(0.7rem, 1vh + 1rem, 1.5rem);
-     padding: 0.5em;
-     width: 20%;
-     border: unset;
-     box-shadow: 0 0 10px 2px;
-     background-color: black;
-
- }
- 
- #score-board-table th {
-  
-     font-weight: bold;
-     padding: 1px;
-     
-   }
-   
-   #score-board-table td {
-    
-     padding: 1px;
-     border: 2px solid;
-     border-image: linear-gradient(
-         to top,
-         rgb(24, 0, 133) 10%,
-         rgb(0, 255, 255) 60%,
-         rgb(21, 91, 182) 70%
-         ) 1 2 10%;
-   }
-   
-   #score-board-table tr {
-     color: white;
-     background-color: black;
-   }
- 
- #current-score-container{
-     font-size: clamp(1rem, 1vw + 1rem, 3rem);
- }
- 
- .hide {
-     display:none;
- }
- 
- .show-flex {
-    display:flex;
- }
- 
- /* -------------- FOOTER-------------- */
- .footer-container {
-    display: flex;
-    justify-content: center;
-     position: fixed;
-     bottom: 0;
-     width: 100%;
-     height: 6em;
-     background-color: rgba(0, 0, 0, 0.9);
-     border-top: 2px solid;
-     border-image: linear-gradient(
-     to left,
-     rgb(24, 0, 133) 10%,
-     rgb(0, 255, 255) 60%,
-     rgb(24, 0, 133) 70%
-     ) 1 2 10%;
- }
- .social-links li a i {
-     margin:0.3em;
-     width: 42px;
-     height: 42px;
-     line-height:2.7rem;
-     font-size: clamp(1.8rem, 1vw + 1rem, 3rem);
-     border-radius: 50%;
-     transition: all 0.35s ease-in-out;
-     -moz-transition: all 0.35s ease-in-out;
-     -webkit-transition: all 0.35s ease-in-out;
-     -o-transition: all 0.35s ease-in-out;
- }
- .social-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding-top: 0.3em;
-    margin: 0;
+/* - FOOTER ------------------------------------------------------------------------ */
+.footer-container {
+display: flex;
+justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 6em;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-top: 2px solid;
+    border-image: linear-gradient(
+    to left,
+    rgb(24, 0, 133) 10%,
+    rgb(0, 255, 255) 60%,
+    rgb(24, 0, 133) 70%
+    ) 1 2 10%;
 }
 .social-links li a i {
-    margin: 0.5em;
-    padding: 0;
-    width: 60px;
-    height: 60px;
+    margin:0.3em;
+    width: 42px;
+    height: 42px;
+    line-height:2.7rem;
+    font-size: clamp(1.8rem, 1vw + 1rem, 3rem);
     border-radius: 50%;
-    font-size: clamp(2.5rem, 1vw + 1rem, 5rem);
-    line-height: 3.8rem;
-    text-align: center;
-    color: rgb(248, 248, 248);
-    background-color: rgba(17, 1, 240, 0.8);
     transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
+}
+.social-links {
+display: flex;
+justify-content: center;
+align-items: center;
+list-style: none;
+padding-top: 0.3em;
+margin: 0;
+}
+.social-links li a i {
+margin: 0.5em;
+padding: 0;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+font-size: clamp(2.5rem, 1vw + 1rem, 5rem);
+line-height: 3.8rem;
+text-align: center;
+color: rgb(248, 248, 248);
+background-color: rgba(17, 1, 240, 0.8);
+transition: all 0.35s ease-in-out;
+-moz-transition: all 0.35s ease-in-out;
+-webkit-transition: all 0.35s ease-in-out;
+-o-transition: all 0.35s ease-in-out;
 }
 
 
@@ -668,8 +614,13 @@ border-bottom: 2px solid;
 
 
 
+/* -------- FINAL SCORE CONTAINER -------- */
+#final-score-container {
+    background-color: rgb(192, 6, 230);
+    color: white;
+}
 /* -------- HIGH-SCORE CONTAINER -------- */
-#highscore-container {
+#high-score-container {
     /* display: none; */
     background-color: brown;
     color: white;
@@ -706,23 +657,23 @@ border-bottom: 2px solid;
     font-weight: bold;
     /* padding: 1px; */
     
-  }
-  
-  #score-board-table td {
-    padding: 1px;
-    border: 2px solid;
-    border-image: linear-gradient(
-        to top,
-        rgb(24, 0, 133) 10%,
-        rgb(0, 255, 255) 60%,
-        rgb(21, 91, 182) 70%
-        ) 1 2 10%;
-  }
-  
-  #score-board-table tr {
-    color: white;
-    background-color: black;
-  }
+}
+
+#score-board-table td {
+padding: 1px;
+border: 2px solid;
+border-image: linear-gradient(
+    to top,
+    rgb(24, 0, 133) 10%,
+    rgb(0, 255, 255) 60%,
+    rgb(21, 91, 182) 70%
+    ) 1 2 10%;
+}
+
+#score-board-table tr {
+color: white;
+background-color: black;
+}
 
 #current-score-container{
     font-size: clamp(1rem, 1vw + 1rem, 3rem);
