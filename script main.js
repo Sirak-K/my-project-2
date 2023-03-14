@@ -19,15 +19,15 @@ let highScore = 0;
 let answered = false;
 
 // - CLEAR LOCAL STORAGE ------
-const clearStorageButton = document.createElement('button');
-clearStorageButton.id = 'clear-storage-btn';
-clearStorageButton.innerText = 'CLEAR STORAGE';
-clearStorageButton.addEventListener('click', () => {
-  console.log('Clicked: Cleared Local Storage');
-  localStorage.clear();
-});
-const clearContainer = document.getElementById('clear-container');
-clearContainer.appendChild(clearStorageButton);
+// const clearStorageButton = document.createElement('button');
+// clearStorageButton.id = 'clear-storage-btn';
+// clearStorageButton.innerText = 'CLEAR STORAGE';
+// clearStorageButton.addEventListener('click', () => {
+//   console.log('Clicked: Cleared Local Storage');
+//   localStorage.clear();
+// });
+// const clearContainer = document.getElementById('clear-storage-container');
+// clearContainer.appendChild(clearStorageButton);
 
 // - HIGH SCORE ELEMENT------
 const highScoreElement = document.createElement('div');
@@ -42,6 +42,8 @@ questionContainerElement.appendChild(currentScoreElement);
 
 // INITIALLY HIDDEN //
 highScoreElement.classList.add('hide');
+scoreBoardContainer.classList.add('hide');
+scoreBoardButton.classList.add('hide');
 timeElement.classList.add('hide');
 restartButton.classList.add('hide');
 
@@ -91,17 +93,18 @@ function resetTimer() {
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
 
-  // HIDE RANKINGS
+  // SHOW RANKINGS
   scoreBoardContainer.classList.remove('hide');
+  // HIDE RANKINGS BUTTON
   scoreBoardButton.classList.add('hide');
-
-  // SHOW SCORE BOARD CONTAINER
-  scoreBoardContainer.classList.remove('hide');
 
   // HIDE QUESTION CONTAINER
   questionElement.classList.add('hide');
   questionContainerElement.classList.add('hide');
   questionAnswerContainer.classList.add('hide');
+  
+  // HIDE TIMER
+  timeElement.classList.add('hide');
   
   // Get the recorded scores from local storage
   const allRecordedScores = JSON.parse(localStorage.getItem('allRecordedScores')) || [];

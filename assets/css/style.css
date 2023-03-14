@@ -2,7 +2,7 @@
 
 /* GLOBAL */
 *, *::before, *::after {
-    /* outline: 1px solid greenyellow; */
+    outline: 1px solid greenyellow;
     /* color: rgb(255, 255, 255); */
     box-sizing: border-box;
     margin:0;
@@ -218,6 +218,11 @@ border-bottom: 2px solid;
     font-size: clamp(0.5rem, 1vw + 1.5rem, 1.5rem);
 }
 
+
+/* .clear-storage-container {
+    display: none;
+} */
+
 /* ---  [320px] -- GAME SECTION -- [23 em] --- */
 #game-section {
    
@@ -227,11 +232,11 @@ border-bottom: 2px solid;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    gap: 2em;
-    /* margin: 1em 2em; */
-    /* padding: 0em 1em; */
+    gap: 1em;
+    margin: 1em;
+    /* padding: 2em 1em; */
     height: 23em;
-    width: 100vw;
+    /* width: 100vw; */
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
     color:rgb(40, 245, 21);
@@ -240,6 +245,7 @@ border-bottom: 2px solid;
 
 /* -------- HIGH-SCORE CONTAINER -------- */
 #highscore-container {
+    display: none;
     background-color: brown;
     color: white;
 }
@@ -254,14 +260,21 @@ border-bottom: 2px solid;
 
 #score-board-container
 {
+    color:greenyellow;
     position: relative;
-    left:0;
-    top:0;
-    z-index: 200;
-    outline: 10px solid red;
-    height: 10em;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    padding: 1em 1em;
+    margin: 1em 2em;
+    /* outline: 10px solid red; */
+    /* height: 10em; */
 }
-
+#score-board-table {
+    width: 100%;
+    color: white;
+    background-color: rgb(5, 6, 78);
+}
 
 /* -------- CONTAINER: QUESTIONS -------- */
 #question-visibility-container {
@@ -274,8 +287,8 @@ border-bottom: 2px solid;
     position: relative;
     font-size: clamp(1.2rem, 1vw + 1rem, 1.5rem);
     padding: 0em;
-    margin: 0 1em;
-    margin-bottom: 1em;
+    margin: 3em 1em;
+    
 }
 /* --------  CONTAINER: Q & A:  -------- */
 #question-answer-container {
@@ -370,7 +383,7 @@ border-bottom: 2px solid;
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 1em;
+    /* margin-top: 0.2em; */
     /* padding: 0.4em; */
    
   }

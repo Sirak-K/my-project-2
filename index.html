@@ -26,37 +26,25 @@
 </header>
 
 
-<container id="clear-container">
-    <div id="clear-storage-btn"></div>
-</container>
+<!-- <container id="clear-storage-container" class="hide">
+    <div id="clear-storage-btn" class="hide"></div>
+</container> -->
 
 
 
-<!-- CONTAINER: SCORE BOARD -->
-<div id="score-board-container" class="hide">
 
-   
-    
-    <!-- TABLE: SCORE BOARD  -->
-    <h2>High Scores</h2>
-    <table id="score-board-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Here you can use JavaScript to generate the rows dynamically -->
-      </tbody>
-    </table>
-  </div>
+
 
 <!--SECTION: GAME-->
     <section id="game-section">
 
-       
+<!-- CONTAINER: SCORE BOARD -->
+<container id="score-board-container" class="hide">
+    <!-- TABLE: SCORE BOARD  -->
+    <h2 class="hide">High Scores</h2>
+    <table id="score-board-table" class="hide">
+    </table>
+  </container>
 
         <!-- TIMER -->
         <div id="timer">
@@ -90,7 +78,7 @@
 <!-- GAME CONTROLS -->
         <div class="controls">
             <script type="text/javascript">
-                const audio = new Audio (); audio.src="./audio/Percz (38).mp3"
+                const audio = new Audio (); audio.src="./assets/audio/click_sound.mp3"
             </script>
 
             <!-- START BUTTON -->
@@ -99,9 +87,8 @@
             <!-- RESTART BUTTON -->
             <button aria-label="Restart" id="restart-btn" class="control-btn hide" onclick="audio.play();"><h3>Restart</h3></button>
            
-             <!-- BUTTON: SCORE BOARD  -->
+            <!-- BUTTON: SCORE BOARD  -->
             <button aria-label="Score Board" id="score-board-btn" class="control-btn hide" onclick="audio.play();"><h3>Score Board</h3></button>
-            
         
             <!-- NEXT BUTTON -->
             <button aria-label="Next" id="next-btn" class="control-btn hide"><h3>Next</h3></button>
