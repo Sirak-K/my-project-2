@@ -1,13 +1,5 @@
 /.gitignore
 /node_modules
 /package.json
-script -safe.js
-script LINK IT.js
 script (TUTORIAL).js
-script main 2.js
-script main 3 - 03.12.js
-script restartgame -safe.js
-script change scoreElement to finalScoreElement.js
-script Karis method.js
-script scoreBoardButton.js
-script main 4 - 03-13.js
+script -safe (03-14, show-flex added)
