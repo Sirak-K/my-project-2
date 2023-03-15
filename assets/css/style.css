@@ -12,7 +12,7 @@ filter: drop-shadow(1px 3px 2px rgba(5, 20, 226, 0.9));
 
 /* GLOBAL */
 *, *::before, *::after {
-    /* outline: 1px solid greenyellow; */
+    outline: 1px solid greenyellow;
     /* color: rgb(255, 255, 255); */
     box-sizing: border-box;
     margin:0;
@@ -66,10 +66,10 @@ color: black;
 .btn:hover {
     border-color: cyan;
 }
-.question-answer-btn:hover {
+.quiz-answer-btn:hover {
     border-color: cyan;
 }
-/* - HEADER ------------------------------------------------------------------------ */
+/* ----------- HEADER ----------- */
 .header-container {
     display: flex;
     justify-content: center;
@@ -88,7 +88,6 @@ color: black;
         ) 1 2 10%;
 }
 #branding {
-    /* outline: solid 2px YELLOW; */
     padding: 0.2em 0em;
     margin: 0.5em 0em;
     margin-top: 0.6em;
@@ -137,21 +136,24 @@ color: black;
 /* ------------------------ GAME SECTION ------------------------ */
 
 .game-section-wrapper {
-    padding: 5em 5em;
+    /* outline: red auto; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 3em 10em;
+    padding: 1em 15em;
 }
 
 #game-section {
-     /* position: relative; */
-     /* top: 10em; */
-     width: 100%;
-     /* left: 36em; */
+    gap:0em;
+    width: 50em;
+    height: auto;
      display: flex;
      justify-content: center;
      flex-direction: column;
-     /* text-align: center; */
+     text-align: center;
      margin: 0em;
-     padding: 0em;
-     /* height: 23em; */
+     padding: 1em 2em;
      border-radius: 5px;
      color: rgb(0, 255, 255);
      box-shadow: 0 0 10px 4px;
@@ -162,6 +164,24 @@ color: black;
      rgb(21, 91, 182) 70%
      ) 1 2 10%;
      background-color: rgb(13, 11, 53);
+ }
+ /* -------- GAME MESSAGE -------- */
+ #game-message {
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+    margin: 1em;
+ }
+
+ /* TEXT: WELCOME */
+ #w-text {
+     margin: 4em 0.5em;
+     /* padding: 0.5em 0.5em; */
+     top: 0em;
+ }
+ #w-text h2 {
+     font-size: clamp(1rem, 1vw + 0.7rem, 3rem);
+     /* padding: 0.1em; */
+     color: white;
+     text-align: center;
  }
  
 /* -------- TIMER -------- */
@@ -176,48 +196,37 @@ color: black;
 }
 #timer h6 {
     color: rgb(124, 179, 241);
-    font-size: clamp(1.2rem, 1vh + 1rem, 3rem);
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
 }
- 
- /* TEXT: WELCOME */
- #w-text {
-     margin: 0.2em 0.5em;
-     padding: 0.5em 0.5em;
-     top: 0em;
- }
- #w-text h2 {
-     font-size: clamp(1rem, 1vw + 0.7rem, 3rem);
-     /* padding: 0.1em; */
-     color: white;
-     text-align: center;
- }
  
  
  /* -------- CONTAINER: ALL QUIZ ELEMENTS -------- */
- #question-visibility-container {
+ #quiz-container-wrapper {
      margin: 0em 0.2em;
      padding: 0em;
  }
- /* - TEXT: THE QUESTIONS - */
- #questions-container {
-     position: relative;
+ /* - TEXT: QUIZ CONTAINER - */
+ #quiz-container {
+     /* position: relative; */
+     display: flex;
+     justify-content: center;
+     align-items: center;
      font-size: clamp(1rem, 1vw + 0.8rem, 3rem);
      padding: 0em;
-     margin: 0.5em 0.5em;
-     margin-bottom: 1em;
+     margin: 1em 0.5em;
+     /* margin-bottom: 1em; */
      color:white;
      
  }
 
-
  /* - Q & A: CONTAINER - */
- #question-answer-btns-container {
+ #quiz-answer-btns-container {
      display:grid;
      grid-template-columns: repeat(2, auto);
      justify-content: space-evenly;
      gap: 0.5em;
      padding:0;
-     margin: 1em 0em;
+     margin: 4em 0em;
      /* margin-top: 0.5em; */
      /* font-size: clamp(0.2rem, 1vw + 0.2rem, 2rem); */
      font-weight: bold;
@@ -225,10 +234,10 @@ color: black;
  }
  
  /* - Q & A: BUTTONS - */
- .question-answer-btn {
+ .quiz-answer-btn {
      outline: solid 1px yellow;
      padding: 0.5em 0.2em;
-     margin: 0.4em;
+     margin: 1em 0em;
      font-size: clamp(0.5rem, 1vw + 0.2rem, 3rem);
      --hue: var(--hue-neutral);
      border: 3px solid hsl(var(--hue), 100%, 30%);
@@ -237,11 +246,11 @@ color: black;
      font-family: "Arial";
      font-weight: bold;
  }
- .question-answer-btn.correct {
+ .quiz-answer-btn.correct {
      --hue: var(--hue-correct);
      color: black;
  }
- .question-answer-btn.wrong {
+ .quiz-answer-btn.wrong {
      --hue: var(--hue-wrong);
      color: white;
  }
@@ -255,6 +264,7 @@ color: black;
     padding: 0.5em 1em;
 }
 .control-btn {
+    font-size: clamp(4rem, 1vw + 0.5rem, 3rem);
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 30%);
     /* border-radius: 10px; */
@@ -273,7 +283,7 @@ color: black;
  }
  #restart-btn {
     min-width: 5em;
-    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+    font-size: clamp(4rem, 1vw + 0.5rem, 3rem);
  }
  #score-board-btn {
     min-width: 5em;
@@ -282,8 +292,60 @@ color: black;
  #restart-btn,
  #score-board-btn {
     padding:0.5em;
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
  }
  
+
+ #final-score{
+    font-size: clamp(1rem, 1vw + 1rem, 3rem);
+margin :1em 0; 
+}
+/* --------  CONTROL BUTTONS -------- */
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 2em;
+    padding: 0.5em 1em;
+}
+
+.control-btn {
+    /* outline: solid 1px yellow; */
+    padding: 0.5em;
+    margin: 0.4em;
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
+    --hue: var(--hue-neutral);
+    background-color: hsl(var(--hue), 100%, 30%);
+    /* border-radius: 10px; */
+    color:white;
+    font-family: "Arial";
+    width: 10em;
+}
+
+/* BUTTONS */
+/* GAME: BUTTONS */
+
+ #restart-btn,
+ #score-board-btn {
+    padding:0.5em;
+ }
+
+#start-btn h3, #next-btn h3, #restart-btn h3, #score-board-btn h3 {
+    font-size: clamp(1.5rem, 1vw + 0.5rem, 3rem);
+}
+
+/* #next-btn,
+#next-btn h3 {
+    margin:0;
+    padding:0;
+} */
+
+
+/* -------- FINAL SCORE -------- */
+#final-score {
+    color: white;
+}
  
 
 /* ------- CONTAINER: SCORE BOARD ------- */
@@ -385,19 +447,14 @@ transition: all 0.35s ease-in-out;
 /* 320px = 20em */
 @media screen and (min-width: 20em) and (max-width: 23em) {
 
-body{
-    overflow: hidden;
-}
-
 /* ----------- HEADER ----------- */
 .header-container {
-/* outline: solid 2px red; */
 display: flex;
 justify-content: center;
 flex-direction: column;
 text-align: center;
 width: 100%;
-margin: 0em 0;
+margin: 00;
 padding: 1em 0;
 height: 6em;
 background-color:rgba(7, 7, 7, 0.8);
@@ -410,13 +467,11 @@ border-bottom: 2px solid;
     ) 1 2 10%;
 }
 #branding {
-    /* outline: solid 2px YELLOW; */
     padding: 0.2em 0em;
     margin: 0.5em 0em;
     margin-top: 0.6em;
 }
 .logotype{
-    /* outline: auto; */
     padding:0;
     position: relative;
     left: 0em;
@@ -432,7 +487,6 @@ border-bottom: 2px solid;
 
 /* ----------- NAV-BAR ----------- */
 .navbar {
-    /* outline: solid 2px red; */
     display: flex;
     justify-content: center;
     height: 2em;
@@ -471,10 +525,13 @@ border-bottom: 2px solid;
 /* ------------------------ GAME SECTION ------------------------ */
 
 /* ------------------------ GAME SECTION ------------------------ */
-
+.game-section-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15em 15em;
+}
 #game-section {
-   /* outline: solid 10px red; */
-    /* position: relative; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -494,17 +551,6 @@ border-bottom: 2px solid;
     ) 1 2 10%;
     background-color: rgb(13, 11, 53);
 }
-/* ------------------------ GAME SECTION ------------------------ */
-
-/* ------------------------ GAME SECTION ------------------------ */
-
-/* ------------------------ GAME SECTION ------------------------ */
-
-/* ------------------------ GAME SECTION ------------------------ */
-
-/* ------------------------ GAME SECTION ------------------------ */
-
-
 
 /* -------- GAME MESSAGE -------- */
 #game-message,
@@ -544,15 +590,13 @@ border-bottom: 2px solid;
 }
 
 
-/* -------- CONTAINER: QUESTIONS -------- */
-#question-visibility-container {
-    /* outline: solid red 2px; */
+/* -------- CONTAINER: ALL QUIZ ELEMENTS -------- */
+#quiz-container-wrapper {
     margin: 0em 0.2em;
     padding: 0em;
 }
-/* --------  QUESTIONS FONT -------- */
-#questions-container {
-    /* outline: solid red 2px; */
+ /* - QUIZ-QUESTIONS - */
+#quiz-container {
     position: relative;
     font-size: clamp(1.3rem, 1vw + 1rem, 3rem);
     /* font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem); */
@@ -562,8 +606,7 @@ border-bottom: 2px solid;
     
 }
 /* --------  CONTAINER: Q & A:  -------- */
-#question-answer-buttons {
-    /* outline: solid red 2px; */
+#quiz-answer-btns {
     display:grid;
     grid-template-columns: repeat(2, auto);
     justify-content: space-evenly;
@@ -577,7 +620,7 @@ border-bottom: 2px solid;
 }
 
 /* -------- BUTTONS: Q & A -------- */
-.question-answer-btn {
+.quiz-answer-btn {
     outline: solid 1px yellow;
     padding: 0.5em 0.2em;
     margin: 0.4em;
@@ -590,11 +633,11 @@ border-bottom: 2px solid;
     font-weight: bold;
 }
 
-.question-answer-btn.correct {
+.quiz-answer-btn.correct {
     --hue: var(--hue-correct);
     color: black;
 }
-.question-answer-btn.wrong {
+.quiz-answer-btn.wrong {
     --hue: var(--hue-wrong);
     color: white;
 }
@@ -609,7 +652,6 @@ border-bottom: 2px solid;
 }
 
 .control-btn {
-    /* outline: solid 1px yellow; */
     padding: 0.5em;
     margin: 0.4em;
     font-size: clamp(2rem, 1vw + 0.5rem, 3rem);
@@ -621,8 +663,6 @@ border-bottom: 2px solid;
 }
 
 /* BUTTONS */
-/* GAME: BUTTONS */
-
  #restart-btn,
  #score-board-btn {
     padding:0.5em;

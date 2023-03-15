@@ -7,3 +7,4 @@ script main - safe remove or rename highScoreElement copy.js
 script main 03 14 old.js
 script -safe add gameMessage for all game text 03 15.js
 style -safe 03-15.css
+script main - safe b4 rearrange FUNCTION orders.js
