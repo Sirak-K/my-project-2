@@ -31,7 +31,7 @@ body {
     /* background-color: rgb(50, 46, 53); */
     background-color: black;
     overflow: hidden;
-    height: 100vh;
+    /* height: 100vh; */
 }
 body.correct {
     --hue: var(--hue-correct);
@@ -77,8 +77,7 @@ color: black;
     text-align: center;
     width: 100%;
     margin: 0em 0;
-    /* padding: 1em 0; */
-    height: 5em;
+    /* height: 5em; */
     background-color:rgba(7, 7, 7, 0.8);
     border-bottom: 2px solid;
         border-image: linear-gradient(
@@ -87,6 +86,12 @@ color: black;
         rgb(0, 255, 255) 60%,
         rgb(24, 0, 133) 70%
         ) 1 2 10%;
+}
+#branding {
+    /* outline: solid 2px YELLOW; */
+    padding: 0.2em 0em;
+    margin: 0.5em 0em;
+    margin-top: 0.6em;
 }
 .logotype{
     position: relative;
@@ -131,14 +136,14 @@ color: black;
 
 /* ------------------------ GAME SECTION ------------------------ */
 #game-section {
-     position: relative;
-     top: 10em;
-     width: 40%;
-     left: 36em;
+     /* position: relative; */
+     /* top: 10em; */
+     /* width: 40%; */
+     /* left: 36em; */
      display: flex;
-     justify-content: center;
-     flex-direction: column;
-     text-align: center;
+     /* justify-content: center; */
+     /* flex-direction: column; */
+     /* text-align: center; */
      margin: 0;
      padding: 0em;
      /* height: 23em; */
@@ -317,12 +322,12 @@ background-color: black;
  
 /* - FOOTER ------------------------------------------------------------------------ */
 .footer-container {
-display: flex;
-justify-content: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 6em;
+/* display: flex; */
+/* justify-content: center; */
+    /* position: fixed; */
+    /* bottom: 0; */
+    /* width: 100%; */
+    /* height: 6em; */
     background-color: rgba(0, 0, 0, 0.9);
     border-top: 2px solid;
     border-image: linear-gradient(
@@ -332,31 +337,20 @@ justify-content: center;
     rgb(24, 0, 133) 70%
     ) 1 2 10%;
 }
-.social-links li a i {
-    margin:0.3em;
-    width: 42px;
-    height: 42px;
-    line-height:2.7rem;
-    font-size: clamp(1.8rem, 1vw + 1rem, 3rem);
-    border-radius: 50%;
-    transition: all 0.35s ease-in-out;
-    -moz-transition: all 0.35s ease-in-out;
-    -webkit-transition: all 0.35s ease-in-out;
-    -o-transition: all 0.35s ease-in-out;
-}
+
 .social-links {
-display: flex;
-justify-content: center;
-align-items: center;
+/* display: flex; */
+/* justify-content: center; */
+/* align-items: center; */
 list-style: none;
 padding-top: 0.3em;
 margin: 0;
 }
 .social-links li a i {
-margin: 0.5em;
+/* margin: 0.5em;
 padding: 0;
 width: 60px;
-height: 60px;
+height: 60px; */
 border-radius: 50%;
 font-size: clamp(2.5rem, 1vw + 1rem, 5rem);
 line-height: 3.8rem;
@@ -386,14 +380,10 @@ transition: all 0.35s ease-in-out;
 
 /* 320px = 20em */
 @media screen and (min-width: 20em) and (max-width: 23em) {
-    body {
-        font-family: 'Rajdhani', sans-serif;
-        /* font-size: clamp(1rem, 1vw + 0.5rem, 3rem); */
-        /* background-color: rgb(50, 46, 53); */
-        background-color: black;
-        overflow: hidden;
-        height: auto; /* or something else for smaller screens */
-    }
+
+body{
+    overflow: hidden;
+}
 
 /* ----------- HEADER ----------- */
 .header-container {
@@ -445,6 +435,7 @@ border-bottom: 2px solid;
     position: relative;
     top: 0em;
     left: 0em;
+    margin:0;
     margin-bottom: 0.5em;
 }
 .navbar ul {
@@ -452,6 +443,9 @@ border-bottom: 2px solid;
     flex-direction: row;
     gap: 2em;
     text-transform: uppercase;
+    margin:0;
+    padding:0;
+
 }
 .navbar a {
     color:#ffffff;
@@ -464,9 +458,16 @@ border-bottom: 2px solid;
     display: none;
 } */
 
-
+/* ------------------------ GAME SECTION ------------------------ */
 
 /* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
 #game-section {
    /* outline: solid 10px red; */
     /* position: relative; */
@@ -474,9 +475,10 @@ border-bottom: 2px solid;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    /* margin: 1em 1.5em; */
+    margin: 2em 2em;
     padding: 0em;
-    height: 23em;
+    height: 20em;
+    width: auto;
     border-radius: 5px;
     color: rgb(0, 255, 255);
     box-shadow: 0 0 10px 4px;
@@ -488,6 +490,25 @@ border-bottom: 2px solid;
     ) 1 2 10%;
     background-color: rgb(13, 11, 53);
 }
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+/* ------------------------ GAME SECTION ------------------------ */
+
+
+
+/* -------- GAME MESSAGE -------- */
+#game-message,
+#final-score {
+    /* display: none; */
+    font-size: clamp(1rem, 1vw + 1rem, 3rem);
+}
+
 
 /* -------- TIMER -------- */
 #timer {
@@ -587,7 +608,7 @@ border-bottom: 2px solid;
     /* outline: solid 1px yellow; */
     padding: 0.5em;
     margin: 0.4em;
-    font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
+    font-size: clamp(2rem, 1vw + 0.5rem, 3rem);
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 30%);
     /* border-radius: 10px; */
@@ -596,26 +617,27 @@ border-bottom: 2px solid;
 }
 
 /* BUTTONS */
+/* GAME: BUTTONS */
+
+ #restart-btn,
+ #score-board-btn {
+    padding:0.5em;
+ }
 
 #start-btn h3, #next-btn h3, #restart-btn h3 {
     z-index: 3;
-    /* font-size: clamp(0.5rem, 1vw + 1rem, 1.5rem); */
+    font-size: clamp(0.5rem, 1vw + 1rem, 1.5rem);
 }
 
-#next-btn {
-    /* outline: auto; */
- /* padding: 3em; */
-}
-#next-btn,
+/* #next-btn,
 #next-btn h3 {
     margin:0;
     padding:0;
-}
+} */
 
 
 /* -------- FINAL SCORE -------- */
 #final-score {
-    background-color: rgb(192, 6, 230);
     color: white;
 }
 /* -------- HIGH-SCORE CONTAINER -------- */
@@ -687,11 +709,9 @@ background-color: black;
 /* -------------- FOOTER-------------- */
 .footer-container {
     position: fixed;
-    left: 0;
-    right:0;
     bottom: 0;
     width: 100%;
-    height: 4em;
+    /* height: auto; */
     background-color: rgba(0, 0, 0, 0.9);
     border-top: 2px solid;
     border-image: linear-gradient(
@@ -701,6 +721,16 @@ background-color: black;
     rgb(24, 0, 133) 70%
     ) 1 2 10%;
 }
+.social-links {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding-top: 0.3em;
+    margin: 0;
+}
+
 .social-links li a i {
     margin:0.3em;
     width: 42px;
