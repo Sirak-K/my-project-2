@@ -135,16 +135,21 @@ color: black;
 /* ------------------------ GAME SECTION ------------------------ */
 
 /* ------------------------ GAME SECTION ------------------------ */
+
+.game-section-wrapper {
+    padding: 5em 5em;
+}
+
 #game-section {
      /* position: relative; */
      /* top: 10em; */
-     /* width: 40%; */
+     width: 100%;
      /* left: 36em; */
      display: flex;
-     /* justify-content: center; */
-     /* flex-direction: column; */
+     justify-content: center;
+     flex-direction: column;
      /* text-align: center; */
-     margin: 0;
+     margin: 0em;
      padding: 0em;
      /* height: 23em; */
      border-radius: 5px;
@@ -322,11 +327,11 @@ background-color: black;
  
 /* - FOOTER ------------------------------------------------------------------------ */
 .footer-container {
-/* display: flex; */
-/* justify-content: center; */
-    /* position: fixed; */
-    /* bottom: 0; */
-    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     /* height: 6em; */
     background-color: rgba(0, 0, 0, 0.9);
     border-top: 2px solid;
@@ -339,18 +344,17 @@ background-color: black;
 }
 
 .social-links {
-/* display: flex; */
-/* justify-content: center; */
-/* align-items: center; */
+display: flex;
+justify-content: center;
 list-style: none;
 padding-top: 0.3em;
 margin: 0;
 }
 .social-links li a i {
-/* margin: 0.5em;
+margin: 0.5em;
 padding: 0;
 width: 60px;
-height: 60px; */
+height: 60px;
 border-radius: 50%;
 font-size: clamp(2.5rem, 1vw + 1rem, 5rem);
 line-height: 3.8rem;
