@@ -12,7 +12,7 @@ filter: drop-shadow(1px 3px 2px rgba(5, 20, 226, 0.9));
 
 /* GLOBAL */
 *, *::before, *::after {
-    outline: 1px solid greenyellow;
+    /* outline: 1px solid greenyellow; */
     /* color: rgb(255, 255, 255); */
     box-sizing: border-box;
     margin:0;
@@ -77,7 +77,7 @@ color: black;
     text-align: center;
     width: 100%;
     margin: 0em 0;
-    /* height: 5em; */
+    height: 5em;
     background-color:rgba(7, 7, 7, 0.8);
     border-bottom: 2px solid;
         border-image: linear-gradient(
@@ -88,13 +88,14 @@ color: black;
         ) 1 2 10%;
 }
 #branding {
-    padding: 0.2em 0em;
-    margin: 0.5em 0em;
+    /* padding: 2em 0em;
+    margin: 0.5em 0em; */
     margin-top: 0.6em;
+
+    
 }
 .logotype{
-    position: relative;
-    top: 0.15em;
+
     margin: 0.5em;
     text-decoration: unset;
     font-family: "Conthrax";
@@ -105,17 +106,16 @@ color: black;
 
 /* ----------- NAV-BAR ----------- */
 .navbar {
+    /* outline: auto; */
     display: flex;
     justify-content: end;
     width: 100%;
-    position: relative;
-    top: -1.5em;
-    margin: 1em 3em;
+    margin: 0em 3em;
 }
 .navbar ul {
     display: flex;
     gap: 6em;
-    height: 4em;
+    height: auto;
     list-style: none;
     padding: 1em;
 }
@@ -146,7 +146,7 @@ color: black;
 
 #game-section {
     gap:0em;
-    width: 50em;
+    /* width: 50em; */
     height: auto;
      display: flex;
      justify-content: center;
@@ -171,21 +171,9 @@ color: black;
     margin: 1em;
  }
 
- /* TEXT: WELCOME */
- #w-text {
-     margin: 4em 0.5em;
-     /* padding: 0.5em 0.5em; */
-     top: 0em;
- }
- #w-text h2 {
-     font-size: clamp(1rem, 1vw + 0.7rem, 3rem);
-     /* padding: 0.1em; */
-     color: white;
-     text-align: center;
- }
- 
+
 /* -------- TIMER -------- */
-#timer {
+#game-timer {
     /* display: flex; */
     /* justify-content: center; */
     /* text-align: center; */
@@ -194,12 +182,24 @@ color: black;
     padding: 0 1em;
     /* height: 1.5em; */
 }
-#timer h6 {
+#game-timer h6 {
     color: rgb(124, 179, 241);
     font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
 }
  
- 
+/* TEXT: WELCOME */
+#w-text {
+    margin: 4em 0.5em;
+    /* padding: 0.5em 0.5em; */
+    top: 0em;
+}
+#w-text h2 {
+    font-size: clamp(1rem, 1vw + 0.7rem, 3rem);
+    /* padding: 0.1em; */
+    color: white;
+    text-align: center;
+}
+
  /* -------- CONTAINER: ALL QUIZ ELEMENTS -------- */
  #quiz-container-wrapper {
      margin: 0em 0.2em;
@@ -306,14 +306,14 @@ margin :1em 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1em 2em;
-    padding: 0.5em 1em;
+    margin: 0;
+    padding: 0;
 }
 
 .control-btn {
     /* outline: solid 1px yellow; */
-    padding: 0.5em;
-    margin: 0.4em;
+    /* padding: 0.5em;
+    margin: 0.4em; */
     font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 30%);
@@ -324,27 +324,15 @@ margin :1em 0;
 }
 
 /* BUTTONS */
-/* GAME: BUTTONS */
-
- #restart-btn,
- #score-board-btn {
-    padding:0.5em;
- }
 
 #start-btn h3, #next-btn h3, #restart-btn h3, #score-board-btn h3 {
     font-size: clamp(1.5rem, 1vw + 0.5rem, 3rem);
 }
 
-/* #next-btn,
-#next-btn h3 {
-    margin:0;
-    padding:0;
-} */
-
-
 /* -------- FINAL SCORE -------- */
 #final-score {
     color: white;
+
 }
  
 
@@ -526,20 +514,25 @@ border-bottom: 2px solid;
 
 /* ------------------------ GAME SECTION ------------------------ */
 .game-section-wrapper {
+    /* outline: 5px red solid; */
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 15em 15em;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width:auto;
 }
 #game-section {
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    margin: 2em 2em;
+    margin: 1em 1em;
     padding: 0em;
-    height: 20em;
-    width: auto;
+    gap:0;
+    height: 23em;
+    width: 20em;
     border-radius: 5px;
     color: rgb(0, 255, 255);
     box-shadow: 0 0 10px 4px;
@@ -556,74 +549,50 @@ border-bottom: 2px solid;
 #game-message,
 #final-score {
     /* display: none; */
+    margin:1em;
     font-size: clamp(1rem, 1vw + 1rem, 3rem);
 }
 
 
-/* -------- TIMER -------- */
-#timer {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* text-align: center; */
-    margin: 0.2em 0.5em;
-    padding: 0 1em;
-    height: 1.5em;
-  }
-
-#timer h6 {
-    color: rgb(124, 179, 241);
-    font-size: clamp(1.2rem, 1vh + 0.5rem, 3rem);
-  }
-
-
-/* TEXT: WELCOME */
-#w-text {
-    margin: 0.2em 0.5em;
-    padding: 0.5em 0.5em;
-    top: 0em;
-}
-#w-text h2 {
-    font-size: clamp(1.5rem, 1vw + 1rem, 3rem);
-    /* padding: 0.1em; */
-    color: white;
-    text-align: center;
-}
-
 
 /* -------- CONTAINER: ALL QUIZ ELEMENTS -------- */
 #quiz-container-wrapper {
+    outline: solid blueviolet 5px;
     margin: 0em 0.2em;
     padding: 0em;
 }
  /* - QUIZ-QUESTIONS - */
 #quiz-container {
-    position: relative;
-    font-size: clamp(1.3rem, 1vw + 1rem, 3rem);
+    /* outline: auto; */
+    font-size: clamp(0.5rem, 1vw + 1rem, 3rem);
     /* font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem); */
     padding: 0em;
-    margin: 0.5em 0.5em;
+    margin:0em;
+    /* margin: 0.5em 0.5em; */
     color:white;
     
 }
-/* --------  CONTAINER: Q & A:  -------- */
-#quiz-answer-btns {
+
+ /* - Q & A: CONTAINER - */
+ #quiz-answer-btns-container {
     display:grid;
     grid-template-columns: repeat(2, auto);
-    justify-content: space-evenly;
-    gap: 0.5em;
-    padding:0;
-    margin: 1em 0em;
-    /* margin-top: 0.5em; */
-    font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem);
-    font-weight: bold;
+    gap: 2em;
+    padding:0.5em;
+    margin: 0em 0;
+    /* font-size: clamp(0.2rem, 1vw + 0.2rem, 2rem); */
     
 }
 
 /* -------- BUTTONS: Q & A -------- */
 .quiz-answer-btn {
     outline: solid 1px yellow;
-    padding: 0.5em 0.2em;
-    margin: 0.4em;
+    min-height: 3em;
+    max-height: 5em;
+    margin: 0;
+    padding:0;
+    /* padding: 0.5em 0.2em;
+    margin: 0.4em; */
     font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem);
     --hue: var(--hue-neutral);
     border: 3px solid hsl(var(--hue), 100%, 30%);
@@ -644,17 +613,21 @@ border-bottom: 2px solid;
 
 /* --------  CONTROL BUTTONS -------- */
 .controls {
+    gap:1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 1em 2em;
     padding: 0.5em 1em;
+    min-height: 5em;
+    height: auto;
+   
 }
 
 .control-btn {
-    padding: 0.5em;
-    margin: 0.4em;
-    font-size: clamp(2rem, 1vw + 0.5rem, 3rem);
+    /* padding: 0.5em;
+    margin: 0.4em; */
+    font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 30%);
     /* border-radius: 10px; */
@@ -673,11 +646,11 @@ border-bottom: 2px solid;
     font-size: clamp(0.5rem, 1vw + 1rem, 1.5rem);
 }
 
-/* #next-btn,
+#next-btn,
 #next-btn h3 {
     margin:0;
     padding:0;
-} */
+}
 
 
 /* -------- FINAL SCORE -------- */
@@ -744,9 +717,36 @@ background-color: black;
     font-size: clamp(1rem, 1vw + 1rem, 3rem);
 }
 
-.hide {
-    display:none;
+
+/* -------- TIMER -------- */
+#game-timer {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    margin: 0.2em 0.5em;
+    padding: 0 1em;
+    height: 1.5em;
+  }
+
+#game-timer h6 {
+    color: rgb(124, 179, 241);
+    font-size: clamp(1.2rem, 1vh + 0.5rem, 3rem);
+  }
+
+
+/* TEXT: WELCOME */
+#w-text {
+    margin: 0.2em 0.5em;
+    padding: 0.5em 0.5em;
+    top: 0em;
 }
+#w-text h2 {
+    font-size: clamp(1.5rem, 1vw + 1rem, 3rem);
+    /* padding: 0.1em; */
+    color: white;
+    text-align: center;
+}
+
 
 
 

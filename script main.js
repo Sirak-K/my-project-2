@@ -1,16 +1,20 @@
-// DOM: Constant Declaratioquiz-answer-btnns //
+// DOM: Constant Declarations //
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const restartButton = document.getElementById('restart-btn')
-const welcomeText = document.getElementById('w-text')
-const gameMessage = document.getElementById('game-message')
+
+
 const quizContainerWrapper = document.getElementById('quiz-container-wrapper')
 const quizContainer = document.getElementById('quiz-container')
 const quizAnswerBtnsContainer = document.getElementById('quiz-answer-btns-container')
-const timeElement = document.getElementById('timer-text')
-const scoreBoardButton = document.getElementById('score-board-btn')
+
+const gameMessage = document.getElementById('game-message')
+const gameTimer = document.getElementById('game-timer')
+
 const scoreBoardContainer = document.getElementById('score-board-container')
+const scoreBoardButton = document.getElementById('score-board-btn')
 const scoreBoardTable = document.getElementById('score-board-table')
+
 
 let timeLeft = 1; 
 let timerId; 
@@ -39,7 +43,7 @@ quizContainerWrapper.appendChild(highestScoreElement);
 
 // - CURRENT SCORE ------
 const currentScoreText = document.createElement('div');
-currentScoreText.id = 'current-score-container';
+currentScoreText.id = 'current-score';
 currentScoreText.innerText = `Your current score: ${currentScore}`;
 quizContainerWrapper.appendChild(currentScoreText);
 
@@ -48,14 +52,13 @@ const finalScoreText = document.getElementById('final-score')
 finalScoreText.innerText = `Your final score: ${currentScore}`;
 
 // INITIALLY HIDDEN //
-finalScoreText.classList.add('hide');
-highestScoreElement.classList.add('hide');
-scoreBoardContainer.classList.add('hide');
 scoreBoardContainer.classList.remove('show-flex');
-timeElement.classList.add('hide');
-restartButton.classList.add('hide');
-gameMessage.classList.add('hide');
+scoreBoardContainer.classList.add('hide');
 highestScoreElement.classList.add('hide');
+finalScoreText.classList.add('hide');
+gameMessage.classList.remove('hide');
+restartButton.classList.add('hide');
+gameTimer.classList.add('hide');
 
 
 // -- SCORE STORAGE MANAGER ------------------------------------------------------ //
@@ -94,48 +97,48 @@ const scoreStorage = JSON.parse(localStorage.getItem('allRecordedScores')) || []
 const scoreStorageManager = new ScoreBoard();
 
 // - EVENT LISTENERS ---------------------------- //
-
-// --------------- BUTTONS: Event Listeners --------------- //
 // ------------- SCORE BOARD --------------- //
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
 
-  // SHOW: RANKINGS
-  scoreBoardContainer.classList.add('show-flex');
-  // HIDE: RANKINGS BUTTON
-  scoreBoardButton.classList.add('hide');
-  // HIDE: FINAL SCORE
-  finalScoreText.classList.add('hide');
-  // HIDE: QUIZ CONTAINER
-  quizContainer.classList.add('hide');
-  quizContainerWrapper.classList.add('hide');
-  quizAnswerBtnsContainer.classList.add('hide');
-  
-  
-  // RETRIEVE: the recorded scores from local storage
-  const allRecordedScores = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
-  // RETRIEVE: the top 5 scores
-  const highestScores = scoreBoard.getHighestScores();
+ // SHOWN
+ scoreBoardContainer.classList.add('show-flex');
+ highestScoreElement.classList.remove('hide'); 
 
-  // CREATE: a new ScoreBoard object
-  const scoreBoard = new ScoreBoard(allRecordedScores);
-  // CREATE: a table to display the scores
-  const scoreBoardTable = document.createElement('table');
-  scoreBoardTable.id = 'score-board-table';
-  scoreBoardTable.innerHTML = '';
-  const headerRow = scoreBoardTable.insertRow();
-  const headerCell1 = headerRow.insertCell();
-  const headerCell2 = headerRow.insertCell();
-  headerCell1.innerText = 'Rank';
-  headerCell2.innerText = 'Score';
+ // HIDDEN
+ quizContainer.classList.add('hide');
+ finalScoreText.classList.add('hide');
+ scoreBoardButton.classList.add('hide');
+ quizContainerWrapper.classList.add('hide');
+ quizAnswerBtnsContainer.classList.add('hide');
+  
+// RETRIEVE: the recorded scores from local storage
+const allRecordedScores = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
 
-  // ADD: EACH SCORE TO THE TABLE
-  highestScores.forEach((iteratedScore, scoreIndex) => {
-    const row = scoreBoardTable.insertRow();
-    const cell1 = row.insertCell();
-    const cell2 = row.insertCell();
-    cell1.innerText = scoreIndex + 1;
-    cell2.innerText = iteratedScore;
+// CREATE: a new ScoreBoard object
+const scoreBoard = new ScoreBoard(allRecordedScores);
+  
+// RETRIEVE: the top 5 scores
+const highestScores = scoreBoard.getHighestScores();
+  
+// CREATE: a table to display the scores
+const scoreBoardTable = document.createElement('table');
+scoreBoardTable.id = 'score-board-table';
+scoreBoardTable.innerHTML = '';
+const headerRow = scoreBoardTable.insertRow();
+const headerCell1 = headerRow.insertCell();
+const headerCell2 = headerRow.insertCell();
+headerCell1.innerText = 'Rank';
+headerCell2.innerText = 'Score';
+
+// ADD: EACH SCORE TO THE TABLE
+highestScores.forEach((iteratedScore, scoreIndex) => {
+const row = scoreBoardTable.insertRow();
+const cell1 = row.insertCell();
+const cell2 = row.insertCell();
+cell1.innerText = scoreIndex + 1;
+cell2.innerText = iteratedScore;
+  
   });
 
   // CLEAR: any existing contents of the score board container and add the table
@@ -145,7 +148,6 @@ scoreBoardButton.addEventListener('click', () => {
 // --------------- START --------------- //
 startButton.addEventListener('click', () => {
   console.log('Clicked: Start');
-  hideTexts();
   startGame();
   startTimer();
   startButton.classList.add('hide');
@@ -177,8 +179,6 @@ restartButton.addEventListener('click', () => {
   scoreBoardContainer.classList.add('hide');
   scoreBoardButton.classList.add('hide');
   scoreBoardTable.classList.add('hide');
-  scoreStorage.classList.add('hide');
-  scoreStorageManager.classList.add('hide');
   gameMessage.classList.add('hide');
 });
 
@@ -189,42 +189,33 @@ restartButton.addEventListener('click', () => {
 function startGame() {
   console.log('Start game function called');
 
-  // HIDE: FINAL SCORE
+  // HIDDEN
+  gameMessage.classList.add('hide');
   finalScoreText.classList.add('hide');
-
-  // HIDE: QUIZ
   quizContainer.classList.remove('hide');
   quizContainerWrapper.classList.remove('hide');
   quizAnswerBtnsContainer.classList.remove('hide');
+  
+  // SHOWN
+  gameTimer.classList.remove('hide');
+  gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
+  currentScoreText.classList.remove('hide');
 
-  // RESET: SCORES 
+  // RESET
   highestScore = 0
   currentScore = 0
-  
-  // ARRAY: SORT
-  shuffledQuestions = questionsList.sort(() => Math.random() - .5)
+  clearInterval(timerId);
   currentQuestionIndex = 0
   
-  // RESET: TIMER
-  resetTimer();
-
-  // FUNCTION CALL: SET THE FIRST QUESTION
-  setNextQuestion()
+  // SORT
+  shuffledQuestions = questionsList.sort(() => Math.random() - .5)
   
-   // RESET: high score when the game is restarted
-  highestScore = 0;
+  // FUNCTION CALLS
+  resetTimer();
+  setNextQuestion()
 
-  // CLEAR: ANY EXISTING TIMERS
-  clearInterval(timerId);
+}
 
-  // SHOW: TIME LEFT
-  timeElement.classList.remove('hide');
-  timeElement.innerText = `Time Left: ${timeLeft} seconds`;
-}
-// - F 2 : HIDE TEXT ------------------------------------------------ //
-function hideTexts() {
-  welcomeText.classList.add('hide')
-}
 // - F 3 : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
@@ -269,7 +260,7 @@ function countdown() {
     timeLeft--;
 
     // SHOW: TIME LEFT
-    timeElement.innerText = `Time Left: ${timeLeft} seconds`;
+    gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
   }
 }
 
@@ -352,20 +343,24 @@ function selectAnswer(answer) {
     
     // HIDDEN
     startButton.classList.add('hide');
+    gameTimer.classList.add('hide');
     quizContainer.classList.add('hide');
-    timeElement.classList.add('hide');
+    currentScoreText.classList.add('hide');
 
-    // DISPLAY
+    // SHOWN
     restartButton.classList.remove('hide');
+    scoreBoardContainer.classList.add('show-flex');
+    scoreBoardContainer.classList.remove('hide');
     scoreBoardButton.classList.remove('hide');
-    
+    gameMessage.classList.remove('hide');
+  
     // TEXT
     restartButton.innerText = 'Restart'
     scoreBoardButton.innerText = 'View Rankings'
     gameMessage.innerText = 'Well done!';
     
     // HIDE CURRENT SCORE
-    currentScoreText.classList.add('hide');
+    
 
     // SHOW FINAL SCORE
     showFinalScore();
@@ -421,23 +416,25 @@ function updateHighestScore(currentScore) {
 // - F 12 : SHOW FINAL SCORE ---------------------------------------- //
 function showFinalScore() {
     
-    // RESET: GAME STATE
-    resetState();
+    
   
-    // SHOW: BUTTONS
+    // SHOWN
     restartButton.classList.remove('hide');
     scoreBoardButton.classList.remove('hide');
-  
     // SHOW SCORE: CURRENT AS FINAL SCORE
     finalScoreText.classList.remove('hide');
     finalScoreText.innerText = `Your final score: ${currentScore}`;
     
     // HIDDEN
-    timeElement.classList.add('hide');
+    gameTimer.classList.add('hide');
     quizContainerWrapper.classList.add('hide');
     nextButton.classList.add('hide');
     currentScoreText.classList.add('hide') 
   
+  
+    // RESET: GAME STATE
+    resetState();
+
     // REMOVE: CURRENT SCORE FROM LOCAL STORAGE
     localStorage.removeItem('currentScore');
    
@@ -484,8 +481,8 @@ function resetTimer() {
 
   // RESET
   clearInterval(timerId);
-  timeLeft = 60;
-  timeElement.innerText = `Time Left: ${timeLeft} seconds`;
+  timeLeft = 200;
+  gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
 }
 // - F 15 : RESET --------------------------------------------------- //
 function resetState() {
