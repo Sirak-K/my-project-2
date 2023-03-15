@@ -160,8 +160,9 @@ color: black;
     /* justify-content: center; */
     /* text-align: center; */
     margin: 0.2em 0.5em;
+    margin-bottom: 2em;
     padding: 0 1em;
-    height: 1.5em;
+    /* height: 1.5em; */
 }
 #timer h6 {
     color: rgb(124, 179, 241);
@@ -193,6 +194,7 @@ color: black;
      font-size: clamp(1rem, 1vw + 0.8rem, 3rem);
      padding: 0em;
      margin: 0.5em 0.5em;
+     margin-bottom: 1em;
      color:white;
      
  }
@@ -593,7 +595,6 @@ border-bottom: 2px solid;
     font-family: "Arial";
 }
 
-
 /* BUTTONS */
 
 #start-btn h3, #next-btn h3, #restart-btn h3 {
@@ -605,7 +606,6 @@ border-bottom: 2px solid;
     /* outline: auto; */
  /* padding: 3em; */
 }
-
 #next-btn,
 #next-btn h3 {
     margin:0;
@@ -613,9 +613,8 @@ border-bottom: 2px solid;
 }
 
 
-
-/* -------- FINAL SCORE CONTAINER -------- */
-#final-score-container {
+/* -------- FINAL SCORE -------- */
+#final-score {
     background-color: rgb(192, 6, 230);
     color: white;
 }

@@ -1,5 +1,8 @@
-/.gitignore
+/gitignore
 /node_modules
 /package.json
 script (TUTORIAL).js
-script -safe (03-14, show-flex added)
+script -safe (03-14, show-flex added).js
+script main - safe remove or rename highScoreElement copy.js
+script main 03 14 old.js
+script -safe add gameMessage for all game text 03 15.js
