@@ -46,8 +46,11 @@ The NeuroQuiz App has been developed for people who are looking to enhance their
 
 
 ### HTML: W3C
+![Validation - HTML](https://user-images.githubusercontent.com/122515678/225532448-b2ec9936-9610-430a-b801-716fdd570134.png)
+
 
 ### CSS: Jigsaw
+![Validation - CSS](https://user-images.githubusercontent.com/122515678/225532456-b4b8e400-cc1c-43c9-a90d-bdd2f6860586.png)
 
   
 
