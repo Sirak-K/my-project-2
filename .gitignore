@@ -10,3 +10,4 @@ style -safe 03-15.css
 script main - safe b4 rearrange FUNCTION orders.js
 script main -SAFE with good commentings.js
 script main - safe before remove #w-text and use #game-message.js
+style -safe b4 all media queries 03-16.css

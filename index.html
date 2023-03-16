@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    <script defer src="script main.js"></script>
+    <script defer src="script.js"></script>
     <title>Home | Quiz App</title>
 </head>
 <body>
@@ -42,10 +42,10 @@
         </div>
 
 <!-- CONTAINER: SCORE BOARD -->
-<container id="score-board-container" class="show-flex hide">
+<div id="score-board-container" class="show-flex hide">
    <!-- TABLE: SCORE BOARD  -->
     <table id="score-board-table" class="hide"></table>
-</container>
+</div>
 
  <!-- CURRENT SCORE  -->
  <div id="current-score" class="hide"></div>
@@ -61,34 +61,34 @@
 
 
         <!--CONTAINER: QUESTIONS-->
-        <div id="quiz-container-wrapper" class="hide">
-            <container id="quiz-container" class="hide"></container>
-            <container id="quiz-answer-btns-container" class="hide">
-                <button aria-label="Answer 1" id="quiz-answer-btn"><h4></h4></button>
-                <button aria-label="Answer 2" id="quiz-answer-btn"><h4></h4></button>
-                <button aria-label="Answer 3" id="quiz-answer-btn"><h4></h4></button>
-                <button aria-label="Answer 4" id="quiz-answer-btn"><h4></h4></button>
-            </container>
-        </div>
+        <container id="quiz-container-wrapper" class="hide">
+            <div id="quiz-container" class="hide"></div>
+            <div id="quiz-answer-btns-container" class="hide">
+                <button aria-label="Answer 1" class="quiz-answer-btn"><h4></h4></button>
+                <button aria-label="Answer 2" class="quiz-answer-btn"><h4></h4></button>
+                <button aria-label="Answer 3" class="quiz-answer-btn"><h4></h4></button>
+                <button aria-label="Answer 4" class="quiz-answer-btn"><h4></h4></button>
+            </div>
+        </container>
         
 
 <!-- GAME CONTROLS -->
         <div class="controls">
-            <script type="text/javascript">
+            <script>
                 const audio = new Audio (); audio.src="./assets/audio/click_sound.mp3"
             </script>
 
             <!-- START BUTTON -->
-            <button aria-label="Start" id="start-btn" class="control-btn " onclick="audio.play();"><h3>Start</h3></button>
+            <button aria-label="Start" id="start-btn" class="control-btn " onclick="audio.play();">Start</button>
             
             <!-- RESTART BUTTON -->
-            <button aria-label="Restart" id="restart-btn" class="control-btn hide" onclick="audio.play();"><h3>Restart</h3></button>
+            <button aria-label="Restart" id="restart-btn" class="control-btn hide" onclick="audio.play();">Restart</button>
            
             <!-- BUTTON: SCORE BOARD  -->
-            <button aria-label="Score Board" id="score-board-btn" class="control-btn hide" onclick="audio.play();"><h3>Score Board</h3></button>
+            <button aria-label="Score Board" id="score-board-btn" class="control-btn hide" onclick="audio.play();">Score Board</button>
         
             <!-- NEXT BUTTON -->
-            <button aria-label="Next" id="next-btn" class="control-btn hide"><h3>Next</h3></button>
+            <button aria-label="Next" id="next-btn" class="control-btn hide">Next</button>
         </div>
     </section>
 </div>
