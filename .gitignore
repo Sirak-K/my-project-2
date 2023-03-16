@@ -1,13 +1,3 @@
-/gitignore
 /node_modules
 /package.json
-script (TUTORIAL).js
-script -safe (03-14, show-flex added).js
-script main - safe remove or rename highScoreElement copy.js
-script main 03 14 old.js
-script -safe add gameMessage for all game text 03 15.js
-style -safe 03-15.css
-script main - safe b4 rearrange FUNCTION orders.js
-script main -SAFE with good commentings.js
-script main - safe before remove #w-text and use #game-message.js
-style -safe b4 all media queries 03-16.css
+/safe_files
