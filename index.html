@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    <script defer src="script.js"></script>
+    
     <title>Home | Quiz App</title>
 </head>
 <body>
 
-<!-- HEADER: START -->
-<header>
-    <div class="header-container">
-        <div id="branding">
-            <h1><a class="logotype" href="index.html">NeuroQuiz</a></h1>
-        </div>
-        <!-- NAVBAR--> 
-        <nav class="navbar"><ul>
-        <li class="current"><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        </ul></nav>
+<!-- HEADER -->
+<header class="header-container">
+
+    <!--SITE LOGO-->
+    <div class="logotype-section">
+    <a class="logotype" href="index.html">NeuroQuiz</a>
     </div>
+
+    <!-- NAVBAR--> 
+    <nav class="navbar">
+    <ul class="navbar-list">
+    <li class="current navbar-list-item"><a class="navbar-link" href="index.html">Home</a></li>
+    <li class="navbar-list-item"><a class="navbar-link" href="contact.html">Contact</a></li>
+    </ul></nav>
 </header>
 
 <!-- CLEAR LOCAL STORAGE -->
@@ -32,54 +34,53 @@
 
 
 <!--SECTION: GAME -->
-<div class="game-section-wrapper">
-    <section id="game-section">
-        <div id="game-message" class="hide">
+<container class="game-section-container">
+    <section class="game-section">
+        <div class="game-message hide">
             <!--WELCOME TEXT-->
-            <h2>Welcome!</h2>
+            <h2 class="welcome-header">Welcome!</h2>
             <br>
-            <h2>Press the Start button</h2>
+            <p class="welcome-text">Press the Start button</p>
         </div>
 
 <!-- CONTAINER: SCORE BOARD -->
-<div id="score-board-container" class="show-flex hide">
+<div class="score-board-container show-flex hide">
    <!-- TABLE: SCORE BOARD  -->
-    <table id="score-board-table" class="hide"></table>
+    <table class="score-board-table hide"></table>
 </div>
 
  <!-- CURRENT SCORE  -->
- <div id="current-score" class="hide"></div>
+ <div class="current-score hide"></div>
 <!-- FINAL SCORE CONTAINER -->
- <p id="final-score" class="hide"></p>
+ <p class="final-score hide"></p>
 <!-- HIGHEST SCORE -->
-<div id="high-score-container" class="hide"></div>
+<div class="high-score-container hide"></div>
         
     <!-- TIMER -->
-        <div id="game-timer">
-            <div id="game-timer-text"></div>
-        </div>
+        <div class="game-timer"></div>
 
 
         <!--CONTAINER: QUESTIONS-->
-        <div id="quiz-container-wrapper" class="hide">
-            <div id="quiz-container" class="hide"></div>
-            <div id="quiz-answer-btns-container" class="hide">
-                <button aria-label="Answer 1" class="quiz-answer-btn"></button>
-                <button aria-label="Answer 2" class="quiz-answer-btn"></button>
-                <button aria-label="Answer 3" class="quiz-answer-btn"></button>
-                <button aria-label="Answer 4" class="quiz-answer-btn"></button>
+        <div class="quiz-section-container hide">
+            <div class="quiz-section hide">
+                <div class="quiz-answer-btns-container">
+                    <button aria-label="Answer 1" class="quiz-answer-btn"></button>
+                    <button aria-label="Answer 2" class="quiz-answer-btn"></button>
+                    <button aria-label="Answer 3" class="quiz-answer-btn"></button>
+                    <button aria-label="Answer 4" class="quiz-answer-btn"></button>
+                </div>
             </div>
         </div>
         
 
 <!-- GAME CONTROLS -->
         <div class="controls">
-            <script>
+            <!-- <script>
                 const audio = new Audio (); audio.src="./assets/audio/click_sound.mp3"
-            </script>
+            </script> -->
 
             <!-- START BUTTON -->
-            <button aria-label="Start" id="start-btn" class="control-btn " onclick="audio.play();">Start</button>
+            <button aria-label="Start" id="start-btn" class="control-btn hide" onclick="audio.play();">Start</button>
             
             <!-- RESTART BUTTON -->
             <button aria-label="Restart" id="restart-btn" class="control-btn hide" onclick="audio.play();">Restart</button>
@@ -91,48 +92,46 @@
             <button aria-label="Next" id="next-btn" class="control-btn hide">Next</button>
         </div>
     </section>
-</div>
+</container>
 
 
 <!-- FOOTER -->
 <footer class="footer-container">
-    <div id="footer-details" class="row">
-        <div class="col-sm-4">
-            <ul class="list-inline social-links">
-                <li class="list-item">
-                    <a target="_blank" href="https://www.facebook.com/sirak.dev/">
-                        <i class="iconez fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sr-only">Facebook</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://twitter.com/sirak_dev">
-                        <i class="fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sr-only">Twitter</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.linkedin.com/in/sirak-k-a203b1156/">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sr-only">LinkedIn</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.pinterest.se/sirakdev/">
-                        <i class="fab fa-pinterest" aria-hidden="true"></i>
-                        <span class="sr-only">Pinterest</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.instagram.com/sirak.dev/">
-                        <i class="iconez fab fa-instagram" aria-hidden="true"></i>
-                        <span class="sr-only">Instagram</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <ul class="list-inline social-links">
+        <li class="list-item">
+            <a target="_blank" href="https://www.facebook.com/sirak.dev/">
+                <i class="fab fa-facebook" aria-hidden="true"></i>
+                <span class="sr-only">Facebook</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a target="_blank" href="https://twitter.com/sirak_dev">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+                <span class="sr-only">Twitter</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a target="_blank" href="https://www.linkedin.com/in/sirak-k-a203b1156/">
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                <span class="sr-only">LinkedIn</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a target="_blank" href="https://www.pinterest.se/sirakdev/">
+                <i class="fab fa-pinterest" aria-hidden="true"></i>
+                <span class="sr-only">Pinterest</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a target="_blank" href="https://www.instagram.com/sirak.dev/">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+                <span class="sr-only">Instagram</span>
+            </a>
+        </li>
+    </ul>
+
 </footer>
 
+<script src="script.js" defer></script>
 </body>
 </html>

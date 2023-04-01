@@ -3,17 +3,17 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const restartButton = document.getElementById('restart-btn')
 
+const quizAnswerBtnsContainer = document.querySelector('.quiz-answer-btns-container')
+const quizSectionContainer = document.querySelector('.quiz-section-container')
+const quizSection = document.querySelector('.quiz-section')
 
-const quizContainerWrapper = document.getElementById('quiz-container-wrapper')
-const quizContainer = document.getElementById('quiz-container')
-const quizAnswerBtnsContainer = document.getElementById('quiz-answer-btns-container')
+const gameMessage = document.querySelector('.game-message')
+const gameTimer = document.querySelector('.game-timer')
 
-const gameMessage = document.getElementById('game-message')
-const gameTimer = document.getElementById('game-timer')
 
-const scoreBoardContainer = document.getElementById('score-board-container')
+const scoreBoardContainer = document.querySelector('.score-board-container')
+const scoreBoardTable = document.querySelector('.score-board-table')
 const scoreBoardButton = document.getElementById('score-board-btn')
-const scoreBoardTable = document.getElementById('score-board-table')
 
 
 let timeLeft = 1; 
@@ -37,18 +37,18 @@ let answered = false;
 
 // - HIGHEST SCORE ELEMENT------
 const highestScoreElement = document.createElement('div');
-highestScoreElement.id = 'highest-score';
+highestScoreElement.classList.add('highest-score');
 highestScoreElement.innerText = `Your highest score: ${highestScore}`;
-quizContainerWrapper.appendChild(highestScoreElement);
+quizSectionContainer.appendChild(highestScoreElement);
 
 // - CURRENT SCORE ------
-const currentScoreText = document.createElement('div');
-currentScoreText.id = 'current-score';
+const currentScoreText = document.querySelector('.current-score');
+
 currentScoreText.innerText = `Your current score: ${currentScore}`;
-quizContainerWrapper.appendChild(currentScoreText);
+quizSectionContainer.appendChild(currentScoreText);
 
 // - FINAL SCORE ------
-const finalScoreText = document.getElementById('final-score')
+const finalScoreText = document.querySelector('.final-score')
 finalScoreText.innerText = `Your final score: ${currentScore}`;
 
 // INITIALLY HIDDEN //
@@ -59,6 +59,10 @@ finalScoreText.classList.add('hide');
 gameMessage.classList.remove('hide');
 restartButton.classList.add('hide');
 gameTimer.classList.add('hide');
+quizSectionContainer.classList.remove('hide');
+
+startButton.classList.remove('hide');
+
 
 
 // -- SCORE STORAGE MANAGER ------------------------------------------------------ //
@@ -105,11 +109,13 @@ scoreBoardButton.addEventListener('click', () => {
  scoreBoardContainer.classList.add('show-flex');
  highestScoreElement.classList.remove('hide'); 
 
+  
  // HIDDEN
- quizContainer.classList.add('hide');
+ gameMessage.classList.add('hide');
  finalScoreText.classList.add('hide');
  scoreBoardButton.classList.add('hide');
- quizContainerWrapper.classList.add('hide');
+ quizSection.classList.add('hide');
+ quizSectionContainer.classList.add('hide');
  quizAnswerBtnsContainer.classList.add('hide');
   
 // RETRIEVE: the recorded scores from local storage
@@ -123,7 +129,7 @@ const highestScores = scoreBoard.getHighestScores();
   
 // CREATE: a table to display the scores
 const scoreBoardTable = document.createElement('table');
-scoreBoardTable.id = 'score-board-table';
+scoreBoardTable.classList.add('score-board-table');
 scoreBoardTable.innerHTML = '';
 const headerRow = scoreBoardTable.insertRow();
 const headerCell1 = headerRow.insertCell();
@@ -151,7 +157,6 @@ startButton.addEventListener('click', () => {
   startGame();
   startTimer();
   startButton.classList.add('hide');
-  
 });
 // --------------- NEXT --------------- //
 nextButton.addEventListener('click', () => {
@@ -165,6 +170,7 @@ nextButton.addEventListener('click', () => {
     setNextQuestion();
   }
 
+  
   // CHECK: if all questions have been answered and disable the "Next" button if they have
   if (quizAnswerBtnsContainer.querySelectorAll('.quiz-answer-btn.selected').length === shuffledQuestions.length) {
     nextButton.classList.add('hide');
@@ -192,14 +198,15 @@ function startGame() {
   // HIDDEN
   gameMessage.classList.add('hide');
   finalScoreText.classList.add('hide');
-  quizContainer.classList.remove('hide');
-  quizContainerWrapper.classList.remove('hide');
-  quizAnswerBtnsContainer.classList.remove('hide');
-  
+
   // SHOWN
+  quizAnswerBtnsContainer.classList.remove('hide');
+  quizSectionContainer.classList.remove('hide');
+  quizSection.classList.remove('hide');
+
+  currentScoreText.classList.remove('hide');
   gameTimer.classList.remove('hide');
   gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
-  currentScoreText.classList.remove('hide');
 
   // RESET
   highestScore = 0
@@ -212,15 +219,15 @@ function startGame() {
   
   // FUNCTION CALLS
   resetTimer();
-  setNextQuestion()
+  setNextQuestion();
 
 }
 
-// - F 3 : START (TIMER) -------------------------------------------- //
+// - F 2 : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
 }
-// - F 4 : COUNTDOWN (TIMER) ---------------------------------------- //
+// - F 3 : COUNTDOWN (TIMER) ---------------------------------------- //
 function countdown() {
 
   // --------- IF; ALL QUESTIONS HAVE BEEN ANSWERED ---------
@@ -229,7 +236,7 @@ function countdown() {
     clearInterval(timerId);
     
     // HIDE: QUESTIONS
-    quizContainerWrapper.classList.add('hide');
+    quizSectionContainer.classList.add('hide');
 
     // MESSAGE: "GAME OVER"
     gameMessage.innerText = 'Game Over!';
@@ -266,14 +273,21 @@ function countdown() {
 
 // ----- SHOW QUESTIONS -------------------------------------------------------------------------------- //
 
-// - F 5 : SHOW QUESTION -------------------------------------------- //
+// - F 4 : SHOW QUESTION -------------------------------------------- //
 function showQuestion(question) { 
-  quizContainer.innerText = question.question;
+
+  quizSection.innerText = question.question;
+
   question.answers.forEach(answer => {
+
     // VAR-DECL.: QUIZ ANSWER BUTTONS
     const quizAnswerBtn = document.createElement('button');
     quizAnswerBtn.innerText = answer.text;
     quizAnswerBtn.classList.add('quiz-answer-btn');
+
+    // !         Added This Part to display Answer buttons
+    quizSection.appendChild(quizAnswerBtnsContainer);
+    // !         Added This Part to display Answer buttons
     // IF; CORRECT
     if (answer.correct) {
       quizAnswerBtn.dataset.correct = answer.correct;
@@ -285,7 +299,7 @@ function showQuestion(question) {
     quizAnswerBtnsContainer.appendChild(quizAnswerBtn);
   })  
 }
-// - F 6 : SET THE NEXT QUESTION ------------------------------------ //
+// - F 5 : SET THE NEXT QUESTION ------------------------------------ //
 function setNextQuestion() {
   // RESET: STATE
   resetState();
@@ -310,7 +324,7 @@ function setNextQuestion() {
     }
   }
 }
-// - F 7 : SELECT AN ANSWER ----------------------------------------- //
+// - F 6 : SELECT AN ANSWER ----------------------------------------- //
 function selectAnswer(answer) {
 
 
@@ -344,14 +358,14 @@ function selectAnswer(answer) {
     // HIDDEN
     startButton.classList.add('hide');
     gameTimer.classList.add('hide');
-    quizContainer.classList.add('hide');
     currentScoreText.classList.add('hide');
 
     // SHOWN
+    quizSectionContainer.classList.add('hide');
     restartButton.classList.remove('hide');
-    scoreBoardContainer.classList.add('show-flex');
-    scoreBoardContainer.classList.remove('hide');
-    scoreBoardButton.classList.remove('hide');
+    scoreBoardContainer.classList.add('hide');
+    scoreBoardButton.classList.add('hide');
+    scoreBoardTable.classList.add('hide');
     gameMessage.classList.remove('hide');
   
     // TEXT
@@ -359,9 +373,7 @@ function selectAnswer(answer) {
     scoreBoardButton.innerText = 'View Rankings'
     gameMessage.innerText = 'Well done!';
     
-    // HIDE CURRENT SCORE
-    
-
+  
     // SHOW FINAL SCORE
     showFinalScore();
     
@@ -372,13 +384,14 @@ function selectAnswer(answer) {
   });
 }
 
+
 // ----- UPDATE SCORES --------------------------------------------------------------------------------- //
 
-// - F 8 : UPDATE LOCAL STORAGE ------------------------------------- //
+// - F 7 : UPDATE LOCAL STORAGE ------------------------------------- //
 function updateLocalStorage() {
   localStorage.setItem('allRecordedScores', JSON.stringify(scoreStorage));
 }
-// - F 9 : UPDATE SCORES -------------------------------------------- //
+// - F 8 : UPDATE SCORES -------------------------------------------- //
 function updateScores(correct) {
   if (correct) {
     updateCurrentScore();
@@ -389,12 +402,12 @@ function updateScores(correct) {
   // SHOW: CURRENT SCORE AS FINAL SHOW 
   finalScoreText.innerText = `Your final score: ${currentScore}`;
 }
-// - F 10 : UPDATE CURRENT SCORE ------------------------------------ //
+// - F 9 : UPDATE CURRENT SCORE ------------------------------------ //
 function updateCurrentScore() {
   currentScore++
   currentScoreText.innerText = `Your current score: ${currentScore}`;
 }
-// - F 11 : UPDATE HIGHEST SCORE ------------------------------------ //
+// - F 10 : UPDATE HIGHEST SCORE ------------------------------------ //
 function updateHighestScore(currentScore) {
   if (currentScore > highestScore) {
     highestScore = currentScore;
@@ -413,21 +426,20 @@ function updateHighestScore(currentScore) {
     localStorage.setItem('currentScore', currentScore);
   }
 }
-// - F 12 : SHOW FINAL SCORE ---------------------------------------- //
+// - F 11 : SHOW FINAL SCORE ---------------------------------------- //
 function showFinalScore() {
     
-    
-  
     // SHOWN
     restartButton.classList.remove('hide');
-    scoreBoardButton.classList.remove('hide');
+  scoreBoardButton.classList.remove('hide');
+  
     // SHOW SCORE: CURRENT AS FINAL SCORE
     finalScoreText.classList.remove('hide');
     finalScoreText.innerText = `Your final score: ${currentScore}`;
     
     // HIDDEN
+    // quizSectionContainer.classList.add('hide');
     gameTimer.classList.add('hide');
-    quizContainerWrapper.classList.add('hide');
     nextButton.classList.add('hide');
     currentScoreText.classList.add('hide') 
   
@@ -440,10 +452,9 @@ function showFinalScore() {
    
 }
 
-
 // ----- RESTART GAME ---------------------------------------------------------------------------------- //
 
-// - F 13 : RESTART GAME -------------------------------------------- //
+// - F 12 : RESTART GAME -------------------------------------------- //
 function restartGame() {
   
   // HIDDEN
@@ -476,26 +487,28 @@ function restartGame() {
   startGame();
   startTimer();
 }
-// - F 14 : RESET TIMER --------------------------------------------- //
+// - F 13 : RESET TIMER --------------------------------------------- //
 function resetTimer() {
 
   // RESET
   clearInterval(timerId);
-  timeLeft = 200;
+  timeLeft = 2000;
   gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
 }
-// - F 15 : RESET --------------------------------------------------- //
+// - F 14 : RESET --------------------------------------------------- //
 function resetState() {
     clearStatusClass(document.body)
-    nextButton.classList.add('hide')
+  nextButton.classList.add('hide')
+  
     while (quizAnswerBtnsContainer.firstChild) {
       quizAnswerBtnsContainer.removeChild(quizAnswerBtnsContainer.firstChild)
   }
 }
 
+
 // -------  ANSWER STATUS MANAGER ----------------------------------------------------------------------- //
 
-// - F 16 : ANSWER STATUS MANAGER ----------------------------------- //
+// - F 15 : ANSWER STATUS MANAGER ----------------------------------- //
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -504,7 +517,7 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// - F 17 : CLEAR: ANSWER STATUS MANAGER ---------------------------- //
+// - F 16 : CLEAR: ANSWER STATUS MANAGER ---------------------------- //
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
