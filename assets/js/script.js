@@ -1,3 +1,99 @@
+// -------- QUESTIONS -------- //
+const questionsList = [
+  {
+    question: 'What part of the brain governs vision?',
+    answers: [
+      { text: 'Amygdala', correct: false },
+      { text: 'Occipital Lobe', correct: true },
+      { text: 'Hippocampus', correct: false },
+      { text: 'Temporal Lobe', correct: false }
+    ]
+  },
+  {
+    question: 'What part of the brain governs hearing?',
+    answers: [
+      
+      { text: 'Amygdala', correct: false },
+      { text: 'Hippocampus', correct: false },
+      { text: 'Temporal Lobe', correct: true },
+      { text: 'Frontal Lobe', correct: false }
+    ]
+  },
+  {
+    question: 'What part of the brain governs the emotions?',
+    answers: [
+      
+      { text: 'Parietal Lobe', correct: false },
+      { text: 'Amygdala', correct: true },
+      { text: 'Hippocampus', correct: false },
+      { text: 'Frontal Lobe', correct: false }
+      
+    ]
+   },
+  // {
+  //     question: 'What part of the brain governs learning?',
+  //     answers: [
+  //     { text: 'Amygdala', correct: false },
+  //     { text: 'Parietal Lobe', correct: false },
+  //     { text: 'Frontal Lobe', correct: false },
+  //     { text: 'Hippocampus', correct: true }
+        
+  //     ]
+  // },
+  // {
+  //     question: 'What part of the brain governs reasoning?',
+  //     answers: [
+      
+  //     { text: 'Amygdala', correct: false },
+  //     { text: 'Frontal Lobe', correct: true },
+  //     { text: 'Parietal Lobe', correct: false },
+  //     { text: 'Hippocampus', correct: false }
+        
+  //     ]
+  // },
+  // {
+  //     question: 'What part of the brain governs spatiality?',
+  //     answers: [
+  //       { text: 'Parietal Lobe', correct: true },
+  //       { text: 'Amygdala', correct: false },
+  //       { text: 'Frontal Lobe', correct: false },
+  //       { text: 'Hippocampus', correct: false }
+        
+  //     ]
+  // },
+  // {
+  //     question: 'What part of the brain governs language?',
+  //     answers: [
+  //       { text: 'Amygdala', correct: false },
+  //       { text: 'Occipital Lobe', correct: false },
+  //       { text: 'Parietal Lobe', correct: true },
+  //       { text: 'Hippocampus', correct: false }
+  //     ]
+  // },
+  // {
+  //     question: 'What part of the brain governs sensation?',
+  //     answers: [
+  //       { text: 'Amygdala', correct: false },
+  //       { text: 'Frontal Lobe', correct: false },
+  //       { text: 'Hippocampus', correct: false },
+  //       { text: 'Parietal Lobe', correct: true }
+  //     ]
+  // },
+  // {
+  //     question: 'What part of the brain governs the personality?',
+  //     answers: [
+        
+  //       { text: 'Parietal Lobe', correct: false },
+  //       { text: 'Frontal Lobe', correct: true },
+  //       { text: 'Occipital Lobe', correct: false },
+  //       { text: 'Amygdala', correct: false }
+        
+  //     ]
+  // },
+
+]
+
+
 // DOM: Constant Declarations //
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
@@ -15,25 +111,12 @@ const scoreBoardContainer = document.querySelector('.score-board-container')
 const scoreBoardTable = document.querySelector('.score-board-table')
 const scoreBoardButton = document.getElementById('score-board-btn')
 
-
 let timeLeft = 1; 
 let timerId; 
 let shuffledQuestions, currentQuestionIndex
 let currentScore = 0;
 let highestScore = 0;
 let answered = false;
-
-// - CLEAR LOCAL STORAGE ------
-// const clearStorageButton = document.createElement('button');
-// clearStorageButton.id = 'clear-storage-btn';
-// clearStorageButton.innerText = 'CLEAR STORAGE';
-// clearStorageButton.addEventListener('click', () => {
-//   console.log('Clicked: Cleared Local Storage');
-//   localStorage.clear();
-// });
-// const clearContainer = document.getElementById('clear-storage-container');
-// clearContainer.appendChild(clearStorageButton);
-
 
 // - HIGHEST SCORE ELEMENT------
 const highestScoreElement = document.createElement('div');
@@ -43,13 +126,13 @@ quizSectionContainer.appendChild(highestScoreElement);
 
 // - CURRENT SCORE ------
 const currentScoreText = document.querySelector('.current-score');
-
 currentScoreText.innerText = `Your current score: ${currentScore}`;
 quizSectionContainer.appendChild(currentScoreText);
 
 // - FINAL SCORE ------
 const finalScoreText = document.querySelector('.final-score')
 finalScoreText.innerText = `Your final score: ${currentScore}`;
+
 
 // INITIALLY HIDDEN //
 scoreBoardContainer.classList.remove('show-flex');
@@ -191,6 +274,13 @@ restartButton.addEventListener('click', () => {
 
 // FUNCTIONS START HERE //
 
+function playSound(correct) {
+  const audio = new Audio();
+  audio.src = correct ? 'assets/audio/correct_answer.wav' : 'assets/audio/wrong_answer.wav';
+  audio.play();
+}
+
+
 // - F 1 : START GAME ----------------------------------------------- //
 function startGame() {
   console.log('Start game function called');
@@ -329,6 +419,7 @@ function selectAnswer(answer) {
     
   // VAR-ASSIGN: answered to true
   answered = true;
+  playSound(answer.correct);
 
   // SET: CORRECT/WRONG CLASS TO BODY
   setStatusClass(document.body, answer.correct);
@@ -495,7 +586,8 @@ function resetState() {
 }
 // - F 15 : ANSWER STATUS MANAGER ----------------------------------- //
 function setStatusClass(element, correct) {
-    clearStatusClass(element)
+  clearStatusClass(element);
+ 
     if (correct) {
         element.classList.add('correct')
     } else {
@@ -508,99 +600,5 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-// -------- QUESTIONS -------- //
-const questionsList = [
-    {
-      question: 'What part of the brain governs vision?',
-      answers: [
-        { text: 'Amygdala', correct: false },
-        { text: 'Occipital Lobe', correct: true },
-        { text: 'Hippocampus', correct: false },
-        { text: 'Temporal Lobe', correct: false }
-      ]
-    },
-    {
-      question: 'What part of the brain governs hearing?',
-      answers: [
-        
-        { text: 'Amygdala', correct: false },
-        { text: 'Hippocampus', correct: false },
-        { text: 'Temporal Lobe', correct: true },
-        { text: 'Frontal Lobe', correct: false }
-      ]
-    },
-    {
-      question: 'What part of the brain governs the emotions?',
-      answers: [
-        
-        { text: 'Parietal Lobe', correct: false },
-        { text: 'Amygdala', correct: true },
-        { text: 'Hippocampus', correct: false },
-        { text: 'Frontal Lobe', correct: false }
-        
-      ]
-     },
-    // {
-    //     question: 'What part of the brain governs learning?',
-    //     answers: [
-    //     { text: 'Amygdala', correct: false },
-    //     { text: 'Parietal Lobe', correct: false },
-    //     { text: 'Frontal Lobe', correct: false },
-    //     { text: 'Hippocampus', correct: true }
-          
-    //     ]
-    // },
-    // {
-    //     question: 'What part of the brain governs reasoning?',
-    //     answers: [
-        
-    //     { text: 'Amygdala', correct: false },
-    //     { text: 'Frontal Lobe', correct: true },
-    //     { text: 'Parietal Lobe', correct: false },
-    //     { text: 'Hippocampus', correct: false }
-          
-    //     ]
-    // },
-    // {
-    //     question: 'What part of the brain governs spatiality?',
-    //     answers: [
-    //       { text: 'Parietal Lobe', correct: true },
-    //       { text: 'Amygdala', correct: false },
-    //       { text: 'Frontal Lobe', correct: false },
-    //       { text: 'Hippocampus', correct: false }
-          
-    //     ]
-    // },
-    // {
-    //     question: 'What part of the brain governs language?',
-    //     answers: [
-    //       { text: 'Amygdala', correct: false },
-    //       { text: 'Occipital Lobe', correct: false },
-    //       { text: 'Parietal Lobe', correct: true },
-    //       { text: 'Hippocampus', correct: false }
-    //     ]
-    // },
-    // {
-    //     question: 'What part of the brain governs sensation?',
-    //     answers: [
-    //       { text: 'Amygdala', correct: false },
-    //       { text: 'Frontal Lobe', correct: false },
-    //       { text: 'Hippocampus', correct: false },
-    //       { text: 'Parietal Lobe', correct: true }
-    //     ]
-    // },
-    // {
-    //     question: 'What part of the brain governs the personality?',
-    //     answers: [
-          
-    //       { text: 'Parietal Lobe', correct: false },
-    //       { text: 'Frontal Lobe', correct: true },
-    //       { text: 'Occipital Lobe', correct: false },
-    //       { text: 'Amygdala', correct: false }
-          
-    //     ]
-    // },
-
-]
 
 

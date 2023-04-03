@@ -226,16 +226,21 @@ background-color: black;
 
 /* - Q & A: CONTAINER - */
 .quiz-answer-btns-container {
-/* height:20em; */
+  outline: 3px dotted red;
+
 display:grid;
 grid-template-columns: repeat(2, auto);
 justify-content: space-evenly;
-font-weight: bold;
+
+/* height:20em; */
+
 }
 
 /* - Q & A: BUTTONS - */
 .quiz-answer-btn {
-padding: 0.5em 0.2em;
+  width:8em;
+ height: 3em;
+/* padding: 0.5em 0.5em; */
 margin: 1em 0em;
 font-family: "Arial";
 font-weight: bold;
