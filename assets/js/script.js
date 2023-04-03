@@ -189,7 +189,7 @@ restartButton.addEventListener('click', () => {
 });
 
 
-// ----- START GAME ----------------------------------------------------------------------------------- //
+// FUNCTIONS START HERE //
 
 // - F 1 : START GAME ----------------------------------------------- //
 function startGame() {
@@ -222,7 +222,6 @@ function startGame() {
   setNextQuestion();
 
 }
-
 // - F 2 : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
@@ -270,9 +269,6 @@ function countdown() {
     gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
   }
 }
-
-// ----- SHOW QUESTIONS -------------------------------------------------------------------------------- //
-
 // - F 4 : SHOW QUESTION -------------------------------------------- //
 function showQuestion(question) { 
 
@@ -383,10 +379,6 @@ function selectAnswer(answer) {
     quizAnswerBtn.disabled = true;
   });
 }
-
-
-// ----- UPDATE SCORES --------------------------------------------------------------------------------- //
-
 // - F 7 : UPDATE LOCAL STORAGE ------------------------------------- //
 function updateLocalStorage() {
   localStorage.setItem('allRecordedScores', JSON.stringify(scoreStorage));
@@ -451,9 +443,6 @@ function showFinalScore() {
     localStorage.removeItem('currentScore');
    
 }
-
-// ----- RESTART GAME ---------------------------------------------------------------------------------- //
-
 // - F 12 : RESTART GAME -------------------------------------------- //
 function restartGame() {
   
@@ -504,10 +493,6 @@ function resetState() {
       quizAnswerBtnsContainer.removeChild(quizAnswerBtnsContainer.firstChild)
   }
 }
-
-
-// -------  ANSWER STATUS MANAGER ----------------------------------------------------------------------- //
-
 // - F 15 : ANSWER STATUS MANAGER ----------------------------------- //
 function setStatusClass(element, correct) {
     clearStatusClass(element)

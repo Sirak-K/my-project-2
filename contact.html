@@ -12,80 +12,76 @@
 </head>
 <body>
 
-<!-- HEADER: START -->
-<header>
-    <div class="header-container">
-        <div id="branding">
-            <h1><a class="logotype" href="index.html">NeuroQuiz</a></h1>
-        </div>
-        <!-- NAVBAR--> 
-        <nav class="navbar"><ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="current"><a href="contact.html">Contact</a></li>
-        </ul></nav>
+<!-- HEADER -->
+<header class="header-container">
+
+    <!--SITE LOGO-->
+    <div class="logotype-section">
+    <a class="logotype" href="index.html">NeuroQuiz</a>
     </div>
+
+    <!--SITE LOGO (Use later when styling done, take screenshot when finalizing styling)-->
+    <!-- <div class="logotype-section">
+        <a class="logotype" href="index.html"><img src="/assets/media/img/logo_image.png" alt="Logo Image"></a>
+    </div> -->
+
+
+    <!-- NAVBAR--> 
+    <nav class="navbar">
+    <ul class="navbar-list">
+    <li class="navbar-list-item"><a class="navbar-link" href="index.html">Play</a></li>
+    <li class="current navbar-list-item"><a class="navbar-link" href="contact.html">Contact</a></li>
+    </ul></nav>
 </header>
 
-<!--SECTION: SHOWCASE-->
-<div class="showcase">
-    <!--VIDEO-->
-        <video src="img/video-1.mp4" autoplay loop muted></video>
-    <!--Video Overlay-->
-        <div class="overlay"></div>
-    </div>
 
-    <!--CONTACT FORM-->
-<h2>Give us Feedback!</h2>
-<div class="sendmail">
-        <form>
-        <input type="email" placeholder="Enter Email...">
-        <input type="text" placeholder="Write something...">
-        <button type="submit" class="button" onclick="audio.play();">Send</button>
-        <script>
-           const audio = new Audio (); audio.src="./assets/audio/click_sound.mp3"
-        </script>
-    </form>
+<!-- CONTACT SECTION -->
+<div class="contact-section-container">
+    <section class="contact-section">
+            <h2 class="contact-header">We want your feedback!</h2>
+            <form class="contact-form" method="POST" action="https://formdump.codeinstitute.net">
+            <input class="contact-form-input" type="email" name="Email" placeholder="Enter Email..." required>
+            <textarea class="contact-message-input" name="Message" placeholder="Write a Message..."></textarea>
+            <button class="contact-button" type="submit">Send</button>
+            </form>
+    </section>
 </div>
 
 
 <!-- FOOTER -->
 <footer class="footer-container">
-    <div id="footer-details" class="row">
-        <div class="col-sm-4">
-            <ul class="list-inline social-links">
-                <li class="list-item">
-                    <a target="_blank" href="https://www.facebook.com/sirak.dev/">
-                        <i class="iconez fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sr-only">Facebook</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://twitter.com/sirak_dev">
-                        <i class="iconez fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sr-only">Twitter</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.linkedin.com/in/sirak-k-a203b1156/">
-                        <i class="iconez fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sr-only">LinkedIn</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.pinterest.se/sirakdev/">
-                        <i class="iconez fab fa-pinterest" aria-hidden="true"></i>
-                        <span class="sr-only">Pinterest</span>
-                    </a>
-                </li>
-                <li class="list-item">
-                    <a target="_blank" href="https://www.instagram.com/sirak.dev/">
-                        <i class="iconez fab fa-instagram" aria-hidden="true"></i>
-                        <span class="sr-only">Instagram</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <ul class="list-inline social-links">
+        <li class="social-list-item">
+            <a class="social-links-item" target="_blank" href="https://www.facebook.com/sirak.dev/">
+                <i class="social-links-item-bg fab fa-facebook" aria-hidden="true"></i>
+                <span class="sr-only">Facebook</span>
+            </a>
+        </li>
+        <li class="social-list-item">
+            <a class="social-links-item" target="_blank" href="https://twitter.com/sirak_dev">
+                <i class="social-links-item-bg fab fa-twitter" aria-hidden="true"></i>
+                <span class="sr-only">Twitter</span>
+            </a>
+        </li>
+        <li class="social-list-item">
+            <a class="social-links-item" target="_blank" href="https://www.linkedin.com/in/sirak-k-a203b1156/">
+                <i class="social-links-item-bg fab fa-linkedin" aria-hidden="true"></i>
+                <span class="sr-only">LinkedIn</span>
+            </a>
+        </li>
+        <li class="social-list-item">
+            <a class="social-links-item" target="_blank" href="https://www.pinterest.se/sirakdev/">
+                <i class="social-links-item-bg fab fa-pinterest" aria-hidden="true"></i>
+                <span class="sr-only">Pinterest</span>
+            </a>
+        </li>
+        <li class="social-list-item">
+            <a class="social-links-item" target="_blank" href="https://www.instagram.com/sirak.dev/">
+                <i class="social-links-item-bg fab fa-instagram" aria-hidden="true"></i>
+                <span class="sr-only">Instagram</span>
+            </a>
+        </li>
+    </ul>
 </footer>
 
 </body>
