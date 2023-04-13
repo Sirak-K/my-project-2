@@ -35,11 +35,9 @@ The NeuroQuiz App has been developed for people who are looking to enhance their
 - Hero Video Background: Exists on Home and Contact. The video has been chosen according to the theme of biohacking and science.
 
 
-## Features left to implement
+## Features
 
-### Account Page
-
-- An user can store their highscores and track their progress.
+- An user can view their previous records and track their progress through the scoreboard.
 
 
 ## Testing & Validation
@@ -60,18 +58,6 @@ The NeuroQuiz App has been developed for people who are looking to enhance their
 
 ## Credits
 
-### Media: Images
-
-#### Page: Home
-
-
-#### Page: Contact
-
-
-### Media: Video
-
-
-#### Pages: All
 
 ### Media: Icons
 

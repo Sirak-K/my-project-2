@@ -1,4 +1,4 @@
-// -------- QUESTIONS -------- //
+// QUESTIONS //
 const questionsList = [
   {
     question: 'What part of the brain governs vision?',
@@ -30,104 +30,98 @@ const questionsList = [
       
     ]
    },
-  // {
-  //     question: 'What part of the brain governs learning?',
-  //     answers: [
-  //     { text: 'Amygdala', correct: false },
-  //     { text: 'Parietal Lobe', correct: false },
-  //     { text: 'Frontal Lobe', correct: false },
-  //     { text: 'Hippocampus', correct: true }
+  {
+      question: 'What part of the brain governs learning?',
+      answers: [
+      { text: 'Amygdala', correct: false },
+      { text: 'Parietal Lobe', correct: false },
+      { text: 'Frontal Lobe', correct: false },
+      { text: 'Hippocampus', correct: true }
         
-  //     ]
-  // },
-  // {
-  //     question: 'What part of the brain governs reasoning?',
-  //     answers: [
+      ]
+  },
+  {
+      question: 'What part of the brain governs reasoning?',
+      answers: [
       
-  //     { text: 'Amygdala', correct: false },
-  //     { text: 'Frontal Lobe', correct: true },
-  //     { text: 'Parietal Lobe', correct: false },
-  //     { text: 'Hippocampus', correct: false }
+      { text: 'Amygdala', correct: false },
+      { text: 'Frontal Lobe', correct: true },
+      { text: 'Parietal Lobe', correct: false },
+      { text: 'Hippocampus', correct: false }
         
-  //     ]
-  // },
-  // {
-  //     question: 'What part of the brain governs spatiality?',
-  //     answers: [
-  //       { text: 'Parietal Lobe', correct: true },
-  //       { text: 'Amygdala', correct: false },
-  //       { text: 'Frontal Lobe', correct: false },
-  //       { text: 'Hippocampus', correct: false }
+      ]
+  },
+  {
+      question: 'What part of the brain governs spatiality?',
+      answers: [
+        { text: 'Parietal Lobe', correct: true },
+        { text: 'Amygdala', correct: false },
+        { text: 'Frontal Lobe', correct: false },
+        { text: 'Hippocampus', correct: false }
         
-  //     ]
-  // },
-  // {
-  //     question: 'What part of the brain governs language?',
-  //     answers: [
-  //       { text: 'Amygdala', correct: false },
-  //       { text: 'Occipital Lobe', correct: false },
-  //       { text: 'Parietal Lobe', correct: true },
-  //       { text: 'Hippocampus', correct: false }
-  //     ]
-  // },
-  // {
-  //     question: 'What part of the brain governs sensation?',
-  //     answers: [
-  //       { text: 'Amygdala', correct: false },
-  //       { text: 'Frontal Lobe', correct: false },
-  //       { text: 'Hippocampus', correct: false },
-  //       { text: 'Parietal Lobe', correct: true }
-  //     ]
-  // },
-  // {
-  //     question: 'What part of the brain governs the personality?',
-  //     answers: [
+      ]
+  },
+  {
+      question: 'What part of the brain governs language?',
+      answers: [
+        { text: 'Amygdala', correct: false },
+        { text: 'Occipital Lobe', correct: false },
+        { text: 'Parietal Lobe', correct: true },
+        { text: 'Hippocampus', correct: false }
+      ]
+  },
+  {
+      question: 'What part of the brain governs sensation?',
+      answers: [
+        { text: 'Amygdala', correct: false },
+        { text: 'Frontal Lobe', correct: false },
+        { text: 'Hippocampus', correct: false },
+        { text: 'Parietal Lobe', correct: true }
+      ]
+  },
+  {
+      question: 'What part of the brain governs the personality?',
+      answers: [
         
-  //       { text: 'Parietal Lobe', correct: false },
-  //       { text: 'Frontal Lobe', correct: true },
-  //       { text: 'Occipital Lobe', correct: false },
-  //       { text: 'Amygdala', correct: false }
+        { text: 'Parietal Lobe', correct: false },
+        { text: 'Frontal Lobe', correct: true },
+        { text: 'Occipital Lobe', correct: false },
+        { text: 'Amygdala', correct: false }
         
-  //     ]
-  // },
+      ]
+  },
 
 ]
 
-// DOM: Constant Declarations //
-const nextButton = document.getElementById('next-btn')
-const startButton = document.getElementById('start-btn')
-const restartButton = document.getElementById('restart-btn')
-const scoreBoardButton = document.getElementById('score-board-btn')
-
-const gameTimer = setClass('.game-timer')
-const gameMessage = setClass('.game-message')
-
-const scoreBoardTable = setClass('.score-board-table')
-const scoreBoardContainer = setClass('.score-board-container')
-
-const quizSection = setClass('.quiz-section')
-const quizSectionContainer = setClass('.quiz-section-container')
-const quizAnswerBtnsContainer = setClass('.quiz-answer-btns-container')
-
+// VARIABLES //
 let timeLeft = 1; 
 let timerId; 
-let randomizedQuestions, currentQuestionIndex
 let currentScore = 0;
 let highestScore = 0;
+let randomizedQuestions, currentQuestionIndex
 let questionAnswered = false;
 
-// - HIGHEST SCORE ELEMENT------
+const quizAnswerBtnsContainer = setClass('.quiz-answer-btns-container')
+const quizSectionContainer = setClass('.quiz-section-container')
+const quizSection = setClass('.quiz-section')
+const gameMessage = setClass('.game-message')
+const gameTimer = setClass('.game-timer')
+const restartButton = document.getElementById('restart-btn')
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
+const scoreBoardButton = document.getElementById('score-board-btn')
+const scoreBoardContainer = setClass('.score-board-container')
+const scoreBoardTable = setClass('.score-board-table')
+
 const highestScoreElement = document.createElement('div');
 highestScoreElement.classList.add('highest-score');
 highestScoreElement.innerText = `Your highest score: ${highestScore}`;
 quizSectionContainer.appendChild(highestScoreElement);
 
-// - CURRENT SCORE ------
 const currentScoreText = setClass('.current-score');
 currentScoreText.innerText = `Your current score: ${currentScore}`;
 quizSectionContainer.appendChild(currentScoreText);
 
-// - FINAL SCORE ------
 const finalScoreText = setClass('.final-score')
 finalScoreText.innerText = `Your final score: ${currentScore}`;
 
@@ -143,9 +137,7 @@ scoreBoardContainer.classList.add('hide');
 quizSectionContainer.classList.add('hide');
 scoreBoardContainer.classList.remove('show-flex');
 
-
-
-// -- SCORE STORAGE MANAGER ------------------------------------------------------ //
+// SCORE STORAGE MANAGER //
 class ScoreBoard {
   constructor(allRecordedScores) {
   // Retrieve saved scores from local storage
@@ -180,8 +172,7 @@ class ScoreBoard {
 const scoreStorage = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
 const scoreStorageManager = new ScoreBoard();
 
-// - EVENT LISTENER: SCORE BOARD ---------------------------- //
-
+// EVENT LISTENER: SCORE BOARD //
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
 
@@ -231,16 +222,10 @@ cell2.innerText = iteratedScore;
   scoreBoardContainer.appendChild(scoreBoardTable);
 });
 
-
-// --------- FUNCTIONS START HERE --------- //
-
-
-// - F 1 : QUERY SELECTORS (CLASSES) ----------------------------------------------- //
+// FUNCTIONS //
 function setClass(selector) {
   return document.querySelector(selector);
 }
-
-// - F 2 : SETUP EVENT LISTENERS ----------------------------------------------- //
 (function setEventListener() {
   startButton.addEventListener('click', startGame);
   nextButton.addEventListener('click', () => {
@@ -249,21 +234,15 @@ function setClass(selector) {
   });
   restartButton.addEventListener('click', restartGame);
 })();
-
-
-// - F 3 : PLAY SOUND ----------------------------------------------- //
 function playSound(correct) {
   const audio = new Audio();
   audio.src = correct ? 'assets/audio/correct_answer.wav' : 'assets/audio/wrong_answer.wav';
   audio.play();
 }
-// - F 4 : QUIZ ANSWER CLICK ----------------------------------------------- //
 function onAnswerClick(answer) {
   console.log('Clicked: Answers');
   selectAnswer(answer);
 }
-
-// - F 5 : START GAME ----------------------------------------------- //
 function startGame() {
   console.log('Start game function called');
 
@@ -296,11 +275,9 @@ function startGame() {
   setNextQuestion();
 
 }
-// - F 6 : START (TIMER) -------------------------------------------- //
 function startTimer() {
   timerId = setInterval(countdown, 1000);
 }
-// - F 7 : COUNTDOWN (TIMER) ---------------------------------------- //
 function countdown() {
 
   // --------- IF; ALL QUESTIONS HAVE BEEN ANSWERED ---------
@@ -343,11 +320,10 @@ function countdown() {
     gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
   }
 }
-// - F 8 : SHOW QUESTION -------------------------------------------- //
 function showQuestion(question) { 
 
   const quizQuestionText = document.createElement('span');
-  quizQuestionText.classList.add('quizQuestionText');
+  quizQuestionText.classList.add('quiz-question-text');
   quizQuestionText.innerText = question.question;
 
   // Append the question text span element to the quizSection
@@ -377,7 +353,6 @@ function showQuestion(question) {
     quizAnswerBtnsContainer.appendChild(quizAnswerBtn);
   })  
 }
-// - F 9 : SET THE NEXT QUESTION ------------------------------------ //
 function setNextQuestion() {
   // RESET: STATE
   resetState();
@@ -402,7 +377,6 @@ function setNextQuestion() {
     }
   }
 }
-// - F 10 : SELECT AN ANSWER ----------------------------------------- //
 function selectAnswer(answer) {
   if (questionAnswered) return;
 
@@ -426,18 +400,14 @@ function selectAnswer(answer) {
 
   disableAnswerButtons();
 }
-
-function setAnswerButtonStatusClasses(correct) {
+function setAnswerButtonStatusClasses() {
   Array.from(quizAnswerBtnsContainer.children).forEach(quizAnswerBtn => {
-    setStatusClass(quizAnswerBtn, correct === (quizAnswerBtn.dataset.correct === 'true'));
+    setStatusClass(quizAnswerBtn, quizAnswerBtn.dataset.correct);
   });
 }
-
-
 function showNextButton() {
   nextButton.classList.remove('hide');
 }
-
 function endGame() {
   startButton.classList.add('hide');
   gameTimer.classList.add('hide');
@@ -455,21 +425,14 @@ function endGame() {
 
   showFinalScore();
 }
-
 function disableAnswerButtons() {
   Array.from(quizAnswerBtnsContainer.children).forEach(quizAnswerBtn => {
     quizAnswerBtn.disabled = true;
   });
 }
-
-
-
-
-// - F 11 : UPDATE LOCAL STORAGE ------------------------------------- //
 function updateLocalStorage() {
   localStorage.setItem('allRecordedScores', JSON.stringify(scoreStorage));
 }
-// - F 12 : UPDATE SCORES -------------------------------------------- //
 function updateScores(correct) {
   if (correct) {
     updateCurrentScore();
@@ -480,12 +443,10 @@ function updateScores(correct) {
   // SHOW: CURRENT SCORE AS FINAL SHOW 
   finalScoreText.innerText = `Your final score: ${currentScore}`;
 }
-// - F 13 : UPDATE CURRENT SCORE ------------------------------------ //
 function updateCurrentScore() {
   currentScore++
   currentScoreText.innerText = `Your current score: ${currentScore}`;
 }
-// - F 14 : UPDATE HIGHEST SCORE ------------------------------------ //
 function updateHighestScore(currentScore) {
   if (currentScore > highestScore) {
     highestScore = currentScore;
@@ -504,7 +465,6 @@ function updateHighestScore(currentScore) {
     localStorage.setItem('currentScore', currentScore);
   }
 }
-// - F 15 : SHOW FINAL SCORE ---------------------------------------- //
 function showFinalScore() {
     
     // SHOWN
@@ -529,7 +489,6 @@ function showFinalScore() {
     localStorage.removeItem('currentScore');
    
 }
-// - F 16 : RESTART GAME -------------------------------------------- //
 function restartGame() {
   
   // HIDDEN
@@ -567,15 +526,12 @@ function restartGame() {
   startGame();
 
 }
-// - F 17 : RESET TIMER --------------------------------------------- //
 function resetTimer() {
-
   // RESET
   clearInterval(timerId);
-  timeLeft = 2000;
+  timeLeft = 60;
   gameTimer.innerText = `Time Left: ${timeLeft} seconds`;
 }
-// - F 18 : RESET --------------------------------------------------- //
 function resetState() {
     clearStatusClass(document.body)
   nextButton.classList.add('hide')
@@ -584,7 +540,6 @@ function resetState() {
       quizAnswerBtnsContainer.removeChild(quizAnswerBtnsContainer.firstChild)
   }
 }
-// - F 19 : ANSWER STATUS MANAGER ----------------------------------- //
 function setStatusClass(element, correct) {
   clearStatusClass(element);
  
@@ -594,11 +549,7 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// - F 20 : CLEAR: ANSWER STATUS MANAGER ---------------------------- //
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
-
-

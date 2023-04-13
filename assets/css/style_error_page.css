@@ -1,0 +1,47 @@
+.error-section {
+    width:100%;
+    padding: 5em;
+    margin: 17em 0;
+}
+.error-section h4 {
+    text-align: center;
+    font-size: 3rem;
+    color:red;
+}
+
+
+@media screen and (min-width: 0em) and (max-width: 119em){
+    .error-section {
+        margin: 0.2em 0;
+    }
+}
+@media screen and (min-width: 23em) and (max-width:119em){
+    .error-section {
+        margin: 5.2em 0;
+    }
+}
+@media screen and (min-width: 25.875em) and (max-width:119em){
+    .error-section {
+        margin: 9.2em 0;
+    }
+}
+@media screen and (min-height: 50.75em) and (max-width:119em){
+    .error-section {
+        margin: 9.8em 0;
+    }
+}
+@media screen and (min-width: 37.5em) and (max-width:119em){
+    .error-section {
+        margin: 10.5em 0;
+    }
+}
+@media screen and (min-width: 48em) and (max-width:119em){
+    .error-section {
+        margin: 16em 0;
+    }
+}
+@media screen and (min-width: 62em) and (max-width:119em){
+    .error-section {
+        margin: 25.5em 0;
+    }
+}
