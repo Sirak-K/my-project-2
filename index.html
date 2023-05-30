@@ -6,30 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    
     <title>Home | Quiz App</title>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="header-container">
-
     <!-- SITE LOGO -->
     <div class="logotype-section">
         <a class="logotype" href="index.html"><img src="assets/img/logo_image.png" alt="Logo Image"></a>
     </div>
-
     <!-- NAVBAR--> 
     <nav class="navbar">
-    <ul class="navbar-list">
-    <li class="current navbar-list-item"><a class="navbar-link" href="index.html">Play</a></li>
-    <li class="navbar-list-item"><a class="navbar-link" href="contact.html">Contact</a></li>
-    </ul></nav>
+        <ul class="navbar-list">
+            <li class="current navbar-list-item"><a class="navbar-link" href="index.html">Play</a></li>
+            <li class="navbar-list-item"><a class="navbar-link" href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
 <!--SECTION: GAME -->
 <div class="game-section-container">
     <section class="game-section">
+
         <div class="game-message hide">
             <!--WELCOME TEXT-->
             <h2 class="welcome-header">Welcome!</h2>
@@ -38,20 +37,15 @@
 
         <!-- CONTAINER: SCORE BOARD -->
         <div class="score-board-container show-flex hide">
-        <!-- TABLE: SCORE BOARD  -->
-            <table class="score-board-table hide"></table>
-        </div>
-
+        <table class="score-board-table hide"></table></div>
         <!-- CURRENT SCORE  -->
         <div class="current-score hide"></div>
         <!-- FINAL SCORE CONTAINER -->
         <p class="final-score hide"></p>
         <!-- HIGHEST SCORE -->
         <div class="high-score-container hide"></div>
-                
         <!-- TIMER -->
         <div class="game-timer"></div>
-
 
         <!--CONTAINER: QUESTIONS-->
         <div class="quiz-section-container hide">
@@ -65,22 +59,18 @@
             </div>
         </div>
         
-
-<!-- GAME CONTROLS -->
+        <!-- GAME CONTROLS -->
         <div class="controls">
-
             <!-- START BUTTON -->
             <button aria-label="Start" id="start-btn" class="control-btn hide">Start</button>
-            
             <!-- RESTART BUTTON -->
             <button aria-label="Restart" id="restart-btn" class="control-btn hide">Restart</button>
-           
             <!-- BUTTON: SCORE BOARD  -->
             <button aria-label="Score Board" id="score-board-btn" class="control-btn hide">Score Board</button>
-        
             <!-- NEXT BUTTON -->
             <button aria-label="Next" id="next-btn" class="control-btn hide">Next</button>
         </div>
+
     </section>
 </div>
 

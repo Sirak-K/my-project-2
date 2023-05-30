@@ -137,7 +137,7 @@ scoreBoardContainer.classList.add('hide');
 quizSectionContainer.classList.add('hide');
 scoreBoardContainer.classList.remove('show-flex');
 
-// SCORE STORAGE MANAGER //
+
 class ScoreBoard {
   constructor(allRecordedScores) {
   // Retrieve saved scores from local storage
@@ -172,7 +172,6 @@ class ScoreBoard {
 const scoreStorage = JSON.parse(localStorage.getItem('allRecordedScores')) || [];
 const scoreStorageManager = new ScoreBoard();
 
-// EVENT LISTENER: SCORE BOARD //
 scoreBoardButton.addEventListener('click', () => {
   console.log('Clicked: View Rankings');
 
@@ -222,7 +221,7 @@ cell2.innerText = iteratedScore;
   scoreBoardContainer.appendChild(scoreBoardTable);
 });
 
-// FUNCTIONS //
+
 function setClass(selector) {
   return document.querySelector(selector);
 }

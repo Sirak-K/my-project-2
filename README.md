@@ -1,7 +1,6 @@
 # Project Description
 NeuroQuiz is a quiz application which has been developed and put forth for people who are looking to enhance their memory recall abilities by practicing on topics such as neuroanatomy.
 
-
 ### Home-page
 
 ![presentation_welcome](https://user-images.githubusercontent.com/122515678/231788759-db74460f-37de-44a0-a2e6-9738a7e914c8.png)
@@ -13,7 +12,6 @@ NeuroQuiz is a quiz application which has been developed and put forth for peopl
 ### Contact-page
 
 - Contains an user feedback form consisting of two inputs: Email and Message.
-  
 
 ## Design
 
@@ -21,12 +19,10 @@ NeuroQuiz is a quiz application which has been developed and put forth for peopl
 
 - Footer (Social Media Links): Exists on every page.
 
-
 ## Game Features
 
 - Visual and auditory feedback for correct and wrong answer selection.
 ![presentation_ingame_correct](https://user-images.githubusercontent.com/122515678/231786336-4d2f1c7b-f8f6-48e3-9f27-1817047003c4.png)
-
 
 ## The user is given two options upon game completion: 
 #### 1. View Scoreboard
@@ -38,7 +34,6 @@ NeuroQuiz is a quiz application which has been developed and put forth for peopl
 
 ## Site Features
 - Contact-page for user feedback and a footer with social icons for contact purposes.
-
 
 ## Testing 
 ### Gameplay Features
@@ -52,11 +47,8 @@ NeuroQuiz is a quiz application which has been developed and put forth for peopl
 ### HTML: W3C
 ![Validation - HTML](https://user-images.githubusercontent.com/122515678/225532448-b2ec9936-9610-430a-b801-716fdd570134.png)
 
-
 ### CSS: Jigsaw
 ![Validation - CSS](https://user-images.githubusercontent.com/122515678/225532456-b4b8e400-cc1c-43c9-a90d-bdd2f6860586.png)
-
-  
 
 ## Deployment
 
@@ -81,10 +73,10 @@ That's it! You now have a local copy of the NeuroQuiz app on your machine.
 
 For more information on using Git and GitHub, please see the official Git documentation and GitHub Help.
 
-
-
 ## Credits
+
 ### Media: Audio
+
 - Correct answer: https://freesound.org/people/Eponn/sounds/531510/
 - Wrong answer: https://freesound.org/people/BloodPixelHero/sounds/607943/
 
