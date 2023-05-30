@@ -1,3 +1,4 @@
+
 # Project Description
 NeuroQuiz is a quiz application which has been developed and put forth for people who are looking to enhance their memory recall abilities by practicing on topics such as neuroanatomy.
 
@@ -74,6 +75,12 @@ That's it! You now have a local copy of the NeuroQuiz app on your machine.
 For more information on using Git and GitHub, please see the official Git documentation and GitHub Help.
 
 ## Credits
+
+### Game Feature: Quiz Functionality
+Inspired by [Build A Quiz App With JavaScript](https://www.youtube.com/watch=riDzcEQbX6k) by Web Dev Simplified 
+
+Link: [Source code](https://github.com/WebDevSimplified/JavaScript-Quiz-App/blob/master/script.js)
+
 
 ### Media: Audio
 
